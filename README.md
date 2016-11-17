@@ -1,15 +1,14 @@
-Stanley-Park App:
+StanleyPark App:
 ==========================================
--The Hyper Local Social Networking Service
+The Hyper Local Social Networking Service
 
 
-<!-- ====== Usage ====== -->
+### Usage
 
 ```
-git clone git@github.com:lighthouse-labs/react-simple-boilerplate.git
-git remote rm origin
-git remote add origin [YOUR NEW REPOSITORY]
-# Manually update your package.json file
+> Fork: https://github.com/DaneSirois/StanleyPark,
+> Pull your fork,
+> Make branches which mimic modules
 ```
 
 Install the dependencies and start the server.
@@ -20,9 +19,20 @@ npm start
 open http://localhost:3000
 ```
 
-### Static Files
+### Naming Conventions
 
-You can store static files like images, fonts, etc in the `build` folder.
+```
+Modules:
+> Name modules after features
+> Module names start with a capital letter
+
+Files:
+> Name files following the mountain(MTN) naming convention (Module__type__name)
+> Prefix files with the name of their module (ex. 'Module')
+> Follow with the type of file that they are in lowercase (ex. 'Module__container')
+> Prepend with the unique name of that file using camelCase (ex. 'Module__container__myContainer')
+> Seperate each part with double underscores
+```
 
 ### Linting
 
@@ -35,6 +45,10 @@ npm run lint
 <!-- ====== Dependencies ====== -->
 
 * React
+* Redux
+* React-Redux
+* Redux-socket.io
+* Socket.io
 * Webpack
 * [babel-loader](https://github.com/babel/babel-loader)
 * [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
