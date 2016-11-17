@@ -3,12 +3,12 @@ StanleyPark App:
 The Hyper Local Social Networking Service
 
 
-### Usage
+### Usage:
 
 ```
 > Fork: https://github.com/DaneSirois/StanleyPark,
 > Pull your fork,
-> Make branches which mimic modules
+> Make Git branches mimic modules
 ```
 
 Install the dependencies and start the server.
@@ -19,7 +19,7 @@ npm start
 open http://localhost:3000
 ```
 
-### Naming Conventions
+### Naming Conventions:
 
 ```
 Modules:
@@ -27,19 +27,18 @@ Modules:
 > Module names start with a capital letter
 
 Files:
-> Name files following the mountain(MTN) naming convention (Module__type__name)
-> Prefix files with the name of their module (ex. 'Module')
-> Follow with the type of file that they are in lowercase (ex. 'Module__container')
-> Prepend with the unique name of that file using camelCase (ex. 'Module__container__myContainer')
-> Seperate each part with double underscores
+Follow the Mountain(MTN) naming convention (Module__type__name):
+  > Prefix files with the name of their module (ex. 'Module')
+  > Follow that with the type of file using lowercase (ex. 'Module__container')
+  > Prepend with a unique name using camelCase (ex. 'Module__container__myContainer')
+  > Seperate each part with double underscores
 ```
 
-### Linting
+### Linting:
 
 This project includes React ESLint configuration.
 
-//
-npm run lint
+> npm run lint
 ```
 
 <!-- ====== Dependencies ====== -->
