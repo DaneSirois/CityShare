@@ -38,9 +38,9 @@ Files:
 
 This project includes React ESLint configuration.
 
-``
+```
 > npm run lint
-``
+```
 
 ### Dependencies:
 
