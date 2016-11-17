@@ -23,8 +23,8 @@ Install the dependencies and start the server.
 
 ```
 Modules:
-> Name modules after features
-> Module names start with a capital letter
+  > Name modules after features
+  > Module names start with a capital letter
 
 Files:
   Follow the Mountain(MTN) naming convention (Module__type__name):
