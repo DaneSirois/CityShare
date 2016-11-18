@@ -1,0 +1,6 @@
+.Chatroom__container { /* <div> - Root container */
+  display: block;
+
+  height: 100%;
+  width: 66.6%;
+}

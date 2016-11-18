@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-class App__container__navbar extends Component {
+export default class App__container__navbar extends Component {
   render() {
     return (
       <nav>
@@ -10,9 +10,9 @@ class App__container__navbar extends Component {
   };
 };
 
-function mapStateToProps(state) {
-  return ({
-  });
-};
+// function mapStateToProps(state) {
+//   return ({
+//   });
+// };
 
-export default connect(mapStateToProps)(App__container__navbar);
+// export default connect(mapStateToProps)(App__container__navbar);

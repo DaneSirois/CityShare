@@ -1,17 +1,35 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+const util = require('util');
 
-new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
-  watchOptions: {
-    aggregateTimeout: 300,
-    poll: 1000
-  }
-}).listen(3000, '0.0.0.0', function (err, result) {
-  if (err) {
-    console.log(err);
-  }
+const inspect = (o, d = 1) => {
+  console.log(util.inspect(o, { colors: true, depth: d }));
+  // return o;
+};
 
-  console.log('Running at http://0.0.0.0:3000');
-});
+// Socket IO:
+module.exports = function(io) {
+  io.on('connection', (socket) => {
+    console.log(`Socket connected: ${socket.id}`);
+  
+    const emit__action = (type, payload) => socket.emit('action', { type, payload });
+    const broadcast__action = (type, payload) => io.emit('action', { type, payload });
+
+    socket._user = {
+      id: socket.id,
+      username: "Anonymous",
+    };
+
+    inspect(socket);
+
+   
+    socket.on('action', (action) => {
+      switch (action.type) {
+        case 'server/NEW_MESSAGE':
+          break;
+      }
+    });
+
+    socket.on('disconnect', function(){
+      console.log("Socket disconnected");
+    });
+  });
+};
