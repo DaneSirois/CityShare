@@ -31,7 +31,7 @@ module.exports = function(io) {
 
     socket.on('action', (action) => {
       switch(action.type) {
-        case 'server/NEW_MESSAGE':
+        case 'socket/NEW_MESSAGE':
           let message = {
             id: uuid.v1(),
             username: socket.user.username,
@@ -43,7 +43,7 @@ module.exports = function(io) {
             payload: message
           });
           break;
-        case 'server/SET_USERNAME':
+        case 'socket/SET_USERNAME':
           let notification = `${socket.user.username} has changed their username to ${action.payload.username}`
           socket.user.username = action.payload.username;
           socket.user.color = generateRandomColor();

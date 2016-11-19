@@ -5,7 +5,7 @@ export const SET_USERNAME = 'SET_USERNAME';
 export function newMessage(message) {
   console.log(message);
   return {
-    type:  `server/${NEW_MESSAGE}`,
+    type:  `socket/${NEW_MESSAGE}`,
     payload: message
   };
 }
@@ -13,7 +13,7 @@ export function newMessage(message) {
 export function setUsername(broadcast) {
   console.log(broadcast);
   return {
-    type: `server/${SET_USERNAME}`,
+    type: `socket/${SET_USERNAME}`,
     payload: {
       username: broadcast.username,
       notification: broadcast.notification
