@@ -7,7 +7,7 @@ import Update from '../components/Update.js';
 class FeedList extends Component {
   renderMessage(update) {
     return (
-      <Message
+      <Update
         key={update.id}
         content={update.content} />
     );
