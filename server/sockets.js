@@ -54,6 +54,15 @@ module.exports = function(io) {
             }
           });
           break;
+        case 'socket/NEW_UPDATE':
+          let update = {
+            id: uuid.v1(),
+            content: parseMessage(action.payload),
+          }
+          io.emit('action', {type: 'NEW_UPDATE',
+            payload: update
+          });
+          break;
         }
     });
 

@@ -3,7 +3,9 @@ import Nav from './containers/Nav.js';
 import MessageList from './containers/MessageList.js';
 import ChatBar from './containers/ChatBar.js';
 import Message from './components/Message.js';
+import FeedList from './containers/FeedList.js';
 import FeedBar from './containers/FeedBar.js';
+
 export default class App extends Component {
   render() {
     return(
@@ -11,6 +13,7 @@ export default class App extends Component {
         <Nav />
         <MessageList />
         <ChatBar />
+        <FeedList />
         <FeedBar />
       </div>
     )
