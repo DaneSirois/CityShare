@@ -1,5 +1,6 @@
 export const NEW_MESSAGE = 'NEW_MESSAGE';
 export const SET_USERNAME = 'SET_USERNAME';
+export const NEW_UPDATE = 'NEW_UPDATE';
 
 
 export function newMessage(message) {
@@ -7,6 +8,14 @@ export function newMessage(message) {
   return {
     type:  `socket/${NEW_MESSAGE}`,
     payload: message
+  };
+}
+
+export function newUpdate(update) {
+  console.log(update);
+  return {
+    type:  `socket/${NEW_UPDATE}`,
+    payload: update
   };
 }
 
