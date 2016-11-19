@@ -1,15 +1,26 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-// Import components:
-// import {Chatroom__component__message as message} from './Chatroom__component__message.js'; 
+import Message__component from './Chatroom__component__Message.js';
 
-class Chatroom__container__messageList extends Component {
+class MessageList__container extends Component {
+  constructor (props) {
+    super(props);
+    this.renderMessages = this.renderMessages.bind(this);
+  }
+  renderMessages(chatLog) {
+    return chatLog.map((message, index) => {
+      console.log(message);
+      return (
+        <Message__component key={index} messageData={message} />
+      )
+    });
+  }
   render() {
     return (
-      <div>
-        Hello world!
-      </div>
+      <ul>
+        {this.renderMessages(this.props.chatLog)}
+      </ul>
     );
   };
 };
@@ -20,4 +31,4 @@ function mapStateToProps(state) {
   });
 };
 
-export default connect(mapStateToProps)(Chatroom__container__messageList);
+export default connect(mapStateToProps)(MessageList__container);

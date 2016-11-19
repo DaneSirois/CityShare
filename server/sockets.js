@@ -13,18 +13,12 @@ module.exports = function(io) {
     const emit__action = (type, payload) => socket.emit('action', { type, payload });
     const broadcast__action = (type, payload) => io.emit('action', { type, payload });
 
-    socket._user = {
-      id: socket.id,
-      username: "Anonymous",
-    };
-
-    inspect(socket);
-
-   
     socket.on('action', (action) => {
       switch (action.type) {
-        case 'server/NEW_MESSAGE':
-          break;
+        case 'socket/NEW_MESSAGE':
+          console.log(action);
+          broadcast__action('ADD_TO_CHATLOG', action.payload);
+        break;
       }
     });
 

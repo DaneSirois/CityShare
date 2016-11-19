@@ -1,0 +1,1 @@
+export newMessage from './Shared__action__newMessage';
