@@ -13,6 +13,8 @@ const socket = io('http://localhost:3000');
 
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
 
+// Dispatch Initialization action
+
 ReactDOM.render(
   <Provider store={createStore(root_reducer, applyMiddleware(socketIoMiddleware))}>
     <App__module />
