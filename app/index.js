@@ -11,12 +11,12 @@ const socket = io('http://localhost:3000');
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
 
 // Imports:
-import root_reducer from './root_reducer.js';
-import App__module from './modules/App/App__API.js';
+import root_reducer from './reducers/root_reducer.js';
+import App from './App.js';
 
 ReactDOM.render(
-  <Provider store={createStore(root_reducer)}>
-    <App__module />
+  <Provider store={createStore(root_reducer, applyMiddleware(socketIoMiddleware))}>
+    <App />
   </Provider>,
   document.getElementById('SRC')
 );
