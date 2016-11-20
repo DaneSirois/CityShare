@@ -11,18 +11,16 @@ import io from 'socket.io-client';
 
 import actions from './modules/Shared/actions/index.js';
 
-
-const store = createStore(root_reducer);
-
 const socket = io('http://localhost:3000');
-
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
 
+const store = createStore(root_reducer, applyMiddleware(socketIoMiddleware));
+
 // Dispatch Initialization action
-store.dispatch(actions.fetchState);
+//store.dispatch(actions.fetchState);
 
 ReactDOM.render(
-  <Provider store={store, applyMiddleware(socketIoMiddleware))}>
+  <Provider store={store}>
     <App__module />
   </Provider>,
   document.getElementById('SRC')
