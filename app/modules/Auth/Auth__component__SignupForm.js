@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+// Styles:
+import SignupForm from './styles/Auth__styles__SignupForm.css';
+
 class SignupForm__component extends Component {
   constructor(props) {
     super(props);

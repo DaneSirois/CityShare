@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+// Styles:
+import LoginForm from './styles/Auth__styles__LoginForm.css';
+
 class LoginForm__component extends Component {
   constructor(props) {
     super(props);
