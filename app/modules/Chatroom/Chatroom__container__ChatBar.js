@@ -4,11 +4,20 @@ import {connect} from 'react-redux';
 import * as actions from '../Shared/actions/index.js';
 
 class ChatBar__container extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {message: ''}
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+  handleInputChange(event) {
+    this.setState({message: event.target.value});
+  }
   render() {
     return (
       <footer>
-        <form onSubmit={this.props.handleSubmit("Hello")} >
-          <input type="text" />
+      <h1> ChatRoom </h1>
+        <form onSubmit={this.props.handleSubmit(this.state.message)} >
+          <input onChange={this.handleInputChange} type="text" />
         </form>
       </footer>
     )

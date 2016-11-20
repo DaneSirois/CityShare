@@ -6,21 +6,21 @@ import Feeditem__component from './Feed__component__feeditem.js';
 class Feedlist__container extends Component {
   constructor (props) {
     super(props);
-    this.renderMessages = this.renderMessages.bind(this);
+    this.renderUpdates = this.renderUpdates.bind(this);
   }
-  renderMessages(chatLog) {
+  renderUpdates(feedItems) {
 
-    return chatLog.map((message, index) => {
-      console.log(message);
+    return feedItems.map((update, index) => {
+      console.log(update);
       return (
-        <Message__component key={index} messageData={message} />
+        <Feeditem__component key={index} updateData={update} />
       )
     });
   }
   render() {
     return (
       <ul>
-        {this.renderMessages(this.props.chatLog)}
+        {this.renderUpdates(this.props.feedItems)}
       </ul>
     );
   };
@@ -28,7 +28,7 @@ class Feedlist__container extends Component {
 
 function mapStateToProps(state) {
   return ({
-    chatLog: state.Chatroom.chatLog
+    feedItems: state.Feed.feedList
   });
 };
 

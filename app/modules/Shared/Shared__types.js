@@ -7,4 +7,5 @@ export const SIGNUP_USER = 'SIGNUP_USER';
 export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
 
 // Feed Actions
-export const ADD_UPDATE = 'ADD_UPDATE';
+export const NEW_UPDATE = 'NEW_UPDATE';
+export const ADD_TO_FEEDLIST = 'ADD_TO_FEEDLIST';
