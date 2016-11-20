@@ -20,7 +20,6 @@ const inspect = (o, d = 1) => {
 module.exports = function(io) {
   io.on('connection', (socket) => {
     console.log(`Socket connected: ${socket.id}`);
-
     const emit__action = (type, payload) => socket.emit('action', { type, payload });
     const broadcast__action = (type, payload) => io.emit('action', { type, payload });
     // GET CHANNELS ON CONNECT
@@ -48,6 +47,13 @@ module.exports = function(io) {
           broadcast__action('USER_AUTHENTICATED', action.payload);
         break;
         case 'socket/NEW_MESSAGE':
+          knex('messages').insert({
+            message_text: action.payload,
+            user_id: 1,
+            channel_id: 21
+          }).then((result) => {
+            console.log(result);
+          });
           broadcast__action('ADD_TO_CHATLOG', action.payload);
         break;
 
