@@ -10,3 +10,7 @@ export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
 export const NEW_CHANNEL = 'NEW_CHANNEL';
 export const GET_CHANNELS = 'GET_CHANNELS';
 export const ADD_TO_CHANNEL_LIST = 'ADD_TO_CHANNEL_LIST';
+
+// Feed Actions
+export const NEW_UPDATE = 'NEW_UPDATE';
+export const ADD_TO_FEEDLIST = 'ADD_TO_FEEDLIST';

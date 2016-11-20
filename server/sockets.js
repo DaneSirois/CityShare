@@ -45,10 +45,14 @@ module.exports = function(io) {
         case 'socket/AUTHENTICATE_USER':
           const userInput = action.payload;
           bcrypt.compareSync(userInput.password, userInput.password);
-          emit__action('ADD_TO_CHATLOG', action.payload);
+          broadcast__action('USER_AUTHENTICATED', action.payload);
         break;
         case 'socket/NEW_MESSAGE':
-          broadcast__action('USER_AUTHENTICATED', action.payload);
+          broadcast__action('ADD_TO_CHATLOG', action.payload);
+        break;
+
+        case 'socket/NEW_UPDATE':
+          broadcast__action('ADD_TO_FEEDLIST', action.payload);
         break;
         case 'socket/NEW_CHANNEL':
           const channelData = action.payload;

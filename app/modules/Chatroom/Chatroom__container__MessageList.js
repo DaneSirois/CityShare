@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import Message__component from './Chatroom__component__Message.js';
+import Message__component from './Chatroom__component__message.js';
 
 class MessageList__container extends Component {
   constructor (props) {
@@ -9,6 +9,7 @@ class MessageList__container extends Component {
     this.renderMessages = this.renderMessages.bind(this);
   }
   renderMessages(chatLog) {
+
     return chatLog.map((message, index) => {
       console.log(message);
       return (

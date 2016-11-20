@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import * as actions from '../Shared/actions/index.js';
 
 class LoginForm__component extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class LoginForm__component extends Component {
     this.setState({username: event.target.value});
   }
   handlePasswordInput (event) {
-    this.setState({username: event.target.value});
+    this.setState({password: event.target.value});
   }
   render() {
     return (
