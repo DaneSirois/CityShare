@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-class Message__component extends Component {
+class Feeditem__component extends Component {
   render() {
     return (
       <li>
@@ -11,4 +11,4 @@ class Message__component extends Component {
 };
 
 
-export default Message__component;
+export default Feeditem__component;

@@ -44,6 +44,7 @@ module.exports = function(io) {
           emit__action('ADD_TO_CHATLOG', action.payload);
         break;
         case 'socket/NEW_MESSAGE':
+          emit__action('ADD_TO_CHATLOG', action.payload);
           broadcast__action('USER_AUTHENTICATED', action.payload);
         break;
       }
