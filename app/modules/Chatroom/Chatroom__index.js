@@ -10,7 +10,7 @@ import ChatBar__container from './Chatroom__container__ChatBar.js';
 class Chatroom__module extends Component {
   render() {
     return (
-      <div>
+      <div className={styles.container}>
         <MessageList__container />
         <ChatBar__container />
       </div>
