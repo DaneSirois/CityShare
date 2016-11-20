@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import * as actions from '../Shared/actions/index.js';
 
 // Styles:
 import LoginForm from './styles/Auth__styles__LoginForm.css';
@@ -16,11 +17,12 @@ class LoginForm__component extends Component {
     this.setState({username: event.target.value});
   }
   handlePasswordInput (event) {
-    this.setState({username: event.target.value});
+    this.setState({password: event.target.value});
   }
   render() {
     return (
       <form onSubmit={this.props.handleSubmit(this.state)}>
+        <h2>Log In Form</h2>
         <input type="text" onChange={this.handleUsernameInput.bind(this)} placeholder={"Username"} />
         <input type="text" onChange={this.handlePasswordInput.bind(this)} placeholder={"Password"} />
         <button>Login</button>
@@ -33,7 +35,7 @@ const mapDispatchToProps = function (dispatch) {
   return {
     handleSubmit: (loginCreds) => (event) => {
       event.preventDefault();
-      
+
       dispatch(actions.login(loginCreds));
     }
   }
