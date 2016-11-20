@@ -8,6 +8,7 @@ class Navbar__container extends Component {
   render() {
     return (
       <nav>
+        <h1>Nav Bar</h1>
         <SignupForm__container />
         <LoginForm__container />
       </nav>

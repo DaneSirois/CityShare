@@ -11,6 +11,7 @@ class Chatroom__module extends Component {
   render() {
     return (
       <div>
+        <h1>Chat Room</h1>
         <MessageList__container />
         <ChatBar__container />
       </div>
