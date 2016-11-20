@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import Navbar__container from '../Shared/Shared__container__navbar.js';
+import Navbar__container from '../Shared/Shared__container__Navbar.js';
 import Chatroom__module from '../Chatroom/Chatroom__index.js';
 
 class App__module extends Component {
