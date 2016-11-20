@@ -26,6 +26,9 @@ module.exports = function(io) {
 
     socket.on('action', (action) => {
       switch (action.type) {
+        case 'socket/GET_INITIAL_STATE':
+
+        break;
         case 'socket/SIGNUP_USER':
           const userCreds = action.payload;
           bcrypt.hash(userCreds.password, 10, (err, hash) => {

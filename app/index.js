@@ -9,14 +9,20 @@ import App__module from './modules/App/App__index.js';
 import createSocketIoMiddleware from 'redux-socket.io';
 import io from 'socket.io-client';
 
+import actions from './modules/Shared/actions/index.js';
+
+
+const store = createStore(root_reducer);
+
 const socket = io('http://localhost:3000');
 
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
 
 // Dispatch Initialization action
+store.dispatch(actions.fetchState);
 
 ReactDOM.render(
-  <Provider store={createStore(root_reducer, applyMiddleware(socketIoMiddleware))}>
+  <Provider store={store, applyMiddleware(socketIoMiddleware))}>
     <App__module />
   </Provider>,
   document.getElementById('SRC')
