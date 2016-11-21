@@ -21,7 +21,7 @@ class ActiveForm__container extends Component {
   }
   render() {
     return (
-      {this.renderForm(this.props.activeForm)}
+      {this.renderForm(this.props.activeForm).bind(this)}
     );
   };
 };

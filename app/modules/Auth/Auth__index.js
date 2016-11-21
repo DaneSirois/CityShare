@@ -18,8 +18,8 @@ class Auth__module extends Component {
   render() {
     return (
       <div className={Auth.container}>
-        {this.renderButton()}
-        {this.renderForm()}
+        {this.renderButton().bind(this)}
+        {this.renderForm().bind(this)}
       </div>
     );
   };
