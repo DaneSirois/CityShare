@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 // Styles:
-import App from './App__styles.css';
+// import App from './App__styles.css';
 
 
 import Portal__module from '../Portal/Portal__index.js';
@@ -11,9 +11,7 @@ class App__module extends Component {
   render() {
     return (
       <div className={App.container}>
-        {this.props.children} 
-        <Chatroom__module />
-        <Feed__module />
+        {this.props.children}
       </div>
     );
   };
