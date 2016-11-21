@@ -1,9 +1,6 @@
 // App Actions:
 export fetchState from './Shared__action__fetchState.js';
 
-// Chatroom Actions:
-export newMessage from './Shared__action__newMessage.js';
-
 // Auth Actions:
 export showCP from './Shared__action__showCP.js';
 export changeAuthTab from './Shared__action__changeAuthTab.js';
