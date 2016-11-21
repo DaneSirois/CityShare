@@ -7,7 +7,6 @@ export changeAuthTab from './Shared__action__changeAuthTab.js';
 
 // Chatroom Actions:
 export newMessage from './Shared__action__newMessage';
-export fetchState from './Shared__action__FetchState';
 
 // User Actions:
 export login from './Shared__action__login.js';

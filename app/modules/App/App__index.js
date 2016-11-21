@@ -11,9 +11,9 @@ class App__module extends Component {
   render() {
     return (
       <div className={App.container}>
+        {this.props.children}
         <Navbar__container />
         <Chatroom__module />
-        <Portal__module />
         <Feed__module />
       </div>
     );
