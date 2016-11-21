@@ -4,6 +4,7 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'eval',
   devServer: {
+    historyApiFallback: true,
     contentBase: "./app"
   },
   entry: [
