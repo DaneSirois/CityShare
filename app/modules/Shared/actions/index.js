@@ -1,5 +1,5 @@
 // App Actions:
-export fetchState from './Shared__action__fetchState.js';
+export fetchState from './Shared__action__FetchState.js';
 
 // Auth Actions:
 export showCP from './Shared__action__showCP.js';
@@ -17,3 +17,4 @@ export newChannel from './Shared__action__NewChannel.js';
 
 // Feed Actions:
 export newUpdate from './Shared__action__newUpdate.js';
+export newTopic from './Shared__action__newTopic';

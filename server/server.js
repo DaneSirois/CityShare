@@ -9,7 +9,7 @@ const socket_server = require('./sockets')(io);
 
 server.listen(3000);
 
-app.get('/channel', function(req, res) {
+app.get('/portal', function(req, res) {
 	res.send('hello');
 });
 
