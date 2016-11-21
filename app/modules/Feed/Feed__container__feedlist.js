@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import Feeditem__component from './Feed__component__feeditem.js';
+import FeedItem__component from './Feed__component__FeedItem.js';
 
-class Feedlist__container extends Component {
+class FeedList__container extends Component {
   constructor (props) {
     super(props);
     this.renderUpdates = this.renderUpdates.bind(this);
@@ -13,7 +13,7 @@ class Feedlist__container extends Component {
     return feedItems.map((update, index) => {
       console.log(update);
       return (
-        <Feeditem__component key={index} updateData={update} />
+        <FeedItem__component key={index} updateData={update} />
       )
     });
   }
@@ -32,4 +32,4 @@ function mapStateToProps(state) {
   });
 };
 
-export default connect(mapStateToProps)(Feedlist__container);
+export default connect(mapStateToProps)(FeedList__container);
