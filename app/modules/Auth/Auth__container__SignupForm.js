@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-// Styles:
-//import SignupForm from './styles/Auth__styles__SignupForm.css';
+import style from './styles/index.css';
 
 import * as actions from '../Shared/actions/index.js';
 
-class SignupForm__component extends Component {
+class SignupForm__container extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,5 +58,5 @@ const mapDispatchToProps = function (dispatch) {
   }
 };
 
-export default connect(null, mapDispatchToProps)(SignupForm__component);
+export default connect(null, mapDispatchToProps)(SignupForm__container);
 

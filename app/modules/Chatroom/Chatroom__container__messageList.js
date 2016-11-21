@@ -20,7 +20,7 @@ class MessageList__container extends Component {
   render() {
     return (
       <ul>
-        {this.renderMessages(this.props.chatLog)}
+        {this.renderMessages.bind(this)(this.props.chatLog)}
       </ul>
     );
   };

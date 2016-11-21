@@ -1,25 +1,29 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
-import ActiveForm__container from './ActiveForm__container.js';
+import * as actions from '../Shared/actions/index.js';
+
+import ActiveForm__container from './Auth__container__ActiveForm.js';
+import AuthButton__component from './Auth__component__AuthButton.js';
 
 class Auth__module extends Component {
   renderButton () {
-    if (loggedIn) {
-      return <AuthButton__component data={} />
+    if (this.props.loggedIn) {
+      return <AuthButton__component whenClicked={() => this.props.handleClick} />
     } else {
-      return <AuthButton__component data={} />
+      return <AuthButton__component handleClick={this.props.handleClick.bind(this)} showCP={this.props.showCP} />
     }
   }
   renderForm () {
-    if (showCP && !loggedIn) {
+    if (this.props.showCP && !this.props.loggedIn) {
       return <ActiveForm__container />
     }
   }
   render() {
     return (
-      <div className={Auth.container}>
-        {this.renderButton().bind(this)}
-        {this.renderForm().bind(this)}
+      <div>
+        {this.renderButton()}
+        {this.renderForm()}
       </div>
     );
   };
@@ -32,4 +36,16 @@ function mapStateToProps(state) {
   });
 };
 
-export default Auth__module;
+const mapDispatchToProps = function (dispatch) {
+  return {
+    handleClick: (showCP) => {
+      if (showCP === false) {
+        dispatch(actions.showCP(true));  
+      } else {
+        dispatch(actions.showCP(false));
+      }
+      
+    }
+  }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Auth__module);
