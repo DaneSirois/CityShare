@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 
 import root_reducer from './root_reducer.js';
-import { Router, browserHistory } from 'react-router';
+import { Router, browserHistory, hashHistory } from 'react-router';
 import routes from './routes';
 import createSocketIoMiddleware from 'redux-socket.io';
 import io from 'socket.io-client';
@@ -20,7 +20,7 @@ const store = createStore(root_reducer, applyMiddleware(socketIoMiddleware));
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={browserHistory} routes={routes} />
+    <Router history={hashHistory} routes={routes} />
   </Provider>,
   document.getElementById('SRC')
 );

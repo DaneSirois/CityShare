@@ -2,11 +2,18 @@ const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('../webpack.config');
 
-const app = require('http').createServer();
-const io = require('socket.io').listen(app);
+const app = require('express')();
+var server = require('http').Server(app);
+const io = require('socket.io')(server);
 const socket_server = require('./sockets')(io);
 
-app.listen(3000);
+server.listen(3000);
+
+app.get('/channel', function(req, res) {
+	res.send('hello');
+});
+
+
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
