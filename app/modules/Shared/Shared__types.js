@@ -24,3 +24,5 @@ export const ADD_TO_CHANNEL_LIST = 'ADD_TO_CHANNEL_LIST';
 export const NEW_UPDATE = 'NEW_UPDATE';
 export const ADD_TO_FEEDLIST = 'ADD_TO_FEEDLIST';
 
+// Channel Types:
+export const FETCH_FEED = 'FETCH_FEED';
