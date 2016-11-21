@@ -10,22 +10,3 @@
 
   border-bottom: 1px solid black;
 }
-
-.authButton_container { /* <div> */ 
-  cursor: pointer;
-  position: absolute;
-    top: 0px;
-    right: 0px;
-
-  height: 100%;
-  width: 50px;
-
-  padding: 12px;
-
-  background-color: darkgrey;
-  border-left: 1px solid black;
-}
-
-.authButton_container i { /* <i> - Font Awesome */ 
-  font-size: 1.5em;
-}
