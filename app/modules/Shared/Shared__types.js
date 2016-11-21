@@ -6,8 +6,9 @@ export const NEW_MESSAGE = 'NEW_MESSAGE';
 export const ADD_TO_CHATLOG = 'ADD_TO_CHATLOG';
 
 // Auth Types:
-export const SET_ACTIVE_FORM = 'SET_ACTIVE_FORM';
+export const SET_ACTIVE_AUTH_TAB = 'SET_ACTIVE_AUTH_TAB';
 export const FORM_IS_ACTIVE = 'FORM_IS_ACTIVE';
+export const SHOW_CP = 'SHOW_CP';
 
 // User Types:
 export const SIGNUP_USER = 'SIGNUP_USER';

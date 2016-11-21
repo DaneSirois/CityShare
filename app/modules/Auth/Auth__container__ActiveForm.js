@@ -1,27 +1,50 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import LoginForm__component from './LoginForm__component.js';
-import SignupForm__component from './SignupForm__component.js';
+import style from './styles/index.css';
+
+import * as actions from '../Shared/actions/index.js';
+
+import LoginForm__container from './Auth__container__LoginForm.js';
+import SignupForm__container from './Auth__container__SignupForm.js';
 
 class ActiveForm__container extends Component {
-  constructor(props) {
-    
+  renderTabsList (tab) {
+    if (tab === "signupForm") {
+      return (
+        <ul className={style.tab_list}>
+          <li className={style.form_tab} onClick={() => this.props.changeTab("loginForm")} >Login</li>
+          <li className={[style.form_tab, style.form_tab_selected].join(" ")} onClick={() => this.props.changeTab("signupForm")} >Signup</li>
+        </ul>
+      )
+    } else {
+      return (
+        <ul className={style.tab_list}>
+          <li className={[style.form_tab, style.form_tab_selected].join(" ")} onClick={() => this.props.changeTab("loginForm")} >Login</li>
+          <li className={style.form_tab} onClick={() => this.props.changeTab("signupForm")} >Signup</li>
+        </ul>
+      )
+    }
   }
   renderForm (form) {
     if (form === "signupForm") {
       return (
-        <SignupForm__component />
+        <SignupForm__container />
       )
     } else {
       return (
-        <LoginForm__component />
+        <LoginForm__container />
       )
     }
   }
   render() {
     return (
-      {this.renderForm(this.props.activeForm).bind(this)}
+      <div className={style.CP_container}>
+        <header>
+          {this.renderTabsList(this.props.activeForm)}
+        </header>
+        {this.renderForm(this.props.activeForm)}
+      </div>
     );
   };
 };
@@ -32,5 +55,14 @@ function mapStateToProps(state) {
   });
 };
 
-export default connect(map, mapDispatchToProps)(SignupForm__component);
+const mapDispatchToProps = function (dispatch) {
+  return {
+    changeTab: (tab) => {
+      
+      dispatch(actions.changeAuthTab(tab));
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ActiveForm__container);
 

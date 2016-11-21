@@ -1,8 +1,8 @@
-import {FORM_IS_ACTIVE} from '../../Shared/Shared__types.js';
+import {SHOW_CP} from '../../Shared/Shared__types.js';
 
 const showCP__reducer = (state = false, action) => {
   switch(action.type) {
-    case FORM_IS_ACTIVE:
+    case SHOW_CP:
       return action.payload;
     default:
       return state;
