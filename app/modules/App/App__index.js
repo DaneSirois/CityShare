@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 // Styles:
-import App from './App__styles.css';
+// import App from './App__styles.css';
 
 import Navbar__container from '../Shared/Shared__container__Navbar.js';
 import Portal__module from '../Portal/Portal__index.js';
@@ -10,7 +10,7 @@ import Feed__module from '../Feed/Feed__index.js';
 class App__module extends Component {
   render() {
     return (
-      <div className={App.container}>
+      <div>
         <Navbar__container />
         <Chatroom__module />
         <Portal__module />
