@@ -29,7 +29,6 @@ const mapDispatchToProps = function (dispatch) {
     handleSubmit: (updateText) => (event) => {
       event.preventDefault();
       dispatch(actions.newUpdate(updateText));
-      this.setState({update: ''});
     }
   }
 };

@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 // Styles:
 import Navbar from './styles/Shared__styles__Navbar.css';
 
-import LoginForm__container from './Shared__component__loginForm';
-import SignupForm__container from './Shared__component__signupForm';
+import LoginForm__container from '../Auth/Auth__component__LoginForm';
+import SignupForm__container from '../Auth/Auth__component__SignupForm';
 
 class Navbar__container extends Component {
   render() {

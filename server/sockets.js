@@ -61,6 +61,12 @@ module.exports = function(io) {
         break;
 
         case 'socket/NEW_UPDATE':
+          knex('updates').insert({
+            content: action.payload,
+            topic_id: 1
+          }).then((result) => {
+            console.log(result);
+          });
           broadcast__action('ADD_TO_FEEDLIST', action.payload);
         break;
         case 'socket/NEW_CHANNEL':
@@ -85,7 +91,7 @@ module.exports = function(io) {
                         }).then((result) => {
                         });
                     } else {
-                      console.log()
+                    
                       knex('tags').insert({
                         name:tag_name
                       }).returning('id').then((tag_id) => {
