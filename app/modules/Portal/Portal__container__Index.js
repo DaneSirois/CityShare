@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
+import { Link } from 'react-router';
 import Channel__component from './Portal__component__Channel.js';
 
 class Index__container extends Component {
@@ -12,7 +12,11 @@ class Index__container extends Component {
   renderChannels(channelList) {
     return channelList.map((channel, index) => {
       return (
-        <Channel__component key={index} channelData={channel} />
+        <li key={channel.id}>
+          <Link to={"channel/" + channel.id}>
+          <Channel__component key={index} channelData={channel} />
+          </Link>
+        </li>
       )
     });
   }
