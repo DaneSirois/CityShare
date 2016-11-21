@@ -8,7 +8,6 @@ class Loading__module extends Component {
     return (
       <div>
         <LoadingGrid__component />
-        <LoadingText__component />
       </div>
     );
   };
