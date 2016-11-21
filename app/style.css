@@ -1,11 +1,11 @@
 .sk-cube-grid {
-  width: 125px;
-  height: 125px;
+  width: 100px;
+  height: 100px;
   margin-top: 21%;
-  margin-left: 856px;
+  margin-left: 46%;
 }
 body {
-  background-color: #d35400;
+  background-color: #5380c3;
 }
 
 .sk-cube-grid .sk-cube {

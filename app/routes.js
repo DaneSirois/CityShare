@@ -6,7 +6,7 @@ import Channel__view from './Views/Views__channel.js';
 import Loading__module from './modules/Loading/Loading__index.js';
 
 export default (
-<Route path="/" component={Loading__module}>
-	<Route path="channel/:id/" component={Channel__view} />
+<Route path="portal" component={Portal__module}>
+	<Route path="portal" component={Portal__module} />
 </Route>
 );
