@@ -28,6 +28,7 @@ module.exports = function(io) {
     })
 
     socket.on('action', (action) => {
+      const today = new Date().toJSON().slice(0,10)
       switch (action.type) {
         case 'socket/GET_INITIAL_STATE':
 
@@ -59,15 +60,34 @@ module.exports = function(io) {
           });
           broadcast__action('ADD_TO_CHATLOG', action.payload);
         break;
-
         case 'socket/NEW_UPDATE':
           knex('updates').insert({
-            content: action.payload,
-            topic_id: 1
-          }).then((result) => {
-            console.log(result);
+            content: action.payload.content,
+            topic_id: action.payload.topic_id, // FIIIIIIXXXXX THIIIIISSSS
+            created_at: today,
+            updated_at: today
+          }).returning('id').then((update_id) => {
+            broadcast__action('ADD_UPDATE', {
+              id: update_id[0],
+              content: action.payload.content,
+              topic_id: action.payload.topic_id, // CHANGE THIS
+              date: new Date()
+            });
           });
-          broadcast__action('ADD_TO_FEEDLIST', action.payload);
+        break;
+        case 'socket/NEW_TOPIC':
+          knex('topics').insert({
+            name: action.payload,
+            channel_id: 21, // FIIIIIIXXXXX THIIIIISSSS
+            created_at: today,
+            updated_at: today
+          }).returning('id').then((topic_id) => {
+            broadcast__action('ADD_TOPIC', {
+              id: topic_id[0],
+              name: action.payload,
+              date: new Date(),
+              channel_id: 21}); // CHANGE THIS
+          })
         break;
         case 'socket/NEW_CHANNEL':
           const channelData = action.payload;
@@ -91,7 +111,7 @@ module.exports = function(io) {
                         }).then((result) => {
                         });
                     } else {
-                    
+
                       knex('tags').insert({
                         name:tag_name
                       }).returning('id').then((tag_id) => {

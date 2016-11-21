@@ -17,3 +17,4 @@ export newChannel from './Shared__action__NewChannel.js';
 
 // Feed Actions:
 export newUpdate from './Shared__action__newUpdate.js';
+export newTopic from './Shared__action__newTopic';
