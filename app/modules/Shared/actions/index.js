@@ -20,5 +20,7 @@ export newUpdate from './Shared__action__newUpdate.js';
 export newTopic from './Shared__action__newTopic';
 
 //Loading Actions:
+export {fetchLocation} from './Shared__action__FetchLocation.js';
 
-export { fetchLocation } from './Shared__action__FetchLocation.js';
+// Channel Actions:
+export fetchChannelState from './Shared__action__fetchChannelState.js';

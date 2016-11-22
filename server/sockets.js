@@ -24,7 +24,7 @@ module.exports = function(io) {
 
     const emit__action = (type, payload) => socket.emit('action', { type, payload });
     const broadcast__action = (type, payload) => io.emit('action', { type, payload });
-    
+
     // GET CHANNELS ON CONNECT
     knex('channels')
       .select()
@@ -50,6 +50,34 @@ module.exports = function(io) {
           });
           broadcast__action('ADD_LOCATION', userData);
         break;
+        case 'socket/FETCH_CHANNEL_STATE':
+          knex('messages')
+          .select()
+          .where('channel_id', action.payload)
+          .then((messages) => {
+            emit__action('ADD_MESSAGES', messages)
+          })
+          knex('topics')
+          .select()
+          .where('channel_id', action.payload)
+          .then((topics) => {
+            let updatesBundle = []
+            topics.forEach((topic, i, topics) => {
+              knex('updates')
+              .select()
+              .where('topic_id', topic.id)
+              .orderBy('created_at', 'desc')
+              .then((updates) => {
+                for (let i = 0; i < updates.length; i += 1) {
+                  updatesBundle.push(updates[i]);
+                }
+                if (i == topics.length - 1) {
+                  emit__action('ADD_UPDATES', updatesBundle);
+                  emit__action('ADD_TOPICS', topics);
+                }
+              })
+            })
+          })
         case 'socket/SIGNUP_USER':
           const userCreds = action.payload;
           bcrypt.hash(userCreds.password, 10, (err, hash) => {
@@ -57,7 +85,7 @@ module.exports = function(io) {
               name: userCreds.username,
               password_digest: hash,
               email: userCreds.email,
-              session_id: utilities.generateRandomStr()
+              // session_id: utilities.generateRandomStr()
             }).then((result) => {
               console.log(result);
               // emit__action('USER_AUTHENTICATED', action.payload);
@@ -71,13 +99,12 @@ module.exports = function(io) {
         break;
         case 'socket/NEW_MESSAGE':
           knex('messages').insert({
-            message_text: action.payload.content,
+            message_text: action.payload.message_text,
             user_id: 1,
             channel_id: action.payload.channel_id
           }).then((result) => {
-            console.log(result);
+            broadcast__action('ADD_MESSAGE', action.payload);
           });
-          broadcast__action('ADD_TO_CHATLOG', action.payload);
         break;
         case 'socket/NEW_UPDATE':
           knex('updates').insert({
@@ -100,7 +127,7 @@ module.exports = function(io) {
         case 'socket/NEW_TOPIC':
           knex('topics').insert({
             name: action.payload.name,
-            channel_id: action.payload.channel_id, // FIIIIIIXXXXX THIIIIISSSS
+            channel_id: action.payload.channel_id,
             created_at: today,
             updated_at: today
           }).returning('id').then((topic_id) => {
@@ -108,7 +135,7 @@ module.exports = function(io) {
               id: topic_id[0],
               name: action.payload.name,
               date: new Date(),
-              channel_id: action.payload.channel_id}); // CHANGE THIS
+              channel_id: action.payload.channel_id});
           })
         break;
         case 'socket/NEW_CHANNEL':
