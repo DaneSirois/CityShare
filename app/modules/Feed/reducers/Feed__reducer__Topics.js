@@ -5,7 +5,7 @@ const Topics__reducer = (state = [], action) => {
 
   switch(action.type) {
     case ADD_TOPIC:
-      return [action.payload, ...state];
+      return [...state, action.payload];
     break;
     case ADD_TOPICS:
       return action.payload.reverse();
