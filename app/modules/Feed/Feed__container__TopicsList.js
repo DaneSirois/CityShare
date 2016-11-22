@@ -19,14 +19,17 @@ class TopicsList__container extends Component {
   renderTopics(topics) {
     if (topics.length) {
       return topics.map((topic, i) => {
-        let isActive = i === 0 ? true : false;
-        return (
-          <Topic__container key={topic.id} topicData={ {name: topic.name, topic_id: topic.id, isActive: isActive} }/>
-        )
+        console.log(topic.channel_id);
+        if (topic.channel_id === this.props.channel_id) {
+          let isActive = i === 0 ? true : false;
+          return (
+            <Topic__container key={topic.id} channel_id={this.props.channel_id} topicData={ {name: topic.name, topic_id: topic.id, isActive: isActive} }/>
+          )
+        }
       });
     } else {
       return(
-        <form onSubmit={this.props.handleSubmit(this.state.topic)} >
+        <form onSubmit={this.props.handleSubmit(this.state.topic, this.props.channel_id)} >
           <h2>Enter Topic</h2>
           <input onChange={this.handleInputChange.bind(this)} type="text" placeholder="Set a topic" />
         </form>
@@ -37,7 +40,7 @@ class TopicsList__container extends Component {
   render() {
     return (
       <ul>
-        {this.renderTopics(this.props.topics)}
+        {this.renderTopics.bind(this)(this.props.topics)}
       </ul>
     );
   };
@@ -51,10 +54,13 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSubmit: (topicName) => (event) => {
+    handleSubmit: (topicName, channel_id) => (event) => {
       event.preventDefault();
-
-      dispatch(actions.newTopic(topicName));
+      let topic = {
+        name: topicName,
+        channel_id: channel_id
+      }
+      dispatch(actions.newTopic(topic));
     }
   }
 };

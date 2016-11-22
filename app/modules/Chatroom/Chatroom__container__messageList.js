@@ -11,10 +11,11 @@ class MessageList__container extends Component {
   renderMessages(chatLog) {
 
     return chatLog.map((message, index) => {
-      console.log(message);
-      return (
-        <Message__component key={index} messageData={message} />
-      )
+      if (message.channel_id === this.props.channel_id) {
+        return (
+          <Message__component key={index} messageData={message.content} />
+        )
+      }
     });
   }
   render() {

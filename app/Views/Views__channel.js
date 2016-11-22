@@ -7,9 +7,9 @@ class ChannelView extends Component {
 		return (
 			<div>
 			 	Show post {this.props.params.id}
-			 	<Chatroom__module/>
+			 	<Chatroom__module channel_id={this.props.params.id}/>
 			 	<Navbar__container/>
-			 	<Feed__module/>
+			 	<Feed__module channel_id={this.props.params.id}/>
 			 </div>
 
 		);
