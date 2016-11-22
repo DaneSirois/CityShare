@@ -19,8 +19,7 @@ class TopicsList__container extends Component {
   renderTopics(topics) {
     if (topics.length) {
       return topics.map((topic, i) => {
-        console.log(topic.channel_id);
-        if (topic.channel_id === this.props.channel_id) {
+        if (Number(topic.channel_id) === Number(this.props.channel_id)) {
           let isActive = i === 0 ? true : false;
           return (
             <Topic__container key={topic.id} channel_id={this.props.channel_id} topicData={ {name: topic.name, topic_id: topic.id, isActive: isActive} }/>
