@@ -14,7 +14,6 @@ app.get('/portal', function(req, res) {
 });
 
 
-
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   watchOptions: {
