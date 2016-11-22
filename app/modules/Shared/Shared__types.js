@@ -29,3 +29,8 @@ export const ADD_TO_FEEDLIST = 'ADD_TO_FEEDLIST';
 
 // Channel Types:
 export const FETCH_FEED = 'FETCH_FEED';
+
+// Loading Types:
+
+export const FETCH_LOCATION = 'FETCH_LOCATION';
+export const ADD_LOCATION = 'ADD_LOCATION';

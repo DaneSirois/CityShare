@@ -35,9 +35,12 @@ module.exports = function(io) {
       switch (action.type) {
         case 'socket/FETCH_LOCATION':
           let locationData = action.payload.data;
-          console.log("City:", locationData.city);
-          console.log("IP:", locationData.query);
-          console.log("Timezone:", locationData.timezone);
+          cityData = {
+            city: locationData.city,
+            userip: locationData.query,
+            timezone: locationData.timezone
+          }
+          broadcast__action('ADD_LOCATION', cityData);
         break;
         case 'socket/SIGNUP_USER':
           const userCreds = action.payload;
