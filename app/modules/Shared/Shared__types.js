@@ -25,3 +25,7 @@ export const NEW_UPDATE = 'NEW_UPDATE';
 export const ADD_UPDATE = 'ADD_UPDATE';
 export const NEW_TOPIC = 'NEW_TOPIC';
 export const ADD_TOPIC = 'ADD_TOPIC';
+export const ADD_TO_FEEDLIST = 'ADD_TO_FEEDLIST';
+
+// Channel Types:
+export const FETCH_FEED = 'FETCH_FEED';

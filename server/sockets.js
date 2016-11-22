@@ -1,4 +1,7 @@
-var knex = require('knex')({
+const utilities = require('./utilities.js');
+const util = require('util');
+const bcrypt = require('bcrypt');
+const knex = require('knex')({
   client: 'postgresql',
   connection: {
     host : 'ec2-23-23-225-81.compute-1.amazonaws.com',
@@ -9,19 +12,19 @@ var knex = require('knex')({
     ssl: true
   }
 });
-const util = require('util');
-const bcrypt = require('bcrypt');
+
 const inspect = (o, d = 1) => {
   console.log(util.inspect(o, { colors: true, depth: d }));
-  // return o;
 };
 
 // Socket IO:
 module.exports = function(io) {
   io.on('connection', (socket) => {
     console.log(`Socket connected: ${socket.id}`);
+
     const emit__action = (type, payload) => socket.emit('action', { type, payload });
     const broadcast__action = (type, payload) => io.emit('action', { type, payload });
+    
     // GET CHANNELS ON CONNECT
     knex('channels').select().then((channels) => {
       emit__action('GET_CHANNELS', channels);
@@ -39,9 +42,11 @@ module.exports = function(io) {
             knex('users').insert({
               name: userCreds.username,
               password_digest: hash,
-              email: userCreds.email
+              email: userCreds.email,
+              session_id: utilities.generateRandomStr()
             }).then((result) => {
-              emit__action('USER_AUTHENTICATED', action.payload);
+              console.log(result);
+              // emit__action('USER_AUTHENTICATED', action.payload);
             });
           });
         break;
