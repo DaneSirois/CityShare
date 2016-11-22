@@ -6,8 +6,7 @@ import style from './styles/index.css';
 
 class LoadingGrid__component extends Component {
   componentDidMount() {
-  this.props.getLocation()
-
+    this.props.getLocation()
   }
 
   render() {
@@ -27,6 +26,7 @@ class LoadingGrid__component extends Component {
     );
   };
 };
+
 
   const mapDispatchToProps = function (dispatch) {
   return {

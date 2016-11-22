@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Chatroom__module from '../modules/Chatroom/Chatroom__index.js';
-import Navbar__container from '../modules/Shared/Shared__container__Navbar.js';
+import Navbar__module from '../modules/Navbar/Navbar_index.js';
 import Feed__module from '../modules/Feed/Feed__index.js';
 import { fetchFeed } from '../modules/Shared/actions/Shared__action__fetchfeed';
 class ChannelView extends Component {
@@ -11,7 +11,7 @@ class ChannelView extends Component {
 			<div>
 			 	Show post {this.props.params.id}
 			 	<Chatroom__module channel_id={this.props.params.id}/>
-			 	<Navbar__container/>
+			 	<Navbar__module/>
 			 	<Feed__module channel_id={this.props.params.id}/>
 			 </div>
 

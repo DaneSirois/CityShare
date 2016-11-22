@@ -4,6 +4,7 @@ const Location__reducer = (state = [], action) => {
 
   switch(action.type) {
     case ADD_LOCATION:
+    console.log(action.payload);
       return [action.payload, ...state];
     default:
       return state;

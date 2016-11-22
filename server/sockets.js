@@ -33,6 +33,7 @@ module.exports = function(io) {
     socket.on('action', (action) => {
       const today = new Date().toJSON().slice(0,10)
       switch (action.type) {
+        
         case 'socket/FETCH_LOCATION':
           let locationData = action.payload.data;
           cityData = {
