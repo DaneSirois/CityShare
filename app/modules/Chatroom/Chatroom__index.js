@@ -12,11 +12,12 @@ class Chatroom__module extends Component {
     return (
       <div className={styles.container}>
         <h1>Chat Room</h1>
-        <MessageList__container />
-        <ChatBar__container />
+        <MessageList__container channel_id={this.props.channel_id} />
+        <ChatBar__container channel_id={this.props.channel_id} />
       </div>
     );
   };
 };
+
 
 export default Chatroom__module;

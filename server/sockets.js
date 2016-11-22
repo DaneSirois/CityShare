@@ -57,9 +57,9 @@ module.exports = function(io) {
         break;
         case 'socket/NEW_MESSAGE':
           knex('messages').insert({
-            message_text: action.payload,
+            message_text: action.payload.content,
             user_id: 1,
-            channel_id: 21
+            channel_id: action.payload.channel_id
           }).then((result) => {
             console.log(result);
           });
@@ -80,18 +80,21 @@ module.exports = function(io) {
             });
           });
         break;
+        case 'socker/FETCH_UPDATES':
+          knex('updates').select().orderBy()
+        break;
         case 'socket/NEW_TOPIC':
           knex('topics').insert({
-            name: action.payload,
-            channel_id: 21, // FIIIIIIXXXXX THIIIIISSSS
+            name: action.payload.name,
+            channel_id: action.payload.channel_id, // FIIIIIIXXXXX THIIIIISSSS
             created_at: today,
             updated_at: today
           }).returning('id').then((topic_id) => {
             broadcast__action('ADD_TOPIC', {
               id: topic_id[0],
-              name: action.payload,
+              name: action.payload.name,
               date: new Date(),
-              channel_id: 21}); // CHANGE THIS
+              channel_id: action.payload.channel_id}); // CHANGE THIS
           })
         break;
         case 'socket/NEW_CHANNEL':

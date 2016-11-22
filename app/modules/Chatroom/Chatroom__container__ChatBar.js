@@ -16,7 +16,7 @@ class ChatBar__container extends Component {
     return (
       <footer>
       <h1> ChatRoom </h1>
-        <form onSubmit={this.props.handleSubmit(this.state.message)} >
+        <form onSubmit={this.props.handleSubmit(this.state.message, this.props.channel_id)} >
           <input onChange={this.handleInputChange} type="text" />
         </form>
       </footer>
@@ -26,10 +26,13 @@ class ChatBar__container extends Component {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSubmit: (messageText) => (event) => {
+    handleSubmit: (messageText, channel_id) => (event) => {
       event.preventDefault();
-      
-      dispatch(actions.newMessage(messageText));
+      let message = {
+        content: messageText,
+        channel_id: channel_id
+      }
+      dispatch(actions.newMessage(message));
     }
   }
 };

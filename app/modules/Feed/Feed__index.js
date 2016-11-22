@@ -12,9 +12,8 @@ class Feed__module extends Component {
   render() {
     return (
       <div>
-        <FeedList__container />
-        <TopicsList__container />
-       	<FeedBar__container />
+        <TopicsList__container channel_id={this.props.channel_id} />
+
       </div>
     );
   };
