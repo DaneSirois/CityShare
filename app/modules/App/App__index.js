@@ -11,7 +11,6 @@ class App__module extends Component {
   render() {
     return (
       <div className={App.container}>
-        {this.props.children}
       </div>
     );
   };

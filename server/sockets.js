@@ -36,12 +36,17 @@ module.exports = function(io) {
         
         case 'socket/FETCH_LOCATION':
           let locationData = action.payload.data;
-          cityData = {
+          userData = {
             city: locationData.city,
             userip: locationData.query,
             timezone: locationData.timezone
           }
-          broadcast__action('ADD_LOCATION', cityData);
+          knex('cities').insert({
+            name: userData.city
+          }).then(function(result) {
+            console.log(result);
+          });
+          broadcast__action('ADD_LOCATION', userData);
         break;
         case 'socket/SIGNUP_USER':
           const userCreds = action.payload;
