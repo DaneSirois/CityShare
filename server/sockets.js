@@ -26,33 +26,37 @@ module.exports = function(io) {
     const broadcast__action = (type, payload) => io.emit('action', { type, payload });
     socket.userLocation = {};
     
-    const request = axios.get("http://ip-api.com/json").then(function(response) {
-      let locationData = response.data;
-      socket.userLocation.city = locationData.city;
-      socket.userLocation.userip = locationData.query;
-      socket.userLocation.timezone = locationData.timezone;
-
-      knex('cities').select('id')
-        .where({name: locationData.city})
-        .then(function(result) {
-          if (result.length) {
-
-          socket.userLocation.id = result[0].id;
-          console.log("result", socket.userLocation.id);
-          } else {
-            knex('cities').insert({
-              name: locationData.city
-            }).returning('id').then((id) => {
-              socket.userLocation.id = id;
-            });
-          }
-      });
-    });
+    
     socket.on('action', (action) => {
       const today = new Date().toJSON().slice(0,10)
       switch (action.type) {
+
         case 'socket/FETCH_LOCATION':
-          // broadcast__action('ADD_LOCATION', user);
+        console.log(action.payload);
+          let locationData = action.payload.data;
+          socket.userLocation.city = locationData.city;
+          socket.userLocation.userip = locationData.query;
+          socket.userLocation.timezone = locationData.timezone;
+
+          knex('cities').select('id')
+            .where({name: locationData.city})
+            .then(function(result) {
+              if (result.length) {
+
+              socket.userLocation.id = result[0].id;
+              console.log("result", socket.userLocation.id);
+              } else {
+                knex('cities').insert({
+                  name: locationData.city
+                }).returning('id').then((id) => {
+                  socket.userLocation.id = id;
+                });
+              }
+          });
+            console.log("a", action.payload);
+
+            broadcast__action('ADD_LOCATION', action.payload);
+          
         break;
 
         case 'socket/GET_CHANNELS': 

@@ -6,8 +6,8 @@ class Location__container extends Component {
     super(props);
     this.renderCity = this.renderCity.bind(this);
   }
-
   renderCity(userData) {
+    console.log(userData);
     return userData.map((data, index) => {
       return (
         <div key={index}> {data.city} </div> 

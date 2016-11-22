@@ -33,10 +33,10 @@ class LoadingGrid__component extends Component {
     getLocation: () => {
 
       const request = axios.get("http://ip-api.com/json").then(function(response) {
+        console.log(response);
         dispatch(actions.fetchLocation(response));
       });
     }
-    
   }
 }
 
