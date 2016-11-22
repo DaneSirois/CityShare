@@ -26,7 +26,9 @@ module.exports = function(io) {
     const broadcast__action = (type, payload) => io.emit('action', { type, payload });
     
     // GET CHANNELS ON CONNECT
-    knex('channels').select().then((channels) => {
+    knex('channels')
+      .select()
+      .then((channels) => {
       emit__action('GET_CHANNELS', channels);
     })
 
