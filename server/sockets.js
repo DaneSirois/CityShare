@@ -1,3 +1,4 @@
+const axios = require('axios');
 const utilities = require('./utilities.js');
 const util = require('util');
 const bcrypt = require('bcrypt');
@@ -21,35 +22,51 @@ const inspect = (o, d = 1) => {
 module.exports = function(io) {
   io.on('connection', (socket) => {
     console.log(`Socket connected: ${socket.id}`);
-
     const emit__action = (type, payload) => socket.emit('action', { type, payload });
     const broadcast__action = (type, payload) => io.emit('action', { type, payload });
+    socket.userLocation = {};
+    
+    const request = axios.get("http://ip-api.com/json").then(function(response) {
+      let locationData = response.data;
+      socket.userLocation.city = locationData.city;
+      socket.userLocation.userip = locationData.query;
+      socket.userLocation.timezone = locationData.timezone;
 
-    // GET CHANNELS ON CONNECT
-    knex('channels')
-      .select()
-      .then((channels) => {
-      emit__action('GET_CHANNELS', channels);
-    })
+      knex('cities').select('id')
+        .where({name: locationData.city})
+        .then(function(result) {
+          if (result.length) {
 
+          socket.userLocation.id = result[0].id;
+          console.log("result", socket.userLocation.id);
+          } else {
+            knex('cities').insert({
+              name: locationData.city
+            }).returning('id').then((id) => {
+              socket.userLocation.id = id;
+            });
+          }
+      });
+    });
     socket.on('action', (action) => {
       const today = new Date().toJSON().slice(0,10)
       switch (action.type) {
-        
         case 'socket/FETCH_LOCATION':
-          let locationData = action.payload.data;
-          userData = {
-            city: locationData.city,
-            userip: locationData.query,
-            timezone: locationData.timezone
-          }
-          knex('cities').insert({
-            name: userData.city
-          }).then(function(result) {
-            console.log(result);
-          });
-          broadcast__action('ADD_LOCATION', userData);
+          // broadcast__action('ADD_LOCATION', user);
         break;
+
+        case 'socket/GET_CHANNELS': 
+        console.log(socket.userLocation);
+          knex('channels')
+            .select()
+            .where({
+              city_id: socket.userLocation.id
+            })
+            .then((channels) => {
+            emit__action('GET_CHANNELS', channels);
+          })
+        break;
+
         case 'socket/FETCH_CHANNEL_STATE':
           knex('messages')
           .select()
@@ -147,6 +164,7 @@ module.exports = function(io) {
             } else {
               knex('channels').insert({
                 name: channelData.name,
+                city_id: socket.user.id
               }).returning('id').then((channel_id) => {
                 channelData.tags.forEach((tag_name) => {
                   knex('tags')

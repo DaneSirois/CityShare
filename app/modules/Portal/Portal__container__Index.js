@@ -2,11 +2,16 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router';
 import Channel__component from './Portal__component__Channel.js';
+import * as actions from '../Shared/actions/index.js';
 
 class Index__container extends Component {
   constructor (props) {
     super(props);
     this.renderChannels = this.renderChannels.bind(this);
+  }
+
+  componentWillMount() {
+    this.props.getChannels();
   }
 
   renderChannels(channelList) {
@@ -36,4 +41,12 @@ function mapStateToProps(state) {
   });
 };
 
-export default connect(mapStateToProps)(Index__container);
+const mapDispatchToProps = function (dispatch) {
+  return {
+    getChannels: () => {
+      dispatch(actions.getChannels());
+    } 
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index__container);

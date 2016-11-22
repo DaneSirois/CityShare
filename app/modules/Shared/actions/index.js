@@ -14,6 +14,7 @@ export signup from './Shared__action__signup.js';
 
 // Portal Actions:
 export newChannel from './Shared__action__NewChannel.js';
+export getChannels from './Shared__action__getChannels.js';
 
 // Feed Actions:
 export newUpdate from './Shared__action__newUpdate.js';

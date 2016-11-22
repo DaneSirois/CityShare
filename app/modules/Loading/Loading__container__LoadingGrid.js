@@ -36,6 +36,7 @@ class LoadingGrid__component extends Component {
         dispatch(actions.fetchLocation(response));
       });
     }
+    
   }
 }
 
