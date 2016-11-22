@@ -83,7 +83,6 @@ function mapStateToProps(state) {
 const mapDispatchToProps = function (dispatch) {
   return {
     handleSubmit: (topicName, channel_id) => {
-      console.log(topicName);
       let topic = {
         name: topicName,
         channel_id: channel_id

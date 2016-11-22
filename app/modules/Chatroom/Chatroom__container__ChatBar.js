@@ -29,7 +29,7 @@ const mapDispatchToProps = function (dispatch) {
     handleSubmit: (messageText, channel_id) => (event) => {
       event.preventDefault();
       let message = {
-        content: messageText,
+        message_text: messageText,
         channel_id: channel_id
       }
       dispatch(actions.newMessage(message));
