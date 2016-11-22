@@ -33,8 +33,11 @@ module.exports = function(io) {
     socket.on('action', (action) => {
       const today = new Date().toJSON().slice(0,10)
       switch (action.type) {
-        case 'socket/GET_INITIAL_STATE':
-
+        case 'socket/FETCH_LOCATION':
+          let locationData = action.payload.data;
+          console.log("City:", locationData.city);
+          console.log("IP:", locationData.query);
+          console.log("Timezone:", locationData.timezone);
         break;
         case 'socket/SIGNUP_USER':
           const userCreds = action.payload;

@@ -13,7 +13,7 @@ class Feed__module extends Component {
     return (
       <div>
         <TopicsList__container channel_id={this.props.channel_id} />
-
+        <FeedBar__container />
       </div>
     );
   };
