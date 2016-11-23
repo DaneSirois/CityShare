@@ -1,6 +1,8 @@
+
 const utilities_module = require('./utilities.js');
 require("dotenv").config();
 const jwt = require('jsonwebtoken');
+const axios = require('axios');
 const util = require('util');
 const bcrypt = require('bcrypt');
 const knex = require('knex')({
@@ -23,14 +25,10 @@ const inspect = (o, d = 1) => {
 module.exports = function(io) {
   io.on('connection', (socket) => {
     console.log(`Socket connected: ${socket.id}`);
-
     const emit__action = (type, payload) => socket.emit('action', { type, payload });
     const broadcast__action = (type, payload) => io.emit('action', { type, payload });
+    socket.userLocation = {};
     
-    // GET CHANNELS ON CONNECT
-    knex('channels').select().then((channels) => {
-      emit__action('GET_CHANNELS', channels);
-    })
 
     const generateJWT = function (id, name) {
       const JWT = jwt.sign({
@@ -68,6 +66,70 @@ module.exports = function(io) {
           emit__action('RENDER_APP', true);
           emit__action('LOGOUT_USER', false);
         break;
+        case 'socket/FETCH_LOCATION':
+          
+          let locationData = action.payload.data;
+          socket.userLocation.city = locationData.city;
+          socket.userLocation.userip = locationData.query;
+          socket.userLocation.timezone = locationData.timezone;
+          knex('cities').select('id')
+            .where({name: locationData.city})
+            .then(function(result) {
+              if (result.length) {
+
+              socket.userLocation.id = result[0].id;
+              console.log("result", socket.userLocation.id);
+              } else {
+                knex('cities').insert({
+                  name: locationData.city
+                }).returning('id').then((id) => {
+                  socket.userLocation.id = id;
+                });
+              }
+          });
+
+          broadcast__action('ADD_LOCATION', socket.userLocation);    
+        break;
+        case 'socket/GET_CHANNELS': 
+        console.log("this is legit",socket.userLocation);
+          knex('channels')
+            .select()
+            .where({
+              city_id: socket.userLocation.id
+            })
+            .then((channels) => {
+            emit__action('GET_CHANNELS', channels);
+          })
+        break;
+
+        case 'socket/FETCH_CHANNEL_STATE':
+          knex('messages')
+          .select()
+          .where('channel_id', action.payload)
+          .then((messages) => {
+            emit__action('ADD_MESSAGES', messages)
+          })
+          knex('topics')
+          .select()
+          .where('channel_id', action.payload)
+          .then((topics) => {
+            let updatesBundle = []
+            topics.forEach((topic, i, topics) => {
+              knex('updates')
+              .select()
+              .where('topic_id', topic.id)
+              .orderBy('created_at', 'desc')
+              .then((updates) => {
+                for (let i = 0; i < updates.length; i += 1) {
+                  updatesBundle.push(updates[i]);
+                }
+                if (i == topics.length - 1) {
+                  emit__action('ADD_UPDATES', updatesBundle);
+                  emit__action('ADD_TOPICS', topics);
+                }
+              })
+            })
+          })
         case 'socket/SIGNUP_USER':
           const userCreds = action.payload;
 
@@ -108,13 +170,12 @@ module.exports = function(io) {
         break;
         case 'socket/NEW_MESSAGE':
           knex('messages').insert({
-            message_text: action.payload,
+            message_text: action.payload.message_text,
             user_id: 1,
-            channel_id: 21
+            channel_id: action.payload.channel_id
           }).then((result) => {
-            console.log(result);
+            broadcast__action('ADD_MESSAGE', action.payload);
           });
-          broadcast__action('ADD_TO_CHATLOG', action.payload);
         break;
         case 'socket/NEW_UPDATE':
           knex('updates').insert({
@@ -131,18 +192,21 @@ module.exports = function(io) {
             });
           });
         break;
+        case 'socker/FETCH_UPDATES':
+          knex('updates').select().orderBy()
+        break;
         case 'socket/NEW_TOPIC':
           knex('topics').insert({
-            name: action.payload,
-            channel_id: 21, // FIIIIIIXXXXX THIIIIISSSS
+            name: action.payload.name,
+            channel_id: action.payload.channel_id,
             created_at: today,
             updated_at: today
           }).returning('id').then((topic_id) => {
             broadcast__action('ADD_TOPIC', {
               id: topic_id[0],
-              name: action.payload,
+              name: action.payload.name,
               date: new Date(),
-              channel_id: 21}); // CHANGE THIS
+              channel_id: action.payload.channel_id});
           })
         break;
         case 'socket/NEW_CHANNEL':
@@ -154,6 +218,7 @@ module.exports = function(io) {
             } else {
               knex('channels').insert({
                 name: channelData.name,
+                city_id: socket.user.id
               }).returning('id').then((channel_id) => {
                 channelData.tags.forEach((tag_name) => {
                   knex('tags')

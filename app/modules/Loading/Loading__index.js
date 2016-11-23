@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import LoadingGrid__component from './Loading__component__LoadingGrid.js';
+import LoadingGrid__component from './Loading__container__LoadingGrid.js';
 import LoadingText__component from './Loading__component__LoadingText.js';
 
 class Loading__module extends Component {

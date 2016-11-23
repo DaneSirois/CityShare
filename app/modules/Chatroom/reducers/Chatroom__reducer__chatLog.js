@@ -1,9 +1,15 @@
-import {ADD_TO_CHATLOG} from '../../Shared/Shared__types.js';
+import {ADD_MESSAGE} from '../../Shared/Shared__types.js';
+import {ADD_MESSAGES} from '../../Shared/Shared__types.js';
 
 const chatLog__reducer = (state = [], action) => {
   switch(action.type) {
-    case ADD_TO_CHATLOG:
+    case ADD_MESSAGE:
+      console.log(action.payload);
       return state.concat([action.payload]);
+    break;
+    case ADD_MESSAGES:
+      return action.payload;
+    break;
     default:
       return state;
   };

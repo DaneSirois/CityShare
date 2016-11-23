@@ -23,7 +23,7 @@ class Topic__container extends Component {
 
   changeTopic(event) {
     if (event.key === 'Enter') {
-      this.props.handleSubmit(this.state.name);
+      this.props.handleSubmit(this.state.name, this.props.channel_id);
       this.setState({nameStatic: event.target.value});
     }
   }
@@ -82,9 +82,12 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSubmit: (topicName) => {
-      console.log(topicName);
-      dispatch(actions.newTopic(topicName));
+    handleSubmit: (topicName, channel_id) => {
+      let topic = {
+        name: topicName,
+        channel_id: channel_id
+      }
+      dispatch(actions.newTopic(topic));
     }
   }
 };

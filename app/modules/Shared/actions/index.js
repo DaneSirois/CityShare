@@ -16,7 +16,14 @@ export SetUsername from './Shared__action__SetUsername.js';
 
 // Portal Actions:
 export newChannel from './Shared__action__NewChannel.js';
+export getChannels from './Shared__action__getChannels.js';
 
 // Feed Actions:
 export newUpdate from './Shared__action__newUpdate.js';
 export newTopic from './Shared__action__newTopic.js';
+
+//Loading Actions:
+export {fetchLocation} from './Shared__action__FetchLocation.js';
+
+// Channel Actions:
+export fetchChannelState from './Shared__action__fetchChannelState.js';

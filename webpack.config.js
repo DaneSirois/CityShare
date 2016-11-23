@@ -5,7 +5,6 @@ const autoprefixer = require('autoprefixer');
 module.exports = {
   devtool: 'eval',
   devServer: {
-    historyApiFallback: true,
     contentBase: "./app"
   },
   entry: [

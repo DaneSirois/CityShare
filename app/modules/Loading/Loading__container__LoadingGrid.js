@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
-
+import { connect } from 'react-redux';
+import axios from 'axios';
+import * as actions from '../Shared/actions/index.js';
 import style from './styles/index.css';
+import { Link } from 'react-router';
 
 class LoadingGrid__component extends Component {
+  componentDidMount() {
+    this.props.getLocation()
+  }
+
   render() {
     return (
+
       <div className={style.sk_cube_grid}>
         <div className={[style.sk_cube, style.sk_cube1].join(" ")}></div>
         <div className={[style.sk_cube, style.sk_cube2].join(" ")}></div>
@@ -15,10 +23,24 @@ class LoadingGrid__component extends Component {
         <div className={[style.sk_cube, style.sk_cube7].join(" ")}></div>
         <div className={[style.sk_cube, style.sk_cube8].join(" ")}></div>
         <div className={[style.sk_cube, style.sk_cube9].join(" ")}></div>
+         <Link to={"/portal"}>
+        <button> go </button>
+        </Link>
       </div>
     );
   };
 };
 
 
-export default LoadingGrid__component;
+  const mapDispatchToProps = function (dispatch) {
+  return {
+    getLocation: () => {
+
+      const request = axios.get("http://ip-api.com/json").then(function(response) {
+        dispatch(actions.fetchLocation(response));
+      });
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(LoadingGrid__component);
