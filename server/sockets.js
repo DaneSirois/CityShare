@@ -72,6 +72,7 @@ module.exports = function(io) {
           socket.userLocation.city = locationData.city;
           socket.userLocation.userip = locationData.query;
           socket.userLocation.timezone = locationData.timezone;
+          socket.userLocation.done = true;
           knex('cities').select('id')
             .where({name: locationData.city})
             .then(function(result) {
@@ -171,7 +172,7 @@ module.exports = function(io) {
         case 'socket/NEW_MESSAGE':
           knex('messages').insert({
             message_text: action.payload.message_text,
-            user_id: 253,
+            user_id: 255,
             channel_id: action.payload.channel_id
           }).then((result) => {
             broadcast__action('ADD_MESSAGE', action.payload);
