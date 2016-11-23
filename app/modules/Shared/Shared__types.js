@@ -1,5 +1,6 @@
 // App Types:
-export const GET_INITIAL_STATE = 'GET_INITIAL_STATE';
+export const RENDER_APP = 'RENDER_APP';
+export const INITIALIZE_USER = 'INITIALIZE_USER';
 
 // Chatroom Types:
 export const NEW_MESSAGE = 'NEW_MESSAGE';
@@ -12,8 +13,11 @@ export const SHOW_CP = 'SHOW_CP';
 
 // User Types:
 export const SIGNUP_USER = 'SIGNUP_USER';
+export const LOGIN_USER = 'LOGIN_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';
 export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
 export const USER_AUTHENTICATED = 'USER_AUTHENTICATED';
+export const SET_USERNAME = 'SET_USERNAME';
 
 // Portal Types:
 export const NEW_CHANNEL = 'NEW_CHANNEL';

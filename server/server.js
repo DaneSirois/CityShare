@@ -13,8 +13,6 @@ app.get('/portal', function(req, res) {
 	res.send('hello');
 });
 
-
-
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   watchOptions: {

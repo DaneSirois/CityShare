@@ -11,21 +11,37 @@ import App__module from './modules/App/App__index.js';
 import Loading__module from './modules/Loading/Loading__index.js';
 import Portal__module from './modules/Portal/Portal__index.js';
 import Channel__view from './Views/Views__channel.js';
-import actions from './modules/Shared/actions/index.js';
+import * as actions from './modules/Shared/actions/index.js';
 
 const socket = io('http://localhost:3000');
+
+// Redux Middleware:
+const localStorage_middleware = (store) => (next) => (action) => {
+  switch (action.type) {
+    case 'USER_AUTHENTICATED':
+      localStorage.setItem("user_JWT", action.payload.JWT);
+      next(action.payload.loggedIn);
+    break
+    case 'LOGOUT_USER':
+      if (localStorage.user_JWT) {
+        localStorage.removeItem("user_JWT");
+      }
+      next(action);
+    break
+    default:
+      next(action);
+  }
+};
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
-const store = createStore(root_reducer, applyMiddleware(socketIoMiddleware));
+const store = createStore(root_reducer, applyMiddleware(localStorage_middleware, socketIoMiddleware));
 
 // Dispatch Initialization action
-//store.dispatch(actions.fetchState);
+const user_JWT = localStorage.getItem("user_JWT") || undefined;
+store.dispatch(actions.InitializeUser(user_JWT));
+
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={hashHistory}>
-    	<Route path="/" component={Loading__module}/>
-      <Route path="/portal" component={Portal__module} />
-      <Route path="/channel/:id" component={Channel__view} />
-    </Router>
+    <App__module />
   </Provider>,
   document.getElementById('SRC')
 );

@@ -1,4 +1,6 @@
-const utilities = require('./utilities.js');
+const utilities_module = require('./utilities.js');
+require("dotenv").config();
+const jwt = require('jsonwebtoken');
 const util = require('util');
 const bcrypt = require('bcrypt');
 const knex = require('knex')({
@@ -30,30 +32,79 @@ module.exports = function(io) {
       emit__action('GET_CHANNELS', channels);
     })
 
+    const generateJWT = function (id, name) {
+      const JWT = jwt.sign({
+        data: {
+          user_id: id,
+          username: name
+        }
+      }, process.env.SECRET_JWT_KEY, { expiresIn: '1h' });
+      return JWT;
+    };
+
     socket.on('action', (action) => {
       const today = new Date().toJSON().slice(0,10)
       switch (action.type) {
-        case 'socket/GET_INITIAL_STATE':
+        case 'socket/INITIALIZE_USER':
 
+          if (action.payload !== undefined) { // If token was found in localStorage:
+            const user_JWT = action.payload; // Cache payload as 'user_JWT';
+            
+            console.log('init action from payload check', user_JWT);
+
+            jwt.verify(user_JWT, process.env.SECRET_JWT_KEY, function(err, decoded) { // Check validity of token;
+              if (err) { // If token is invalid:
+                socket._user = null;
+                emit__action('LOGOUT_USER', false);
+                emit__action('RENDER_APP', true);
+              } else { // If token IS valid:
+                emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
+                emit__action('SET_USERNAME', decoded.username);
+                emit__action('RENDER_APP', true);
+              } 
+            });
+          } 
+          // If no token was found, set 'state.User.loggedIn = false':
+          emit__action('RENDER_APP', true);
+          emit__action('LOGOUT_USER', false);
         break;
         case 'socket/SIGNUP_USER':
           const userCreds = action.payload;
+
+          console.log("HEY FROm SIGNUP");
+
           bcrypt.hash(userCreds.password, 10, (err, hash) => {
             knex('users').insert({
               name: userCreds.username,
               password_digest: hash,
               email: userCreds.email,
-              session_id: utilities.generateRandomStr()
-            }).then((result) => {
-              console.log(result);
-              // emit__action('USER_AUTHENTICATED', action.payload);
+            }).returning('id', 'name').then((user) => {
+              const user_JWT = generateJWT(user.id, user.name);
+              socket._user = {id: user.id, username: user.name, JWT: user_JWT};
+
+              emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
+              emit__action('SET_USERNAME', user.name);
+              emit__action('RENDER_APP', true);
             });
           });
         break;
-        case 'socket/AUTHENTICATE_USER':
+        case 'socket/LOGIN_USER':
           const userInput = action.payload;
-          bcrypt.compareSync(userInput.password, userInput.password);
-          broadcast__action('USER_AUTHENTICATED', action.payload);
+          const creds = action.payload;
+          knex('users').select().where('name', creds.name).then((user) => {
+            if (bcrypt.compareSync(creds.password, password_digest)) {
+              const user_JWT = generateJWT(user.id, user.name);
+              socket._user = {id: user.id, username: user.name, JWT: user_JWT};
+
+              emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
+              emit__action('SET_USERNAME', user.name);
+            }
+          }); 
+        break;
+        case 'socket/LOGOUT_USER':
+          socket._user = null;
+          emit__action('LOGOUT_USER', false);
+          emit__action('SET_USERNAME', "Anonymous");
         break;
         case 'socket/NEW_MESSAGE':
           knex('messages').insert({
