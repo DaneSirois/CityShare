@@ -52,7 +52,7 @@ const mapDispatchToProps = function (dispatch) {
           username: signupCreds.username,
           password: signupCreds.password
         }
-        dispatch(actions.signUp(userCreds));
+        dispatch(actions.signup(userCreds));
       }
     }
   }

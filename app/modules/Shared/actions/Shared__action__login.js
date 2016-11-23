@@ -1,8 +1,8 @@
-import {AUTHENTICATE_USER} from '../Shared__types.js';
+import {LOGIN_USER} from '../Shared__types.js';
 
 const login = (loginCreds) => {
   return {
-    type: `socket/${AUTHENTICATE_USER}`,
+    type: `socket/${LOGIN_USER}`,
     payload: loginCreds
   };
 };

@@ -12,7 +12,7 @@ class MessageList__container extends Component {
     return chatLog.map((message, index) => {
       if (message && Number(message.channel_id) === Number(this.props.channel_id)) {
         return (
-          <Message__component key={index} messageData={message.message_text} />
+          <Message__component key={index} content={message.message_text} username={message.username || "Anonymous"} time={message.time || "Before Time"} />
         )
       }
     });

@@ -1,4 +1,8 @@
-const utilities = require('./utilities.js');
+
+const utilities_module = require('./utilities.js');
+require("dotenv").config();
+const jwt = require('jsonwebtoken');
+const axios = require('axios');
 const util = require('util');
 const bcrypt = require('bcrypt');
 const knex = require('knex')({
@@ -21,27 +25,91 @@ const inspect = (o, d = 1) => {
 module.exports = function(io) {
   io.on('connection', (socket) => {
     console.log(`Socket connected: ${socket.id}`);
-
     const emit__action = (type, payload) => socket.emit('action', { type, payload });
     const broadcast__action = (type, payload) => io.emit('action', { type, payload });
+    socket.userLocation = {};
 
-    // GET CHANNELS ON CONNECT
-    knex('channels').select().then((channels) => {
-      emit__action('GET_CHANNELS', channels);
-    })
+
+    const generateJWT = function (id, name) {
+      const JWT = jwt.sign({
+        data: {
+          user_id: id,
+          username: name
+        }
+      }, process.env.SECRET_JWT_KEY, { expiresIn: '1h' });
+      return JWT;
+    };
 
     socket.on('action', (action) => {
       const today = new Date().toJSON().slice(0,10)
       switch (action.type) {
-        case 'socket/FETCH_LOCATION':
-          let locationData = action.payload.data;
-          cityData = {
-            city: locationData.city,
-            userip: locationData.query,
-            timezone: locationData.timezone
+        case 'socket/INITIALIZE_APP':
+
+          // Initialize User:
+          if (action.payload !== undefined) { // If token was found in localStorage:
+            const user_JWT = action.payload; // Cache payload as 'user_JWT';
+
+            console.log('Confirmed presence of JWT in "INITIALIZE_APP" action. Contains:', user_JWT);
+
+            jwt.verify(user_JWT, process.env.SECRET_JWT_KEY, function(err, decoded) { // Check validity of token;
+              if (err) { // If token is invalid:
+
+                console.log("Token is expired or there was some type of error with it. here is the error:", err);
+
+                socket._user = null;
+                emit__action('LOGOUT_USER', false);
+                emit__action('RENDER_APP', true);
+              } else { // If token IS valid:
+
+                console.log("No error with token. User is at this point confirmed and their session is valid. Here is the contents of their token:", decoded);
+
+                emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
+                emit__action('SET_USERNAME', decoded.username);
+                emit__action('RENDER_APP', true);
+              }
+            });
           }
-          broadcast__action('ADD_LOCATION', cityData);
+          // If no token was found, set 'state.User.loggedIn = false':
+          emit__action('LOGOUT_USER', false);
+
+          // Initialize Location:
+
+          emit__action('RENDER_APP', true);
         break;
+        case 'socket/FETCH_LOCATION':
+
+          let locationData = action.payload.data;
+          socket.userLocation.city = locationData.city;
+          socket.userLocation.userip = locationData.query;
+          socket.userLocation.timezone = locationData.timezone;
+          knex('cities').select('id')
+            .where({name: locationData.city})
+            .then(function(result) {
+              if (result.length) {
+
+              socket.userLocation.id = result[0].id;
+              } else {
+                knex('cities').insert({
+                  name: locationData.city
+                }).returning('id').then((id) => {
+                  socket.userLocation.id = id;
+                });
+              }
+          });
+
+          broadcast__action('ADD_LOCATION', socket.userLocation);
+        break;
+        case 'socket/GET_CHANNELS':
+          knex('channels')
+            .select()
+            .where({
+              city_id: socket.userLocation.id
+            })
+            .then((channels) => {
+            emit__action('GET_CHANNELS', channels);
+          })
+        break;
+
         case 'socket/FETCH_CHANNEL_STATE':
           knex('messages')
           .select()
@@ -72,33 +140,64 @@ module.exports = function(io) {
           })
         case 'socket/SIGNUP_USER':
           const userCreds = action.payload;
+
           bcrypt.hash(userCreds.password, 10, (err, hash) => {
             knex('users').insert({
               name: userCreds.username,
               password_digest: hash,
               email: userCreds.email,
-              // session_id: utilities.generateRandomStr()
-            }).then((result) => {
-              console.log(result);
-              // emit__action('USER_AUTHENTICATED', action.payload);
+            }).returning('id', 'name').then((user) => {
+              const user_JWT = generateJWT(user.id, user.name);
+              socket._user = {id: user.id, username: user.name, JWT: user_JWT};
+
+              console.log("User Signed Up. Created socket._user with:", socket._user);
+
+              emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
+              emit__action('SET_USERNAME', user.name);
+              emit__action('RENDER_APP', true);
             });
           });
         break;
-        case 'socket/AUTHENTICATE_USER':
+        case 'socket/LOGIN_USER':
+          const userInput = action.payload;
           const creds = action.payload;
-          knex('users').select('password_digest').where('name', creds.name).then((password_digest) => {
+          knex('users').select().where('name', creds.name).then((user) => {
             if (bcrypt.compareSync(creds.password, password_digest)) {
-              emit__action('USER_AUTHENTICATED', action.payload);
+              const user_JWT = generateJWT(user.id, user.name);
+              socket._user = {id: user.id, username: user.name, JWT: user_JWT};
+
+              console.log("User Logged in. Created socket._user with:", socket._user);
+
+              emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
+              emit__action('SET_USERNAME', user.name);
             }
           });
         break;
+        case 'socket/LOGOUT_USER':
+          console.log("About to try and logout the user by clearing it's session data/token:");
+          console.log("socket._user before logout:", socket._user);
+          socket._user = null;
+          console.log("socket._user after logout:", socket._user);
+
+          emit__action('LOGOUT_USER', false);
+          emit__action('SET_USERNAME', "Anonymous");
+        break;
         case 'socket/NEW_MESSAGE':
+          console.log('got to backend', action.payload);
           knex('messages').insert({
             message_text: action.payload.message_text,
-            user_id: 253,
-            channel_id: action.payload.channel_id
+
+            user_id: socket._user.id,
+            channel_id: action.payload.channel_id,
+            created_at:today
           }).then((result) => {
-            broadcast__action('ADD_MESSAGE', action.payload);
+            broadcast__action('ADD_MESSAGE', {
+              user_id: socket._user.id,
+              username: socket._user.username,
+              message_text: action.payload.message_text,
+              channel_id: action.payload.channel_id,
+              time: new Date()
+            });
           });
         break;
         case 'socket/NEW_UPDATE':
@@ -142,6 +241,7 @@ module.exports = function(io) {
             } else {
               knex('channels').insert({
                 name: channelData.name,
+                city_id: socket.user.id
               }).returning('id').then((channel_id) => {
                 channelData.tags.forEach((tag_name) => {
                   knex('tags')
