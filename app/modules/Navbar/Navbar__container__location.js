@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
+import { Link } from 'react-router';
 class Location__container extends Component {
   constructor (props) {
     super(props);
@@ -16,7 +16,9 @@ class Location__container extends Component {
   render() {
     return (
       <ul>
+        <Link to={"/"}>
         {this.renderCity(this.props.location)}
+        </Link>
       </ul>
     );
   };
