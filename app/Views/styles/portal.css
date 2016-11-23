@@ -1,0 +1,21 @@
+.container { /* <div> */ 
+  margin-top: 50px;
+  width: 100%;
+}
+
+.Navbar__container { /* <div> */
+  position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    z-index:1;
+  height: 50px;
+  border-bottom: 1px solid black;
+}
+
+.Portal__Container {
+  height: 100%;
+  position: fixed;
+  padding: 15px;
+}
+

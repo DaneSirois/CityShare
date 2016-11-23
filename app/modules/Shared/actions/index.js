@@ -11,6 +11,7 @@ export newMessage from './Shared__action__newMessage.js';
 
 // User Actions:
 export login from './Shared__action__login.js';
+export LogoutUser from './Shared__action__LogoutUser.js';
 export signup from './Shared__action__signup.js';
 export SetUsername from './Shared__action__SetUsername.js';
 
