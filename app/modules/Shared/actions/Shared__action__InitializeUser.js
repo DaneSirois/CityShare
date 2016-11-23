@@ -1,10 +1,10 @@
-import {INITIALIZE_USER} from '../Shared__types.js';
+import {INITIALIZE_APP} from '../Shared__types.js';
 
-const InitializeUser = (JWT) => {
+const InitializeApp = (user_JWT) => {
   return {
-    type: `socket/${INITIALIZE_USER}`,
-    payload: JWT
+    type: `socket/${INITIALIZE_APP}`,
+    payload: user_JWT
   };
 };
 
-export default InitializeUser;
+export default InitializeApp;
