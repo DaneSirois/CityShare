@@ -13,7 +13,6 @@ import Portal__module from './modules/Portal/Portal__index.js';
 import Channel__view from './Views/Views__channel.js';
 import * as actions from './modules/Shared/actions/index.js';
 
-const socket = io('http://localhost:3000');
 
 // Redux Middleware:
 const localStorage_middleware = (store) => (next) => (action) => {
@@ -32,8 +31,24 @@ const localStorage_middleware = (store) => (next) => (action) => {
       next(action);
   }
 };
+
+
+const socket = io('http://localhost:3000');
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
-const store = createStore(root_reducer, applyMiddleware(socketIoMiddleware));
+const store = createStore(root_reducer, applyMiddleware(socketIoMiddleware, localStorage_middleware));
+
+// Dispatch Initialization action
+//store.dispatch(actions.fetchState);
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <Router history={hashHistory}>
+//     	<Route path="/" component={Loading__module}/>
+//       <Route path="/portal" component={Portal__module} />
+//       <Route path="/channel/:id" component={Channel__view} />
+//     </Router>
+//   </Provider>,
+//   document.getElementById('SRC')
+// );
 
 // Dispatch Initialization action
 const user_JWT = localStorage.getItem("user_JWT") || undefined;

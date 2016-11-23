@@ -165,6 +165,7 @@ module.exports = function(io) {
           emit__action('SET_USERNAME', "Anonymous");
         break;
         case 'socket/NEW_MESSAGE':
+          console.log('got to backend', action.payload);
           knex('messages').insert({
             message_text: action.payload.message_text,
             user_id: socket._user.id,
