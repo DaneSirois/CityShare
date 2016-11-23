@@ -39,7 +39,10 @@ const store = createStore(root_reducer, applyMiddleware(socketIoMiddleware));
 
 // Dispatch Initialization action
 const user_JWT = localStorage.getItem("user_JWT") || undefined;
-store.dispatch(actions.InitializeApp(user_JWT));
+
+setTimeout(() => {
+  store.dispatch(actions.InitializeApp(user_JWT));
+}, 3000)
 
 ReactDOM.render(
   <Provider store={store}>
