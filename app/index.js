@@ -37,6 +37,8 @@ const socket = io('http://localhost:3000');
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
 const store = createStore(root_reducer, applyMiddleware(localStorage_middleware, socketIoMiddleware));
 
+console.log(localStorage, "Checking localstorage");
+
 // Dispatch Initialization action
 const user_JWT = localStorage.getItem("user_JWT") || undefined;
 

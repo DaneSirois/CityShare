@@ -70,7 +70,7 @@ module.exports = function(io) {
             });
           }
           // If no token was found, set 'state.User.loggedIn = false':
-          emit__action('LOGOUT_USER', false);
+          // emit__action('LOGOUT_USER', false);
 
           // Initialize Location:
 
@@ -138,6 +138,7 @@ module.exports = function(io) {
               })
             })
           })
+        break;
         case 'socket/SIGNUP_USER':
           const userCreds = action.payload;
 
@@ -178,7 +179,7 @@ module.exports = function(io) {
           console.log("socket._user before logout:", socket._user);
           socket._user = null;
           console.log("socket._user after logout:", socket._user);
-          
+
           emit__action('LOGOUT_USER', false);
           emit__action('SET_USERNAME', "Anonymous");
         break;
