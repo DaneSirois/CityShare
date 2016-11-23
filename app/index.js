@@ -19,7 +19,7 @@ const localStorage_middleware = (store) => (next) => (action) => {
     case 'USER_AUTHENTICATED':
       localStorage.setItem("user_JWT", action.payload.JWT);
       console.log("Inside of the localStorage redux middleware USER_AUTHENTICATED block. Just stored the users JWT in localStorage. Here is the token hash:", action.payload.JWT);
-      next(action.payload.loggedIn);
+      next(action);
     break
     case 'LOGOUT_USER':
       if (localStorage.user_JWT) {
@@ -35,7 +35,7 @@ const localStorage_middleware = (store) => (next) => (action) => {
 
 const socket = io('http://localhost:3000');
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
-const store = createStore(root_reducer, applyMiddleware(socketIoMiddleware));
+const store = createStore(root_reducer, applyMiddleware(socketIoMiddleware, localStorage_middleware));
 
 console.log(localStorage, "Checking localstorage");
 
