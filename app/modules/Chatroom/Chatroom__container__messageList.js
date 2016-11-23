@@ -10,9 +10,10 @@ class MessageList__container extends Component {
   }
   renderMessages(chatLog) {
     return chatLog.map((message, index) => {
+    console.log(message);
       if (message && Number(message.channel_id) === Number(this.props.channel_id)) {
         return (
-          <Message__component key={index} content={message.message_text} username={message.username || "Anonymous"} time={message.time || "Before Time"} />
+          <Message__component key={index} content={message.message_text} username={message.username || "Anonymous"} time={message.created_at || "Before Time"} />
         )
       }
     });

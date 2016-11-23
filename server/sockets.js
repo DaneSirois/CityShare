@@ -193,14 +193,14 @@ module.exports = function(io) {
             message_text: action.payload.message_text,
             user_id: socket._user.id,
             channel_id: action.payload.channel_id,
-            created_at:today
+            created_at: new Date()
           }).then((result) => {
             broadcast__action('ADD_MESSAGE', {
               user_id: socket._user.id,
               username: socket._user.username,
               message_text: action.payload.message_text,
               channel_id: action.payload.channel_id,
-              time: new Date()
+              created_at: new Date()
             });
           });
         break;
