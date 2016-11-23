@@ -10,6 +10,7 @@ import Portal__module from '../Portal/Portal__index.js';
 import Chatroom__module from '../Chatroom/Chatroom__index.js';
 import Feed__module from '../Feed/Feed__index.js';
 import Channel__view from '../../Views/Views__channel.js';
+import Portal__view from '../../Views/Views__portal.js';
 
 class App__module extends Component {
   render() {
@@ -18,8 +19,7 @@ class App__module extends Component {
     } else {
       return (
         <Router history={hashHistory}>
-          <Route path="/" component={Portal__module}/>
-          <Route path="/portal" component={Portal__module} />
+          <Route path="/" component={Portal__view}/>
           <Route path="/channel/:id" component={Channel__view} />
         </Router>
       )

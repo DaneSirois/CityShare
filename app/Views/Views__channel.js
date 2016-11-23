@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Chatroom__module from '../modules/Chatroom/Chatroom__index.js';
 import Navbar__module from '../modules/Navbar/Navbar_index.js';
 import Feed__module from '../modules/Feed/Feed__index.js';
-import { Link } from 'react-router';
 import * as actions from '../modules/Shared/actions/index.js';
 
 import style from './styles/channel.css';
