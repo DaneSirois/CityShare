@@ -1,6 +1,6 @@
 // App Types:
 export const RENDER_APP = 'RENDER_APP';
-export const INITIALIZE_USER = 'INITIALIZE_USER';
+export const INITIALIZE_APP = 'INITIALIZE_APP';
 
 // Chatroom Types:
 export const NEW_MESSAGE = 'NEW_MESSAGE';
