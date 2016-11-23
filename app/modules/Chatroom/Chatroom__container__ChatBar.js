@@ -15,7 +15,6 @@ class ChatBar__container extends Component {
   render() {
     return (
       <footer>
-      <h1> ChatRoom </h1>
         <form onSubmit={this.props.handleSubmit(this.state.message, this.props.channel_id)} >
           <input onChange={this.handleInputChange} type="text" />
         </form>
