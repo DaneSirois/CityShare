@@ -141,20 +141,20 @@ module.exports = function(io) {
           })
         case 'socket/SIGNUP_USER':
           const userCreds = action.payload;
-
+          console.log(userCreds);
           bcrypt.hash(userCreds.password, 10, (err, hash) => {
             knex('users').insert({
               name: userCreds.username,
               password_digest: hash,
               email: userCreds.email,
-            }).returning('id', 'name').then((user) => {
-              const user_JWT = generateJWT(user.id, user.name);
-              socket._user = {id: user.id, username: user.name, JWT: user_JWT};
+            }).returning('id').then((id) => {
+              const user_JWT = generateJWT(id[0], userCreds.username);
+              socket._user = {id: id[0], username: userCreds.username, JWT: user_JWT};
 
               console.log("User Signed Up. Created socket._user with:", socket._user);
 
               emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
-              emit__action('SET_USERNAME', user.name);
+              emit__action('SET_USERNAME', userCreds.username);
               emit__action('RENDER_APP', true);
             });
           });
@@ -162,10 +162,15 @@ module.exports = function(io) {
         case 'socket/LOGIN_USER':
           const userInput = action.payload;
           const creds = action.payload;
-          knex('users').select().where('name', creds.name).then((user) => {
-            if (bcrypt.compareSync(creds.password, password_digest)) {
-              const user_JWT = generateJWT(user.id, user.name);
-              socket._user = {id: user.id, username: user.name, JWT: user_JWT};
+          console.log(" asjd8ajus9dasudj9", creds);
+          knex('users').select().where({'email': creds.username}).then((user) => {
+            console.log(user.password_digest);
+            console.log(creds.password);
+            console.log(user);
+            console.log(user[0]);
+            if (bcrypt.compareSync(creds.password, user[0].password_digest)) {
+              const user_JWT = generateJWT(user[0].id, user[0].name);
+              socket._user = {id: user[0].id, username: user[0].name, JWT: user_JWT};
 
               console.log("User Logged in. Created socket._user with:", socket._user);
 

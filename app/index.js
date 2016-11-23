@@ -11,7 +11,7 @@ import App__module from './modules/App/App__index.js';
 import Loading__module from './modules/Loading/Loading__index.js';
 import Portal__module from './modules/Portal/Portal__index.js';
 import Channel__view from './Views/Views__channel.js';
-import actions from './modules/Shared/actions/index.js';
+import * as actions from './modules/Shared/actions/index.js';
 
 // Redux Middleware:
 const localStorage_middleware = (store) => (next) => (action) => {
