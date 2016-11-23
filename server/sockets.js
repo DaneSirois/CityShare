@@ -111,9 +111,12 @@ module.exports = function(io) {
           });
         break;
         case 'socket/AUTHENTICATE_USER':
-          const userInput = action.payload;
-          bcrypt.compareSync(userInput.password, userInput.password);
-          broadcast__action('USER_AUTHENTICATED', action.payload);
+          const creds = action.payload;
+          knex('users').select('password_digest').where('name', creds.name).then((password_digest) => {
+            if (bcrypt.compareSync(creds.password, password_digest)) {
+              emit__action('USER_AUTHENTICATED', action.payload);
+            }
+          });
         break;
         case 'socket/NEW_MESSAGE':
           knex('messages').insert({
