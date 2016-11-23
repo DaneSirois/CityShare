@@ -1,6 +1,6 @@
 // App Actions:
 export RenderApp from './Shared__action__RenderApp.js';
-export InitializeUser from './Shared__action__InitializeUser.js';
+export InitializeApp from './Shared__action__InitializeApp.js';
 
 // Auth Actions:
 export showCP from './Shared__action__showCP.js';
