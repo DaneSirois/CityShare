@@ -7,6 +7,8 @@ import ActiveForm__container from './Auth__container__ActiveForm.js';
 import ToggleButton__component from './Auth__component__ToggleButton.js';
 import LogoutButton__component from './Auth__component__LogoutButton.js';
 
+import style from './styles/index.css';
+
 class Auth__module extends Component {
   renderButton () {
     if (this.props.loggedIn) {
@@ -22,7 +24,7 @@ class Auth__module extends Component {
   }
   render() {
     return (
-      <div>
+      <div className={style.Index__container}>
         {this.renderButton()}
         {this.renderForm()}
       </div>

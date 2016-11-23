@@ -1,12 +1,7 @@
 .container { /* <nav> */
-  position: fixed;
-    top: 0px;
-    right: 0px;
-    left: 0px;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
 
-  height: 50px;
-
-  background-color: #ececec;
-
-  border-bottom: 1px solid black;
+  background-color: inherit;
 }
