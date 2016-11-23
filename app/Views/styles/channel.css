@@ -1,14 +1,38 @@
-chatModule{
-
-
+.container { /* <div> */ 
+  margin-top: 50px;
+  width: 100%;
 }
 
-FeedModule {
-
-
+.Navbar__container { /* <div> */
+  position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    z-index:1;
+  height: 50px;
+  border-bottom: 1px solid black;
 }
 
-NavBarModule {
+.Chatroom__container { /* <div> */
+  position: fixed;
+    top: 50px;
+    left: 0px;
+    bottom: 0px;
+    z-index:0;
+  max-width: 61.8%;
+  width: 100%;
 
-	
+  background-color: green;
 }
+
+.Feed__container { /* <div> */
+  position: absolute;
+    top: 50px;
+    right: 0px;
+    z-index:0;
+  height: 100%;
+  width: 38.2%;
+
+  background-color: yellow;
+}
+

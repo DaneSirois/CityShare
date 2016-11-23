@@ -9,9 +9,7 @@ import Navbar__container from './Navbar__container__Navbar.js';
 class Navbar__module extends Component {
   render() {
     return (
-      <div>
-        <Navbar__container/>
-      </div>
+      <Navbar__container/>
     );
   };
 };
