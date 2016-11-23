@@ -188,9 +188,16 @@ module.exports = function(io) {
           knex('messages').insert({
             message_text: action.payload.message_text,
             user_id: socket._user.id,
-            channel_id: action.payload.channel_id
+            channel_id: action.payload.channel_id,
+            created_at:today
           }).then((result) => {
-            broadcast__action('ADD_MESSAGE', action.payload);
+            broadcast__action('ADD_MESSAGE', {
+              user_id: socket._user.id,
+              username: socket._user.username,
+              message_text: action.payload.message_text,
+              channel_id: action.payload.channel_id,
+              time: new Date()
+            });
           });
         break;
         case 'socket/NEW_UPDATE':
