@@ -23,9 +23,6 @@ class LoadingGrid__component extends Component {
         <div className={[style.sk_cube, style.sk_cube7].join(" ")}></div>
         <div className={[style.sk_cube, style.sk_cube8].join(" ")}></div>
         <div className={[style.sk_cube, style.sk_cube9].join(" ")}></div>
-         <Link to={"/portal"}>
-        <button> go </button>
-        </Link>
       </div>
     );
   };
@@ -36,7 +33,7 @@ class LoadingGrid__component extends Component {
   return {
     getLocation: () => {
 
-      const request = axios.get("http://ip-api.com/json").then(function(response) {
+        axios.get("http://ip-api.com/json").then(function(response) {
         dispatch(actions.fetchLocation(response));
       });
     }
