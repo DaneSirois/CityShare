@@ -4,14 +4,15 @@ import {connect} from 'react-redux';
 import * as actions from '../Shared/actions/index.js';
 
 import ActiveForm__container from './Auth__container__ActiveForm.js';
-import AuthButton__component from './Auth__component__AuthButton.js';
+import ToggleButton__component from './Auth__component__ToggleButton.js';
+import LogoutButton__component from './Auth__component__LogoutButton.js';
 
 class Auth__module extends Component {
   renderButton () {
     if (this.props.loggedIn) {
-      return <AuthButton__component whenClicked={() => this.props.handleClick} />
+      return <LogoutButton__component handleClick={this.props.logout.bind(this)} />
     } else {
-      return <AuthButton__component handleClick={this.props.handleClick.bind(this)} showCP={this.props.showCP} />
+      return <ToggleButton__component handleClick={this.props.handleClick.bind(this)} showCP={this.props.showCP} />
     }
   }
   renderForm () {
@@ -44,7 +45,9 @@ const mapDispatchToProps = function (dispatch) {
       } else {
         dispatch(actions.showCP(false));
       }
-      
+    },
+    logout: () => {
+      dispatch(actions.LogoutUser());
     }
   }
 };

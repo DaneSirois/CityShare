@@ -52,6 +52,7 @@ const mapDispatchToProps = function (dispatch) {
           username: signupCreds.username,
           password: signupCreds.password
         }
+        console.log('TESTING INSIDE OF Auth__container__SignupForm for form submission');
         dispatch(actions.signup(userCreds));
       }
     }
