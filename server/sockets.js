@@ -28,7 +28,7 @@ module.exports = function(io) {
     const emit__action = (type, payload) => socket.emit('action', { type, payload });
     const broadcast__action = (type, payload) => io.emit('action', { type, payload });
     socket.userLocation = {};
-    
+
 
     const generateJWT = function (id, name) {
       const JWT = jwt.sign({
@@ -47,7 +47,7 @@ module.exports = function(io) {
 
           if (action.payload !== undefined) { // If token was found in localStorage:
             const user_JWT = action.payload; // Cache payload as 'user_JWT';
-            
+
             console.log('init action from payload check', user_JWT);
 
             jwt.verify(user_JWT, process.env.SECRET_JWT_KEY, function(err, decoded) { // Check validity of token;
@@ -59,15 +59,15 @@ module.exports = function(io) {
                 emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
                 emit__action('SET_USERNAME', decoded.username);
                 emit__action('RENDER_APP', true);
-              } 
+              }
             });
-          } 
+          }
           // If no token was found, set 'state.User.loggedIn = false':
           emit__action('RENDER_APP', true);
           emit__action('LOGOUT_USER', false);
         break;
         case 'socket/FETCH_LOCATION':
-          
+
           let locationData = action.payload.data;
           socket.userLocation.city = locationData.city;
           socket.userLocation.userip = locationData.query;
@@ -78,7 +78,6 @@ module.exports = function(io) {
               if (result.length) {
 
               socket.userLocation.id = result[0].id;
-              console.log("result", socket.userLocation.id);
               } else {
                 knex('cities').insert({
                   name: locationData.city
@@ -88,10 +87,9 @@ module.exports = function(io) {
               }
           });
 
-          broadcast__action('ADD_LOCATION', socket.userLocation);    
+          broadcast__action('ADD_LOCATION', socket.userLocation);
         break;
-        case 'socket/GET_CHANNELS': 
-        console.log("this is legit",socket.userLocation);
+        case 'socket/GET_CHANNELS':
           knex('channels')
             .select()
             .where({
@@ -133,8 +131,6 @@ module.exports = function(io) {
         case 'socket/SIGNUP_USER':
           const userCreds = action.payload;
 
-          console.log("HEY FROm SIGNUP");
-
           bcrypt.hash(userCreds.password, 10, (err, hash) => {
             knex('users').insert({
               name: userCreds.username,
@@ -161,7 +157,7 @@ module.exports = function(io) {
               emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
               emit__action('SET_USERNAME', user.name);
             }
-          }); 
+          });
         break;
         case 'socket/LOGOUT_USER':
           socket._user = null;
@@ -171,7 +167,7 @@ module.exports = function(io) {
         case 'socket/NEW_MESSAGE':
           knex('messages').insert({
             message_text: action.payload.message_text,
-            user_id: 1,
+            user_id: socket._user.id,
             channel_id: action.payload.channel_id
           }).then((result) => {
             broadcast__action('ADD_MESSAGE', action.payload);

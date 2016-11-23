@@ -33,7 +33,7 @@ const localStorage_middleware = (store) => (next) => (action) => {
   }
 };
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
-const store = createStore(root_reducer, applyMiddleware(localStorage_middleware, socketIoMiddleware));
+const store = createStore(root_reducer, applyMiddleware(socketIoMiddleware));
 
 // Dispatch Initialization action
 const user_JWT = localStorage.getItem("user_JWT") || undefined;
