@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import * as actions from '../Shared/actions/index.js';
+import style from './styles/index.css';
 
 class ChatBar__container extends Component {
   constructor(props) {
@@ -14,9 +15,9 @@ class ChatBar__container extends Component {
   }
   render() {
     return (
-      <footer>
-        <form onSubmit={this.props.handleSubmit(this.state.message, this.props.channel_id)} >
-          <input onChange={this.handleInputChange} type="text" />
+      <footer className={style.footer}>
+        <form className={style.input_form} onSubmit={this.props.handleSubmit(this.state.message, this.props.channel_id)} >
+          <input className={style.input} onChange={this.handleInputChange} type="text" />
         </form>
       </footer>
     )
