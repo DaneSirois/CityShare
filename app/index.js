@@ -35,14 +35,14 @@ const localStorage_middleware = (store) => (next) => (action) => {
 
 const socket = io('http://localhost:3000');
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
-const store = createStore(root_reducer, applyMiddleware(socketIoMiddleware));
+const store = createStore(root_reducer, applyMiddleware(localStorage_middleware, socketIoMiddleware));
 
 // Dispatch Initialization action
 const user_JWT = localStorage.getItem("user_JWT") || undefined;
 
 setTimeout(() => {
   store.dispatch(actions.InitializeApp(user_JWT));
-}, 3000)
+}, 3000);
 
 ReactDOM.render(
   <Provider store={store}>
