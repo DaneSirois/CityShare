@@ -32,12 +32,11 @@ module.exports = function(io) {
       switch (action.type) {
 
         case 'socket/FETCH_LOCATION':
-        console.log(action.payload);
+          
           let locationData = action.payload.data;
           socket.userLocation.city = locationData.city;
           socket.userLocation.userip = locationData.query;
           socket.userLocation.timezone = locationData.timezone;
-
           knex('cities').select('id')
             .where({name: locationData.city})
             .then(function(result) {
@@ -53,14 +52,12 @@ module.exports = function(io) {
                 });
               }
           });
-            console.log("a", action.payload);
 
-            broadcast__action('ADD_LOCATION', action.payload);
-          
+          broadcast__action('ADD_LOCATION', socket.userLocation);    
         break;
 
         case 'socket/GET_CHANNELS': 
-        console.log(socket.userLocation);
+        console.log("this is legit",socket.userLocation);
           knex('channels')
             .select()
             .where({

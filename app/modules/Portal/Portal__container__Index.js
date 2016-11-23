@@ -10,7 +10,7 @@ class Index__container extends Component {
     this.renderChannels = this.renderChannels.bind(this);
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getChannels();
   }
 
