@@ -107,6 +107,7 @@ module.exports = function(io) {
               city_id: socket.userLocation.id
             })
             .then((channels) => {
+              console.log(channels);
             emit__action('GET_CHANNELS', channels);
           })
         break;
@@ -247,7 +248,7 @@ module.exports = function(io) {
             } else {
               knex('channels').insert({
                 name: channelData.name,
-                city_id: socket.user.id
+                city_id: socket.userLocation.id
               }).returning('id').then((channel_id) => {
                 channelData.tags.forEach((tag_name) => {
                   knex('tags')
