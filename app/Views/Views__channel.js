@@ -7,6 +7,7 @@ import Feed__module from '../modules/Feed/Feed__index.js';
 import * as actions from '../modules/Shared/actions/index.js';
 
 import style from './styles/channel.css';
+import shared_style from './styles/shared.css';
 
 class ChannelView extends Component {
 	componentWillMount() {
@@ -17,7 +18,7 @@ class ChannelView extends Component {
 		return (
 
 			<div className={style.container}>
-        <div className={style.Navbar__container}>
+        <div className={shared_style.Navbar__container}>
           <Navbar__module/>
         </div>
         <div className={style.Chatroom__container}>

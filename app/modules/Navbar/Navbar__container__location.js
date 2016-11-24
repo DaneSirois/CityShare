@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router';
+
+import style from './styles/index.css';
+
 class Location__container extends Component {
   constructor (props) {
     super(props);
@@ -9,17 +12,15 @@ class Location__container extends Component {
   renderCity(userData) {
     return userData.map((data, index) => {
       return (
-        <div key={index}> {data.city} </div> 
+        <h1 className={style.location_text} key={index}>{data.city}</h1> 
       )
     });
   }
   render() {
     return (
-      <ul>
-        <Link to={"/"}>
+      <Link to={"/"}>
         {this.renderCity(this.props.location)}
-        </Link>
-      </ul>
+      </Link>
     );
   };
 };

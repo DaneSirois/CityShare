@@ -1,0 +1,12 @@
+.Navbar__container { /* <div> */
+  position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    z-index:1;
+  height: 50px;
+
+  background-color: #2f6595;
+  
+  border-bottom: 1px solid black;
+}

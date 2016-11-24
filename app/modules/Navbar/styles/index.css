@@ -1,0 +1,18 @@
+.container { /* <nav> */
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+
+  background-color: inherit;
+}
+
+.container a { /* <h1> <a> */ 
+  text-decoration: none;
+}
+
+.location_text { /* <h1> */
+  text-decoration: none;
+  text-align: center;
+  margin: 8px auto 0px;
+  color: white;
+}

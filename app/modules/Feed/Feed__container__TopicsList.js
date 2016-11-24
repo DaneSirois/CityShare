@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import * as actions from '../Shared/actions/index.js';
+import style from './styles/index.css';
 
 import Topic__container from './Feed__container__Topic.js';
 
@@ -38,7 +39,7 @@ class TopicsList__container extends Component {
 
   render() {
     return (
-      <ul>
+      <ul className={style.TopicsList}>
         {this.renderTopics.bind(this)(this.props.topics)}
       </ul>
     );
