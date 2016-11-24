@@ -8,7 +8,7 @@ module.exports = {
     contentBase: "./app"
   },
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
+    'webpack-dev-server/client?http://localhost:80',
     path.join(__dirname, './app/index.js') 
   ],
   output: {
