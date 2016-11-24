@@ -1,0 +1,65 @@
+.sk_cube_grid {
+  width: 100px;
+  height: 100px;
+  margin-top:355px;
+  margin-left: 46%;
+  
+}
+.body {
+  background-color:#2f6595;
+  position:absolute;
+  width: 100%;
+  height:100%;
+
+}
+
+.sk_cube {
+  width: 33%;
+  height: 33%;
+  background-color: rgba(255, 255, 255, 0.8);
+  float: left;
+  animation: sk_cubeGridScaleDelay 2s infinite ease-in-out; 
+}
+.sk_cube1 {
+  animation-delay: 0.3s; 
+}
+.sk_cube2 {
+  animation-delay: 0.4s; 
+}
+.sk_cube3 {
+  animation-delay: 0.5s; 
+}
+.sk_cube4 {
+  animation-delay: 0.2s; 
+}
+.sk_cube5 {
+  animation-delay: 0.3s; 
+}
+.sk_cube6 {
+  animation-delay: 0.4s; 
+}
+.sk_cube7 {
+  animation-delay: 0s; 
+}
+.sk_cube8 {
+  animation-delay: 0.2s; 
+}
+.sk_cube9 {
+  animation-delay: 0.3s; 
+}
+
+@keyframes sk_cubeGridScaleDelay {
+  0%, 70%, 100% {
+  transform: scale3D(1, 1, 1);
+  } 
+  35% {
+    transform: scale3D(0, 0, 1);
+  } 
+}
+
+/* ==== Loading Text ==== */
+.loading_text { /* <h1> */
+  width: 100%;
+  margin: 0px auto;
+  text-align: center; 
+}

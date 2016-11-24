@@ -1,0 +1,64 @@
+/* ==== AuthButton ==== */
+.AuthButton_container { /* <div> */ 
+  cursor: pointer;
+  position: absolute;
+    top: 0px;
+    right: 0px;
+
+  height: 100%;
+  width: 50px;
+
+  padding: 12px;
+
+  background-color: darkgrey;
+  border-left: 1px solid black;
+}
+
+.AuthButton_container i { /* <i> - Font Awesome */ 
+  font-size: 1.5em;
+}
+
+/* ==== FormTabs ==== */
+.tab_list { /* <ul> */
+  margin: 0px auto;
+  padding: 0px;
+}
+
+.form_tab { /* <li> */
+  list-style: none;
+  display: block;
+  float: left;
+
+  margin: 0px;
+  padding: 10px 100px;
+
+  height: 40px;
+  width: 50%;
+
+  border-bottom: 1px solid black;
+}
+
+.form_tab_selected {
+  background-color: #2a2a2a;
+  color: white;
+}
+
+.form_tab:first-child {
+  border-right: 1px solid black;
+}
+
+/* ==== CP ==== */
+.CP_container {
+  z-index: 5;
+  position: fixed;
+    top: 50px;
+    right: 0px;
+    bottom: 0px;
+
+  width: 500px;
+
+  background-color: grey;
+
+  border-left: 1px solid black;
+}
+

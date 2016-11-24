@@ -1,0 +1,10 @@
+.container { /* <div> */ 
+  margin-top: 50px;
+  width: 100%;
+}
+
+.Portal__Container {
+  height: 100%;
+  width: 100%;
+  padding: 15px;
+}
