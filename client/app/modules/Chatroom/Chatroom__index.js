@@ -11,7 +11,6 @@ class Chatroom__module extends Component {
   render() {
     return (
       <div className={style.container}>
-     
         <MessageList__container channel_id={this.props.channel_id} />
         <ChatBar__container channel_id={this.props.channel_id} />
       </div>
