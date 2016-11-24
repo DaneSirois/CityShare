@@ -30,7 +30,8 @@ class MessageList__container extends Component {
 
 function mapStateToProps(state) {
   return ({
-    chatLog: state.Chatroom.chatLog
+    chatLog: state.Chatroom.chatLog,
+    topics: state.Feed.topics
   });
 };
 

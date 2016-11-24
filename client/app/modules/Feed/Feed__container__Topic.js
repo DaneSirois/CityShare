@@ -56,7 +56,7 @@ class Topic__container extends Component {
           <Update__component
             key={update.id}
             content={update.content}
-            time = {update.time} />
+            created_at = {update.created_at} />
         )
       }
     });
