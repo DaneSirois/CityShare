@@ -75,32 +75,32 @@ module.exports = function(io) {
           }
 
           // Initialize Location:
-
-          emit__action('RENDER_APP', true);
-        break;
-        case 'socket/FETCH_LOCATION':
-
-          let locationData = action.payload.data;
-          socket.userLocation.city = locationData.city;
-          socket.userLocation.userip = locationData.query;
-          socket.userLocation.timezone = locationData.timezone;
-          socket.userLocation.done = true;
-          knex('cities').select('id')
-            .where({name: locationData.city})
-            .then(function(result) {
-              if (result.length) {
-
-              socket.userLocation.id = result[0].id;
-              } else {
-                knex('cities').insert({
-                  name: locationData.city
-                }).returning('id').then((id) => {
-                  socket.userLocation.id = id;
-                });
-              }
+          axios.get("http://ip-api.com/json").then(function(response) {
+            let locationData = response.data;
+            socket.userLocation.city = locationData.city;
+            socket.userLocation.userip = locationData.query;
+            socket.userLocation.timezone = locationData.timezone;
+            socket.userLocation.done = true;
+            knex('cities').select('id')
+              .where({name: locationData.city})
+              .then(function(result) {
+                if (result.length) {
+                socket.userLocation.id = result[0].id;
+                } else {
+                  knex('cities').insert({
+                    name: locationData.city
+                  }).returning('id').then((id) => {
+                    socket.userLocation.id = id;
+                  });
+                }
+            }).then(function(result) {
+              console.log(result);
+              emit__action('ADD_LOCATION', socket.userLocation.city);
+              emit__action('RENDER_APP', true);
+            });
           });
 
-          broadcast__action('ADD_LOCATION', socket.userLocation);
+          
         break;
         case 'socket/GET_CHANNELS':
           knex('channels')

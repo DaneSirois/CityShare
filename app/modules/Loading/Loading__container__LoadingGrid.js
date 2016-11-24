@@ -6,10 +6,6 @@ import style from './styles/index.css';
 import { Link } from 'react-router';
 
 class LoadingGrid__component extends Component {
-  componentDidMount() {
-    this.props.getLocation()
-  }
-
   render() {
     return (
       <div className={style.body}>
@@ -29,16 +25,4 @@ class LoadingGrid__component extends Component {
   };
 };
 
-
-  const mapDispatchToProps = function (dispatch) {
-  return {
-    getLocation: () => {
-
-        axios.get("http://ip-api.com/json").then(function(response) {
-        dispatch(actions.fetchLocation(response));
-      });
-    }
-  }
-}
-
-export default connect(null, mapDispatchToProps)(LoadingGrid__component);
+export default LoadingGrid__component;
