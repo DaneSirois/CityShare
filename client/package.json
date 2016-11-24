@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "build": "NODE_ENV=production webpack -p --config ./webpack.prod.config.js",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,7 @@
     "webpack": "1.13.1",
     "webpack-dev-server": "1.14.1"
   },
-
+  
   "dependencies": {
     "axios": "^0.15.2",
     "bcrypt": "^0.8.7",
