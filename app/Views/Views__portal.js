@@ -9,9 +9,6 @@ class Portal__Views extends Component {
     return (
       <div>
         <div className={style.container}>
-          <div className={style.Navbar__container}>
-            <Navbar__module/>
-          </div>
           <div className={style.Portal__Container}>
           <Portal__module/>
           </div>

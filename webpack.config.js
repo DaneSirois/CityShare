@@ -3,13 +3,13 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'eval-source-map',
   devServer: {
     contentBase: "./app"
   },
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
-    path.join(__dirname, './app/index.js') 
+    path.join(__dirname, './app/index.js')
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -31,7 +31,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.css$/, 
+        test: /\.css$/,
         loaders: [
           'style-loader',
           'css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]',

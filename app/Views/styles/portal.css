@@ -1,5 +1,5 @@
-.container { /* <div> */ 
-  margin-top: 50px;
+.container { /* <div> */
+
   width: 100%;
 }
 
@@ -9,13 +9,13 @@
     right: 0px;
     left: 0px;
     z-index:1;
-  height: 50px;
   border-bottom: 1px solid black;
 }
 
 .Portal__Container {
   height: 100%;
-  position: fixed;
+  width: 60%;
   padding: 15px;
+  background-color: rgba(0,0,0,0.855);
 }
 

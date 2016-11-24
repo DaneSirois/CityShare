@@ -3,11 +3,12 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router';
 import Masonry from 'react-masonry-component';
 import Channel__component from './Portal__component__Channel.js';
+import style from './styles/index.css'
 import * as actions from '../Shared/actions/index.js';
 
 var masonryOptions = {
-  transitionDuration: 300,
-  columnWidth: 300,
+  transitionDuration: 450,
+  columnWidth: 160,
 };
 
 class Index__container extends Component {
@@ -23,9 +24,9 @@ class Index__container extends Component {
   renderChannels(channelList) {
     return channelList.map((channel, index) => {
       return (
-        <div className={this.sizeTile() + " tile"} key={channel.id}>
+        <div className={[style.doge, style[this.sizeTile()]].join(" ")} key={channel.id}>
           <Link to={"channel/" + channel.id}>
-          <Channel__component key={index} channelData={channel} />
+            <Channel__component key={channel.id} channelData={channel} />
           </Link>
         </div>
       )
@@ -33,11 +34,11 @@ class Index__container extends Component {
   }
 
   sizeTile(arg1, arg2, arg3) {
-    let algorithm = Math.floor(Math.random()*3);
+    let algorithm = Math.floor(Math.random()*10);
     let size;
-    if (algorithm === 0) {
+    if (algorithm < 5) {
       size = 'sm';
-    } else if (algorithm === 1) {
+    } else if (algorithm >= 6 && algorithm < 8) {
       size = 'md';
     } else {
       size = 'lg'
@@ -51,8 +52,7 @@ class Index__container extends Component {
 
   render() {
     return (
-      <Masonry options={masonryOptions}>
-        <h2>Portal</h2>
+      <Masonry className='Masonry' options={masonryOptions}>
         {this.renderChannels(this.props.channelList)}
       </Masonry>
     );
@@ -61,7 +61,8 @@ class Index__container extends Component {
 
 function mapStateToProps(state) {
   return ({
-    channelList: state.Portal.channelList
+    channelList: state.Portal.channelList,
+    topics: state.Feed.topics
   });
 };
 

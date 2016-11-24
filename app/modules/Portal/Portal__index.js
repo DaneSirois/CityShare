@@ -13,8 +13,6 @@ class Portal__module extends Component {
   render() {
     return (
       <div>
-        <h1 className={style.hi}>Portal Module</h1>
-        <Navbar__container />
         <Index__container />
         <ChannelForm__container />
       </div>
