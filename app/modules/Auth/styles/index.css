@@ -25,12 +25,13 @@
 }
 
 .form_tab { /* <li> */
+  text-align: center;
   list-style: none;
   display: block;
   float: left;
 
-  margin: 0px;
-  padding: 10px 100px;
+  margin: 0px auto;
+  padding: 10px 0px;
 
   height: 40px;
   width: 50%;
@@ -55,7 +56,7 @@
     right: 0px;
     bottom: 0px;
 
-  width: 500px;
+  width: 38.2%;
 
   background-color: grey;
 

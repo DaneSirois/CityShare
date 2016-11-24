@@ -12,7 +12,28 @@
 
 .location_text { /* <h1> */
   text-decoration: none;
-  text-align: center;
-  margin: 8px auto 0px;
+  text-align: left;
+  margin: 0px 65px;
+  line-height: 50px;
+  color: white;
+  font-size: 1.6em;
+}
+
+.BackButton__container { /* <div> */
+  cursor: pointer;
+  position: absolute;
+    top: 0px;
+    left: 0px;
+
+  height: 100%;
+  width: 50px;
+
+  padding: 13px;
+
+  border-right: 1px solid white;
+}
+
+.BackButton__container i { /* <i> - Font Awesome */ 
+  font-size: 1.6em;
   color: white;
 }
