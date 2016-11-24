@@ -7,8 +7,8 @@ import style from './styles/index.css'
 import * as actions from '../Shared/actions/index.js';
 
 var masonryOptions = {
-  transitionDuration: 450,
-  columnWidth: 160,
+  transitionDuration: 0,
+  columnWidth: 200,
 };
 
 class Index__container extends Component {
@@ -22,9 +22,10 @@ class Index__container extends Component {
   }
 
   renderChannels(channelList) {
+    let sizes = ['lg', 'sm', 'sm', 'md', 'md', 'sm', 'sm','lg', 'sm', 'md', 'sm', 'sm']
     return channelList.map((channel, index) => {
       return (
-        <div className={[style.doge, style[this.sizeTile()]].join(" ")} key={channel.id}>
+        <div className={[style.doge, style[sizes[index % 12]]].join(" ")} key={channel.id}>
           <Link to={"channel/" + channel.id}>
             <Channel__component key={channel.id} channelData={channel} />
           </Link>
@@ -34,16 +35,7 @@ class Index__container extends Component {
   }
 
   sizeTile(arg1, arg2, arg3) {
-    let algorithm = Math.floor(Math.random()*10);
-    let size;
-    if (algorithm < 5) {
-      size = 'sm';
-    } else if (algorithm >= 6 && algorithm < 8) {
-      size = 'md';
-    } else {
-      size = 'lg'
-    }
-    return size;
+
   }
 
   sortTiles(channels) {

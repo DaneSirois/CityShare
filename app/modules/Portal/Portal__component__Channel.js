@@ -2,13 +2,18 @@ import React, {Component} from 'react';
 import style from './styles/index.css'
 
 function randomColor(){
-    // pick a "red" from 0 - 255
-var r = Math.floor(Math.random() * 256);
-    // pick a "green" from 0 - 255
-var g = Math.floor(Math.random() * 256);
-    // pick a "blue" from 0 - 255
-var b = Math.floor(Math.random() * 256);
-return "rgba(" + r + ", " + g + ", " + b + ", 0.35)";
+  var random = Math.random() * 100;
+  if (random >= 0 && random < 20) {
+  return "rgba(255, 0, 0, 0.35)";
+  } else if (random >= 20 && random < 40) {
+  return "rgba(0, 255, 0, 0.35)";
+  } else if (random >= 40 && random < 60) {
+  return "rgba(0, 0, 255, 0.35)";
+  } else if (random >= 60 && random < 80) {
+  return "rgba(255, 255, 0, 0.35)";
+  } else {
+  return "rgba(0, 255, 255, 0.35)";
+  }
 }
 
 class Channel__component extends Component {
