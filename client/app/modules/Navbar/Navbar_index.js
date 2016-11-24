@@ -1,15 +1,22 @@
+
 // Import Dependencies:
 import React, {Component} from 'react';
 
-// import styles from './Chatroom__styles.css';
+import styles from './styles/index.css';
 
-import Navbar__container from './Navbar__container__Navbar.js';
+import BackButton__container from './Navbar__container__BackButton.js';
+import Auth__module from '../Auth/Auth__index.js';
+import Location__container from './Navbar__container__location.js';
 
 // Root Component:
 class Navbar__module extends Component {
   render() {
     return (
-      <Navbar__container/>
+      <nav className={styles.container}>
+        <BackButton__container />
+        <Location__container />
+        <Auth__module />
+      </nav>
     );
   };
 };
