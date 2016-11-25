@@ -9,9 +9,9 @@ module.exports = {
   ],
 
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/public/'
+    publicPath: '/'
   },
 
   plugins: [
@@ -34,9 +34,14 @@ module.exports = {
       { test: /\.js?$/,
         loader: 'babel',
         exclude: /node_modules/ },
-      { test: /\.scss?$/,
-        loader: 'style!css!sass',
-        include: path.join(__dirname, 'src', 'styles') },
+       {
+        test: /\.css$/, 
+        loaders: [
+        'style-loader',
+          'css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]',
+          'postcss-loader'
+        ]
+      },
       { test: /\.png$/,
         loader: 'file' },
       { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
