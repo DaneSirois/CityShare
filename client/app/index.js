@@ -14,6 +14,7 @@ import Channel__view from './Views/Views__channel.js';
 import * as actions from './modules/Shared/actions/index.js'; 
 import './assets/normalize.css';
 
+import './assets/font-awesome-4.7.0/css/font-awesome.min.css';
 // Redux Middleware:
 const localStorage_middleware = (store) => (next) => (action) => {
   switch (action.type) {
