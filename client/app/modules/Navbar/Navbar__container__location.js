@@ -18,9 +18,8 @@ class Location__container extends Component {
   }
   render() {
     return (
-      <Link to={"/"}>
-        {this.renderCity(this.props.location)}
-      </Link>
+      {this.renderCity(this.props.location)}
+
     );
   };
 };
