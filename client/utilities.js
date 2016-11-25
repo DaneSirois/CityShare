@@ -26,6 +26,6 @@ utilities_module.msToTime = function (s) {
   var hrs = s % 24;
   s = (s - hrs) / 24;
   return year + "/" + month + "/" + days + ' ' + hrs + ':' + mins + ':' + secs;
-}
+};
 
-module.exports = utilities_module;
+export default utilities_module;

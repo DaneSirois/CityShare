@@ -20,12 +20,18 @@ class ChannelForm__container extends Component {
     this.setState({ tags: event.target.value})
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.handleSubmit(this.state.name, this.state.tags);
+    this.setState({ name: '', tags: '' })
+  }
+
   render() {
     return (
-      <form id="new-channel" onSubmit={this.props.handleSubmit(this.state)}>
+      <form id="new-channel" onSubmit={this.handleSubmit.bind(this)}>
         <h2>New Channel</h2>
-        <input type="text" onChange={this.handleNameInput.bind(this)} placeholder="Name your channel." />
-        <textarea onChange={this.handleTagInput.bind(this)} placeholder="List some tags." />
+        <input type="text" onChange={this.handleNameInput.bind(this)} value={this.state.name} placeholder="Name your channel." />
+        <textarea onChange={this.handleTagInput.bind(this)} value={this.state.tags} placeholder="List some tags." />
         <button>Create</button>
       </form>
     );
@@ -34,11 +40,10 @@ class ChannelForm__container extends Component {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSubmit: (userInputs) => (event) => {
-      event.preventDefault();
+    handleSubmit: (name, tags) => {
       var channelData = {
-        name: userInputs.name,
-        tags: userInputs.tags.split(' ')
+        name: name,
+        tags: tags.split(' ')
       }
       dispatch(actions.newChannel(channelData));
     }

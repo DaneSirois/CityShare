@@ -76,7 +76,8 @@ class Topic__container extends Component {
 
 function mapStateToProps(state) {
   return ({
-    updates: state.Feed.updates
+    updates: state.Feed.updates,
+    userId: state.User.userId
   });
 };
 

@@ -7,7 +7,6 @@ const chatLog__reducer = (state = [], action) => {
       return state.concat([action.payload]);
     break;
     case ADD_MESSAGES:
-      console.log(action.payload);
       return action.payload;
     break;
     default:
