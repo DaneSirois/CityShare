@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
+    "build": "NODE_ENV=production webpack -p --config ./webpack.prod.config.js",
     "lint": "eslint src",
     "start": "node server/server.js"
   },
@@ -38,6 +39,7 @@
     "knex": "^0.12.6",
     "node-uuid": "^1.4.7",
     "pg": "^6.1.0",
+    "postcss-load-config": "^1.0.0",
     "react": "15.2.1",
     "react-dom": "15.2.1",
     "react-masonry-component": "^4.4.0",

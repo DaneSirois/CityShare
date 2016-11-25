@@ -1,17 +1,17 @@
 const path = require('path')
 const webpack = require('webpack')
-
+const autoprefixer = require('autoprefixer');
 module.exports = {
   devtool: 'source-map',
 
   entry: [
-    './src/index'
+    './app/index.js'
   ],
 
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/public/'
+    publicPath: '/'
   },
 
   plugins: [
@@ -31,16 +31,27 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.js?$/,
-        loader: 'babel',
-        exclude: /node_modules/ },
-      { test: /\.scss?$/,
-        loader: 'style!css!sass',
-        include: path.join(__dirname, 'src', 'styles') },
-      { test: /\.png$/,
-        loader: 'file' },
-      { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'file'}
+      {
+        test: /\.jsx?$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, 'app'),
+        exclude: /node_modules/
+      },
+      {
+        test: /\.js$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, 'app'),
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/, 
+        loaders: [
+          'style-loader',
+          'css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]',
+          'postcss-loader'
+        ]
+      }
     ]
-  }
+  },
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ]
 }
