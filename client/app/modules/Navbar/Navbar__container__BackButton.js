@@ -6,7 +6,9 @@ class BackButton__container extends Component {
   render() {
     return (
       <div className={style.BackButton__container}>
-        <i className="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+      	<Link to={"/"}>
+        	<i className="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
+        <Link/>
       </div>
     );
   };
