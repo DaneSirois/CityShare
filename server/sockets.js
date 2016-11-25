@@ -197,6 +197,7 @@ module.exports = function(io) {
           knex('messages').insert({
             message_text: action.payload.message_text,
             user_id: socket._user.id,
+            username: socket._user.username,
             channel_id: action.payload.channel_id,
             created_at: new Date()
           }).then((result) => {
@@ -213,14 +214,14 @@ module.exports = function(io) {
           knex('updates').insert({
             content: action.payload.content,
             topic_id: action.payload.topic_id, // FIIIIIIXXXXX THIIIIISSSS
-            created_at: today,
-            updated_at: today
+            created_at: new Date(),
+            updated_at: new Date()
           }).returning('id').then((update_id) => {
             broadcast__action('ADD_UPDATE', {
               id: update_id[0],
               content: action.payload.content,
               topic_id: action.payload.topic_id, // CHANGE THIS
-              date: new Date()
+              created_at: new Date()
             });
           });
         break;
