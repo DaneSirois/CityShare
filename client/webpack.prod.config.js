@@ -1,6 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
-
+const autoprefixer = require('autoprefixer');
 module.exports = {
   devtool: 'source-map',
 
@@ -31,21 +31,27 @@ module.exports = {
 
   module: {
     loaders: [
-      { test: /\.js?$/,
-        loader: 'babel',
-        exclude: /node_modules/ },
-       {
+      {
+        test: /\.jsx?$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, 'app'),
+        exclude: /node_modules/
+      },
+      {
+        test: /\.js$/,
+        loaders: ['babel'],
+        include: path.join(__dirname, 'app'),
+        exclude: /node_modules/
+      },
+      {
         test: /\.css$/, 
         loaders: [
-        'style-loader',
+          'style-loader',
           'css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]',
           'postcss-loader'
         ]
-      },
-      { test: /\.png$/,
-        loader: 'file' },
-      { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'file'}
+      }
     ]
-  }
+  },
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ]
 }

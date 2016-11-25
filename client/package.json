@@ -15,7 +15,6 @@
   "engines": {
     "node": ">=6.0.0"
   },
-
   "devDependencies": {
     "babel-core": "6.10.4",
     "babel-loader": "6.0.1",
@@ -30,7 +29,6 @@
     "webpack": "1.13.1",
     "webpack-dev-server": "1.14.1"
   },
-  
   "dependencies": {
     "axios": "^0.15.2",
     "bcrypt": "^0.8.7",
@@ -41,6 +39,7 @@
     "knex": "^0.12.6",
     "node-uuid": "^1.4.7",
     "pg": "^6.1.0",
+    "postcss-load-config": "^1.0.0",
     "react": "15.2.1",
     "react-dom": "15.2.1",
     "react-masonry-component": "^4.4.0",
@@ -51,5 +50,4 @@
     "sanitize-html": "^1.13.0",
     "socket.io": "^1.5.1"
   }
-
 }
