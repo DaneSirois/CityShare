@@ -45,7 +45,6 @@ module.exports = {
       },
       {
         test: /\.css$/, 
-        loader: 'style!css?sourceMap',
         loaders: [
           'style-loader',
           'css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]',
@@ -67,7 +66,7 @@ module.exports = {
       }, {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         loader: "url?limit=10000&mimetype=image/svg+xml"
-      }
+    }
     ]
   },
   postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ]
