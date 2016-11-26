@@ -1,0 +1,8 @@
+.NewChannelButton__container { /* <div> - New Channel Button */
+  right: 50px;
+}
+    
+    .NewChannelButton__icon { /* <i> - Font Awesome Icon */ 
+      color: white;
+      font-size: 1.3em;
+    }

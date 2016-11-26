@@ -7,14 +7,14 @@ import root_reducer from './root_reducer.js';
 import { Router, Route, hashHistory } from 'react-router';
 import createSocketIoMiddleware from 'redux-socket.io';
 import io from 'socket.io-client';
+
 import App__module from './modules/App/App__index.js';
 import Loading__module from './modules/Loading/Loading__index.js';
 import Portal__module from './modules/Portal/Portal__index.js';
 import Channel__view from './Views/Views__channel.js';
 
 import * as actions from './modules/Shared/actions/index.js';
-import './modules/Shared/Shared__index.js';
-import './assets/normalize.css';
+import './assets/global.css';
 
 // Redux Middleware:
 const localStorage_middleware = (store) => (next) => (action) => {
@@ -40,7 +40,7 @@ const localStorage_middleware = (store) => (next) => (action) => {
   }
 };
 
-const socket = io('http://159.203.42.30:3000/');
+const socket = io('http://localhost:3000/');
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
 const store = createStore(root_reducer, applyMiddleware(socketIoMiddleware, localStorage_middleware));
 

@@ -14,7 +14,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/app/build/'
+    publicPath: '/dist/'
   },
   module: {
     loaders: [
@@ -36,7 +36,8 @@ module.exports = {
           'style-loader',
           'css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]',
           'postcss-loader'
-        ]
+        ],
+        exclude: '/app/assets/'
       }
     ]
   },
