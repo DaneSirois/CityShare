@@ -24,7 +24,7 @@ class Tile__component extends Component {
   }
   render() {
     return (
-      <div className={style.tile} style={{backgroundImage: `url(./modules/Portal/img/tile${this.props.channelData.id - 29}.jpg)`}}>
+      <div className={style.tile} style={{backgroundImage: `url(https://dl.dropboxusercontent.com/u/5961627/tile${this.props.channelData.id - 29}.jpg)`}}>
         <div className={style.overlay} style={{backgroundColor: randomColor()}}>
           <span className={style.headline}>
           </span>
