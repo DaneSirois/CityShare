@@ -13,5 +13,5 @@ new WebpackDevServer(webpack(config), {
     console.log(err);
   }
 
-  console.log('Running at http://0.0.0.0:8080');
+  console.log('Dev-Server Running at http://0.0.0.0:8080');
 });
