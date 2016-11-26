@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import style from './styles/index.css'
 
 function randomColor(){
+
   const random = Math.random() * 100;
   if (random >= 0 && random < 20) {
     return "rgba(255, 0, 0, 0.25)";
@@ -23,7 +24,7 @@ class Tile__component extends Component {
   }
   render() {
     return (
-      <div className={style.tile} style={{backgroundImage: `url(./modules/Portal/img/tile${this.props.channelData.id - 29}.jpg)`}}>
+      <div className={style.tile} style={{backgroundImage: `url(http://www.w3schools.com/css/trolltunga.jpg)`}}>
         <div className={style.overlay} style={{backgroundColor: randomColor()}}>
           <span className={style.headline}>
           </span>
