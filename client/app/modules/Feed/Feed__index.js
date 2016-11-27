@@ -1,6 +1,6 @@
 // Import Dependencies:
 import React, {Component} from 'react';
-
+import ReactSwipe from 'react-swipe';
 // import styles from './Chatroom__styles.css';
 
 import FeedList__container from './Feed__container__FeedList.js';
@@ -15,6 +15,7 @@ class Feed__module extends Component {
         <TopicsList__container channel_id={this.props.channel_id} />
         <FeedBar__container />
       </div>
+
     );
   };
 };

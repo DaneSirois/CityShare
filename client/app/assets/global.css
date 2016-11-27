@@ -12,3 +12,6 @@
 *:before, *:after {
   box-sizing: border-box;
 }
+@media (min-width: 700px) { width:100%; color:red;}
+
+

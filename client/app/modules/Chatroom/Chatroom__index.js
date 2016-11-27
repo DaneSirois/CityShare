@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 
 import style from './styles/index.css';
-
+import ReactSwipe from 'react-swipe';
 import MasterLog__container from './Chatroom__container__MasterLog.js';
 import ChatBar__container from './Chatroom__container__ChatBar.js';
 
