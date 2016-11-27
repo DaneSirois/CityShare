@@ -29,7 +29,7 @@ export const SET_USER_ID = 'SET_USER_ID';
 export const NEW_CHANNEL = 'NEW_CHANNEL';
 export const GET_CHANNELS = 'GET_CHANNELS';
 export const ADD_TO_CHANNEL_LIST = 'ADD_TO_CHANNEL_LIST';
-export const IS_ADMIN = 'IS_ADMIN';
+export const GET_ADMIN_ID = 'GET_ADMIN_ID';
 
 // Feed Types:
 export const NEW_UPDATE = 'NEW_UPDATE';

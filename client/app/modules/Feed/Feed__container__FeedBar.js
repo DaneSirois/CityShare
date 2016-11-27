@@ -22,7 +22,7 @@ class FeedBar__container extends Component {
   }
 
   render() {
-    if (this.props.topics.length && this.props.isAdmin && this.props.loggedIn) {
+    if (this.props.topics.length && this.props.adminId === this.props.userId) {
       return (
         <footer className={style.footer}>
           <textarea className={style.input} onChange={this.handleInputChange} value={this.state.update} type="text">
@@ -44,7 +44,7 @@ function mapStateToProps(state) {
     topics: state.Feed.topics,
     loggedIn: state.User.loggedIn,
     userId: state.User.userId,
-    isAdmin: state.Feed.isAdmin
+    adminId: state.Feed.adminId
   });
 };
 

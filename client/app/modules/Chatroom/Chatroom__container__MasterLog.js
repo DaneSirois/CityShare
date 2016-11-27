@@ -19,7 +19,8 @@ function messageTopicCoupler (messages, topicFirst, topicSecond) {
 
 class MasterLog__container extends Component {
   renderTopicLists(topicList) {
-    return topicList.map((topic, index, topics) => {
+    let topics = topicList.map((topic) => topic);
+    return topics.reverse().map((topic, index, topics) => {
       if(this.props.chatLog) {
         return (
           <li className={style.topicDivider}>
