@@ -1,15 +1,67 @@
 .container { /* <div> - Root container */
   overflow-y: scroll;
   display: inline-block;
-
+  padding-top:30px;
   height: 100%;
   width: 100%;
   margin: 0px auto;
 
-  background-color: #ececec;
+  background-color: #ffffff;
 
-} 
+}
 
+.masterLogContainer {
+  padding-bottom: 20px;
+}
+
+.message {
+  margin: 1px;
+}
+
+.message:hover {
+  background-color: #f9f9f9;
+}
+
+.meta {
+  /*display: block;*/
+}
+
+.username {
+  font-weight: bold;
+  line-height:1.333;
+}
+
+.time {
+  opacity: 0.75;
+  font-size: 0.9em;
+  line-height:1.333;
+}
+
+.content {
+  line-height:1.333;
+  /*display: block;*/
+}
+
+.topicDivider {
+  border-top: 1px solid #e6e6e6;
+  position: relative;
+  margin: 0 20px;
+}
+
+.topicName{
+  top: -10px;
+  left: 50%;
+  padding: 0 15px;
+  background-color: #ffffff;
+  position: absolute;
+  margin:0px auto;
+  font-weight: bold;
+  transform: translate(-50%);
+}
+
+.topicMessages {
+  padding: 25px 20px;
+}
 
 /* ===== ChatBar ===== */
 .footer { /* <footer> - Contains the input bar to submit messages */
@@ -19,13 +71,11 @@
     left: 0px;
 
   height: 42px;
+  background-color: #FFFFFF;
 
-  background-color: #BEBEBE;
-
-  border-top: 1px solid black;
 }
 
-    .input_form { /* <form> */ 
+    .input_form { /* <form> */
       position: relative;
       display: block;
 
@@ -34,11 +84,16 @@
 
       margin: 0px auto;
       padding: 8px;
+
     }
 
-    .input { /* <input> - Bar to type text to send to chatroom */ 
+    .input { /* <input> - Bar to type text to send to chatroom */
       height: 100%;
       width: 100%;
+      font-family: 'Raleway';
+      padding-left: 10px;
 
-      border: 1px solid #4e4e4e;
+      border: 2px solid #4e4e4e;
+
+      border-radius:8px;
     }

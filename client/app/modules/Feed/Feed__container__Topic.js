@@ -5,6 +5,8 @@ import * as actions from '../Shared/actions/index.js';
 
 import Update__component from './Feed__component__Update.js';
 
+import style from './styles/index.css'
+
 class Topic__container extends Component {
   constructor (props) {
     super(props);
@@ -36,6 +38,7 @@ class Topic__container extends Component {
     if (topicData.isActive) {
       return (
         <input
+          className={style.activeTopic}
           value={this.state.name}
           onFocus={this.holdStatic.bind(this)}
           onChange={this.handleInput.bind(this)}
@@ -64,7 +67,7 @@ class Topic__container extends Component {
 
   render() {
     return (
-      <article>
+      <article className={style.topic}>
         {this.renderHeader(this.props.topicData)}
         <ul>
           {this.renderUpdates(this.props.updates)}

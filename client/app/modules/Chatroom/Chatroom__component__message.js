@@ -1,11 +1,18 @@
 import React, {Component} from 'react';
 
+import style from './styles/index.css';
+
+
 
 class Message__component extends Component {
   render() {
     return (
-      <li>
-        <span> {this.props.username} ({msToTime(this.props.time)}):    {this.props.content}</span>
+      <li className={style.message}>
+        <span className={style.meta}>
+          <span className={style.username}>{this.props.username} </span>
+          <span className={style.time}>{msToTime(this.props.time)} >> </span>
+        </span>
+        <span className={style.content}>{this.props.content}</span>
       </li>
     );
   };

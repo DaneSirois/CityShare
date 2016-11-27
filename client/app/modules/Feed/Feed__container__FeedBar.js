@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import * as actions from '../Shared/actions/index.js';
+import style from './styles/index.css';
 
 class FeedBar__container extends Component {
   constructor(props) {
@@ -24,20 +25,20 @@ class FeedBar__container extends Component {
     console.log(this.props.userId, this.props.adminId);
     if (this.props.topics.length && Number(this.props.userId) === Number(this.props.adminId)) {
       return (
-        <footer>
+        <footer className={style.footer}>
           <h1> Feed </h1>
-          <textarea onChange={this.handleInputChange} value={this.state.update} type="text">
+          <textarea className={style.input} onChange={this.handleInputChange} value={this.state.update} type="text">
           </textarea>
-          <button onClick={this.handleSubmit.bind(this)}>Update</button>
+          <button className={style.submit} onClick={this.handleSubmit.bind(this)}>Update</button>
         </footer>
       )
     } else if (this.props.topics.length) {
       return (
-        <footer>
+        <footer className={style.footer}>
           <h1> Feed </h1>
-          <textarea onChange={this.handleInputChange} value={this.state.update} type="text" disabled>
+          <textarea className={style.input} onChange={this.handleInputChange} value={this.state.update} type="text" disabled>
           </textarea>
-          <button onClick={this.handleSubmit.bind(this)} disabled>Update</button>
+          <button className={style.submit} onClick={this.handleSubmit.bind(this)} disabled>Update</button>
         </footer>
       )
     } else {

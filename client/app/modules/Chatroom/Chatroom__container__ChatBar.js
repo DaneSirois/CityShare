@@ -22,7 +22,7 @@ class ChatBar__container extends Component {
   renderInputBar(loggedIn) {
     if (this.props.loggedIn) {
       return (
-          <input className={style.input} onChange={this.handleInputChange} value={this.state.message} type="text" />
+          <input className={style.input} placeholder="Message" onChange={this.handleInputChange} value={this.state.message} type="text" />
       )
     } else {
       return (
