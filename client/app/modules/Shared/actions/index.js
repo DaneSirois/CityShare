@@ -28,6 +28,7 @@ export newTopic from './Shared__action__newTopic.js';
 
 //Loading Actions:
 export {fetchLocation} from './Shared__action__FetchLocation.js';
+export CLEAR_CHANNEL from './Shared__action__clearChannel.js'
 
 // Channel Actions:
 export fetchChannelState from './Shared__action__fetchChannelState.js';

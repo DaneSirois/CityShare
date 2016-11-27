@@ -2,9 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import { Link } from 'react-router';
 
+import * as actions from '../Shared/actions/index.js';
+
 import style from './styles/index.css';
 
 class Location__container extends Component {
+  componentWillUnmount() {
+    this.props.clearChannel();
+  }
+
   render() {
     return (
       <Link to={"/"}>
@@ -21,4 +27,12 @@ function mapStateToProps(state) {
   });
 };
 
-export default connect(mapStateToProps, null)(Location__container);
+function mapDispatchToProps(dispatch) {
+  return {
+    clearChannel: () => {
+      dispatch(actions.CLEAR_CHANNEL());
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Location__container);
