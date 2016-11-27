@@ -3,7 +3,7 @@ export const RENDER_APP = 'RENDER_APP';
 export const INITIALIZE_APP = 'INITIALIZE_APP';
 
 // Channel Types:
-export const TOGGLE_FORM = 'TOGGLE_FORM';
+export const TOGGLE_CHANNEL_FORM = 'TOGGLE_CHANNEL_FORM';
 
 // Chatroom Types:
 export const NEW_MESSAGE = 'NEW_MESSAGE';
