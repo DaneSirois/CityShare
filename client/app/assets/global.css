@@ -18,4 +18,9 @@ ul {
   padding:0;
   margin: 0;
 }
+
+body {
+  overflow: hidden;
+}
+
 @media (min-width: 700px) { width:100%; color:red;}
