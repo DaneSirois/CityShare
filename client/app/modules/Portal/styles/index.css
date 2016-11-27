@@ -1,5 +1,9 @@
 .Masonry {
-  margin: 0 auto;
+  isFitWidth: true; 
+}
+
+.Grid {
+  margin: 0px auto;
 }
 
 .tile, .overlay {
@@ -79,7 +83,7 @@
  margin-bottom: 5px;
  position: relative;
  border: 1px solid #b7b7b7;
- border-radius: 7px;
+ border-radius: 6px;
 }
 
 .footer {
@@ -90,6 +94,7 @@
   background-color: #3e3e3e;
   height: 40px;
   border-top: 1px solid black;
+  border-radius: 0px 0px 6px 6px;
   padding: 0px 10px;
   line-height: 40px;
 }

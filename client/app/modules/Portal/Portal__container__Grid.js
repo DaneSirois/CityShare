@@ -41,7 +41,7 @@ class Grid__container extends Component {
   }
   render() {
     return (
-      <Masonry className='Masonry' options={masonryOptions}>
+      <Masonry className={[style.Masonry, style.Grid].join(" ")} options={masonryOptions}>
         {this.renderChannels(this.props.channelList)}
       </Masonry>
     );
