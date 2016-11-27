@@ -1,6 +1,6 @@
 import {GET_ADMIN_ID} from '../../Shared/Shared__types.js';
 
-const adminId__reducer = (state = null, action) => {
+const AdminId__reducer = (state = null, action) => {
   switch(action.type) {
     case GET_ADMIN_ID:
       return action.payload;
@@ -9,4 +9,4 @@ const adminId__reducer = (state = null, action) => {
   };
 };
 
-export default adminId__reducer;
+export default AdminId__reducer;

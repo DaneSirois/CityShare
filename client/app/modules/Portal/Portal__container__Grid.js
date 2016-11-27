@@ -11,6 +11,7 @@ import * as actions from '../Shared/actions/index.js';
 const masonryOptions = {
   transitionDuration: 0,
   columnWidth: 200,
+  fitWidth: true
 };
 
 class Grid__container extends Component {
@@ -40,7 +41,7 @@ class Grid__container extends Component {
   }
   render() {
     return (
-      <Masonry className='Masonry' options={masonryOptions}>
+      <Masonry className={[style.Masonry, style.Grid].join(" ")} options={masonryOptions}>
         {this.renderChannels(this.props.channelList)}
       </Masonry>
     );
@@ -50,7 +51,9 @@ class Grid__container extends Component {
 function mapStateToProps(state) {
   return ({
     channelList: state.Portal.channelList,
-    topics: state.Feed.topics
+    topics: state.Feed.topics,
+    messages: state.Chatroom.chatLog,
+    updates: state.Feed.updates
   });
 };
 

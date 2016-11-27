@@ -68,10 +68,10 @@ module.exports = function(io) {
               } else { // If token IS valid:
 
                 console.log("No error with token. User is at this point confirmed and their session is valid. Here is the contents of their token:", decoded);
-                socket._user = {id: decoded.data.id, username: decoded.data.username, JWT: user_JWT};
+                socket._user = {id: decoded.data.user_id, username: decoded.data.username, JWT: user_JWT};
                 emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
                 emit__action('SET_USERNAME', decoded.data.username);
-                emit__action('SET_USER_ID', decoded.data.id);
+                emit__action('SET_USER_ID', decoded.data.user_id);
                 emit__action('RENDER_APP', true);
               }
             });
@@ -102,8 +102,7 @@ module.exports = function(io) {
                 });
               }
           });
-
-          broadcast__action('ADD_LOCATION', socket.userLocation);
+          emit__action('ADD_LOCATION', socket.userLocation.city);
         break;
         case 'socket/GET_CHANNELS':
           knex('channels')
@@ -112,19 +111,16 @@ module.exports = function(io) {
               city_id: socket.userLocation.id
             })
           .then((channels) => {
-              console.log(channels);
             emit__action('GET_CHANNELS', channels);
           })
         break;
-
         case 'socket/FETCH_CHANNEL_STATE':
-          console.log(action.payload);
           knex('channels')
-          .select('admin_id')
+          .select()
           .where('id', action.payload)
-          .then((admin_id) => {
-            console.log(admin_id[0]);
-            emit__action('IS_ADMIN', admin_id[0])
+          .then((result) => {
+            emit__action('SET_CHANNEL_NAME', result[0].name);
+            emit__action('GET_ADMIN_ID', result[0].admin_id);
           })
           knex('messages')
           .select()
@@ -148,7 +144,7 @@ module.exports = function(io) {
                 }
                 if (i == topics.length - 1) {
                   emit__action('ADD_UPDATES', updatesBundle);
-                  emit__action('ADD_TOPICS', topics);
+                  emit__action('ADD_TOPICS', topics.reverse());
                 }
               })
             })
@@ -156,7 +152,6 @@ module.exports = function(io) {
         break;
         case 'socket/SIGNUP_USER':
           const userCreds = action.payload;
-          console.log("socket/SIGNUP_USER", userCreds);
           bcrypt.hash(userCreds.password, 10, (err, hash) => {
             knex('users').insert({
               name: userCreds.username,
@@ -170,7 +165,7 @@ module.exports = function(io) {
 
               emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
               emit__action('SET_USERNAME', userCreds.username);
-              emit__action('SET_USER_ID', decoded.data.id);
+              emit__action('SET_USER_ID', socket._user.id);
               emit__action('RENDER_APP', true);
             });
           });
@@ -178,12 +173,7 @@ module.exports = function(io) {
         case 'socket/LOGIN_USER':
           const userInput = action.payload;
           const creds = action.payload;
-          console.log("socket/LOGIN_USER", creds);
           knex('users').select().where({'email': creds.username}).then((user) => {
-            console.log(user.password_digest);
-            console.log(creds.password);
-            console.log(user);
-            console.log(user[0]);
             if (bcrypt.compareSync(creds.password, user[0].password_digest)) {
               const user_JWT = generateJWT(user[0].id, user[0].name);
               socket._user = {id: user[0].id, username: user[0].name, JWT: user_JWT};
@@ -192,7 +182,7 @@ module.exports = function(io) {
 
               emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
               emit__action('SET_USERNAME', socket._user.username);
-              emit__action('SET_USER_ID', decoded.data.id);
+              emit__action('SET_USER_ID', socket._user.id);
             }
           });
         break;

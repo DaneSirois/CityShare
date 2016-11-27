@@ -4,7 +4,7 @@ import style from './styles/portal.css';
 import shared_style from './styles/shared.css';
 
 import Navbar__module from '../modules/Navbar/Navbar_index.js';
-import Portal__module from '../modules/Portal/Portal__index.js'
+import Portal__module from '../modules/Portal/Portal__index.js';
 
 class Portal__Views extends Component {
   render() {

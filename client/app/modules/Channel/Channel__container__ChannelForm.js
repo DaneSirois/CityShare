@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import * as actions from '../Shared/actions/index.js';
+import style from './styles/index.css';
 
 class ChannelForm__container extends Component {
   constructor (props) {
@@ -28,12 +29,14 @@ class ChannelForm__container extends Component {
 
   render() {
     return (
-      <form id="new-channel" onSubmit={this.handleSubmit.bind(this)}>
-        <h2>New Channel</h2>
-        <input type="text" onChange={this.handleNameInput.bind(this)} value={this.state.name} placeholder="Name your channel." />
-        <textarea onChange={this.handleTagInput.bind(this)} value={this.state.tags} placeholder="List some tags." />
-        <button>Create</button>
-      </form>
+      <div className={style.ChannelForm__container}>
+        <form id="new-channel" onSubmit={this.props.handleSubmit}>
+          <h2>New Channel</h2>
+          <input type="text" onChange={this.handleNameInput.bind(this)} placeholder="Name your channel." />
+          <textarea onChange={this.handleTagInput.bind(this)} placeholder="List some tags." />
+          <button>Create</button>
+        </form>
+      </div>
     );
   };
 };
@@ -41,8 +44,8 @@ class ChannelForm__container extends Component {
 const mapDispatchToProps = function (dispatch) {
   return {
     handleSubmit: (name, tags) => {
-      var channelData = {
-        name: name,
+      const channelData = {
+        name,
         tags: tags.split(' ')
       }
       dispatch(actions.newChannel(channelData));

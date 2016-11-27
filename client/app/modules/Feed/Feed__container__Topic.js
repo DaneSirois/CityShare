@@ -35,7 +35,7 @@ class Topic__container extends Component {
   }
 
   renderHeader(topicData) {
-    if (topicData.isActive) {
+    if (topicData.isActive && this.props.userId === this.props.adminId) {
       return (
         <input
           className={style.activeTopic}
@@ -80,7 +80,8 @@ class Topic__container extends Component {
 function mapStateToProps(state) {
   return ({
     updates: state.Feed.updates,
-    userId: state.User.userId
+    userId: state.User.userId,
+    adminId: state.Feed.adminId
   });
 };
 

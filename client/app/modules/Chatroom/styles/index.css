@@ -1,13 +1,7 @@
 .container { /* <div> - Root container */
   overflow-y: scroll;
-  display: inline-block;
-  padding-top:30px;
   height: 100%;
-  width: 100%;
   margin: 0px auto;
-
-  background-color: #ffffff;
-
 }
 
 .masterLogContainer {
@@ -48,7 +42,7 @@
   margin: 0 20px;
 }
 
-.topicName{
+.topicName {
   top: -10px;
   left: 50%;
   padding: 0 15px;
@@ -95,5 +89,5 @@
 
       border: 2px solid #4e4e4e;
 
-      border-radius:8px;
+      border-radius:10px;
     }
