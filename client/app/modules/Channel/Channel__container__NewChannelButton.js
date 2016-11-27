@@ -8,8 +8,8 @@ import style from './styles/index.css';
 class NewChannelButton__container extends Component {
   render() {
     return (
-      <div className={style.NewChannelButton__container}> 
-          <i className={[style.NewChannelButton__icon, "fa fa-plus"].join(" ")} aria-hidden="true"></i>
+      <div className={style.NewChannelButton__container} onClick={() => this.props.handleButtonClick(this.props.current_formState)}> 
+        <i className={[style.NewChannelButton__icon, "fa fa-plus"].join(" ")} aria-hidden="true"></i>
       </div>
     );
   };
@@ -23,11 +23,11 @@ const mapStateToProps = function (state) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleButtonClick: () => {
-      if (current_formState === "CLOSED") {
-        dispatch(action.TOGGLE_FORM("OPEN"));
+    handleButtonClick: (currentState) => {
+      if (currentState === "CLOSED") {
+        dispatch(action.TOGGLE_CHANNEL_FORM("OPEN"));
       } else {
-        dispatch(action.TOGGLE_FORM("CLOSE"));
+        dispatch(action.TOGGLE_CHANNEL_FORM("CLOSED"));
       }
     }
   }
