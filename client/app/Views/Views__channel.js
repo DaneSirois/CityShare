@@ -15,26 +15,25 @@ class ChannelView extends Component {
 
   render() {
     return (
-
       <div className={style.container}>
         <Media query="(max-width: 899px)">
           {matches => matches ? (
             <div>
-            <div className={shared_style.Navbar__container}>
+              <div className={shared_style.Navbar__container}>
                 <Navbar__module/>
               </div>
-            <ReactSwipe className="carousel" swipeOptions={{continuous: false}}>
-              <div className={style.Chatroom__module}>
-                <Chatroom__module channel_id={this.props.params.id}/>
-              </div>
-              <div className={style.Feed__container}>
-                <Feed__module channel_id={this.props.params.id}/>
-              </div>
-           </ReactSwipe>
+              <ReactSwipe className="carousel" swipeOptions={{continuous: false}}>
+                <div className={style.Chatroom__module}>
+                  <Chatroom__module channel_id={this.props.params.id}/>
+                </div>
+                <div className={style.Feed__container}>
+                  <Feed__module channel_id={this.props.params.id}/>
+                </div>
+              </ReactSwipe>
            </div>
 
           ) : (
-          <div>
+            <div>
                <div className={shared_style.Navbar__container}>
                 <Navbar__module/>
               </div>
@@ -44,8 +43,8 @@ class ChannelView extends Component {
               <div className={style.Feed__container}>
                 <Feed__module channel_id={this.props.params.id}/>
               </div>
-              </div>
-            )}
+            </div>
+          )}
         </Media>
       </div>
     );
