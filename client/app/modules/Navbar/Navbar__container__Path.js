@@ -8,7 +8,7 @@ class Path__container extends Component {
   renderChannelName (channelName) {
     if (channelName) {
       return (
-        <h2> > {channelName}</h2>
+        <h2 className={style.channelName}> &nbsp;> {channelName}</h2>
       )
     }
   }
