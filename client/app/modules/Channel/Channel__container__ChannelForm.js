@@ -21,6 +21,12 @@ class ChannelForm__container extends Component {
     this.setState({ tags: event.target.value})
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.handleSubmit(this.state.name, this.state.tags);
+    this.setState({ name: '', tags: '' })
+  }
+
   render() {
     return (
       <div className={style.ChannelForm__container}>
@@ -37,11 +43,10 @@ class ChannelForm__container extends Component {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSubmit: (userInputs) => (event) => {
-      event.preventDefault();
+    handleSubmit: (name, tags) => {
       var channelData = {
-        name: userInputs.name,
-        tags: userInputs.tags.split(' ')
+        name: name,
+        tags: tags.split(' ')
       }
       dispatch(actions.newChannel(channelData));
     }

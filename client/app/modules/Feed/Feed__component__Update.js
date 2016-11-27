@@ -4,7 +4,7 @@ class Update__component extends Component {
   render() {
     return (
       <li>
-        <span>{this.props.time}</span>
+        <span>{this.props.created_at}</span>
         <span>{this.props.content}</span>
       </li>
     );

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import * as actions from '../Shared/actions/index.js';
+import style from './styles/index.css';
 
 class FeedBar__container extends Component {
   constructor(props) {
@@ -9,17 +10,35 @@ class FeedBar__container extends Component {
     this.state = {update: ''}
     this.handleInputChange = this.handleInputChange.bind(this);
   }
+
   handleInputChange(event) {
     this.setState({update: event.target.value});
   }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.handleSubmit(this.state.update, this.props.topics[0].id);
+    this.setState({ update: '' })
+  }
+
   render() {
-    if (this.props.topics.length) {
+    console.log(this.props.userId, this.props.adminId);
+    if (this.props.topics.length && Number(this.props.userId) === Number(this.props.adminId)) {
       return (
-        <footer>
+        <footer className={style.footer}>
           <h1> Feed </h1>
-          <textarea onChange={this.handleInputChange} type="text">
+          <textarea className={style.input} onChange={this.handleInputChange} value={this.state.update} type="text">
           </textarea>
-          <button onClick={this.props.handleSubmit(this.state.update, this.props.topics[0].id)}>Update</button>
+          <button className={style.submit} onClick={this.handleSubmit.bind(this)}>Update</button>
+        </footer>
+      )
+    } else if (this.props.topics.length) {
+      return (
+        <footer className={style.footer}>
+          <h1> Feed </h1>
+          <textarea className={style.input} onChange={this.handleInputChange} value={this.state.update} type="text" disabled>
+          </textarea>
+          <button className={style.submit} onClick={this.handleSubmit.bind(this)} disabled>Update</button>
         </footer>
       )
     } else {
@@ -32,14 +51,16 @@ class FeedBar__container extends Component {
 
 function mapStateToProps(state) {
   return ({
-    topics: state.Feed.topics
+    topics: state.Feed.topics,
+    userId: state.User.userId,
+    adminId: state.Portal.adminId
   });
 };
 
+
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSubmit: (updateText, topic_id) => (event) => {
-      event.preventDefault();
+    handleSubmit: (updateText, topic_id) => {
       let update = {
         content: updateText,
         topic_id: topic_id

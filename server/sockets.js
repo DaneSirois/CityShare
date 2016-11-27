@@ -22,13 +22,16 @@ const inspect = (o, d = 1) => {
 };
 
 // Socket IO:
+
+var userCount = 0;
+
+
 module.exports = function(io) {
   io.on('connection', (socket) => {
     console.log(`Socket connected: ${socket.id}`);
     const emit__action = (type, payload) => socket.emit('action', { type, payload });
     const broadcast__action = (type, payload) => io.emit('action', { type, payload });
     socket.userLocation = {};
-
 
     const generateJWT = function (id, name) {
       const JWT = jwt.sign({
@@ -41,7 +44,6 @@ module.exports = function(io) {
     };
 
     socket.on('action', (action) => {
-      const today = new Date().toJSON().slice(0,10)
       switch (action.type) {
         case 'socket/INITIALIZE_APP':
 
@@ -66,9 +68,10 @@ module.exports = function(io) {
               } else { // If token IS valid:
 
                 console.log("No error with token. User is at this point confirmed and their session is valid. Here is the contents of their token:", decoded);
-
+                socket._user = {id: decoded.data.id, username: decoded.data.username, JWT: user_JWT};
                 emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
-                emit__action('SET_USERNAME', decoded.username);
+                emit__action('SET_USERNAME', decoded.data.username);
+                emit__action('SET_USER_ID', decoded.data.id);
                 emit__action('RENDER_APP', true);
               }
             });
@@ -108,12 +111,20 @@ module.exports = function(io) {
             .where({
               city_id: socket.userLocation.id
             })
-            .then((channels) => {
+          .then((channels) => {
               console.log(channels);
             emit__action('GET_CHANNELS', channels);
           })
         break;
         case 'socket/FETCH_CHANNEL_STATE':
+          console.log(action.payload);
+          knex('channels')
+          .select('admin_id')
+          .where('id', action.payload)
+          .then((admin_id) => {
+            console.log(admin_id[0]);
+            emit__action('IS_ADMIN', admin_id[0])
+          })
           knex('messages')
           .select()
           .where('channel_id', action.payload)
@@ -158,6 +169,7 @@ module.exports = function(io) {
 
               emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
               emit__action('SET_USERNAME', userCreds.username);
+              emit__action('SET_USER_ID', decoded.data.id);
               emit__action('RENDER_APP', true);
             });
           });
@@ -178,7 +190,8 @@ module.exports = function(io) {
               console.log("User Logged in. Created socket._user with:", socket._user);
 
               emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
-              emit__action('SET_USERNAME', user.name);
+              emit__action('SET_USERNAME', socket._user.username);
+              emit__action('SET_USER_ID', decoded.data.id);
             }
           });
         break;
@@ -190,6 +203,7 @@ module.exports = function(io) {
 
           emit__action('LOGOUT_USER', false);
           emit__action('SET_USERNAME', "Anonymous");
+          emit__action('SET_USER_ID', null);
         break;
         case 'socket/NEW_MESSAGE':
           console.log('got to backend', action.payload);
@@ -205,7 +219,7 @@ module.exports = function(io) {
               username: socket._user.username,
               message_text: action.payload.message_text,
               channel_id: action.payload.channel_id,
-              created_at: new Date()
+              created_at: Number(new Date())
             });
           });
         break;
@@ -220,7 +234,7 @@ module.exports = function(io) {
               id: update_id[0],
               content: action.payload.content,
               topic_id: action.payload.topic_id, // CHANGE THIS
-              created_at: new Date()
+              created_at: Number(new Date())
             });
           });
         break;
@@ -231,13 +245,13 @@ module.exports = function(io) {
           knex('topics').insert({
             name: action.payload.name,
             channel_id: action.payload.channel_id,
-            created_at: today,
-            updated_at: today
+            created_at: new Date(),
+            updated_at: new Date()
           }).returning('id').then((topic_id) => {
             broadcast__action('ADD_TOPIC', {
               id: topic_id[0],
               name: action.payload.name,
-              date: new Date(),
+              created_at: new Date(),
               channel_id: action.payload.channel_id});
           })
         break;
@@ -250,8 +264,10 @@ module.exports = function(io) {
             } else {
               knex('channels').insert({
                 name: channelData.name,
+                admin_id: socket._user.id,
                 city_id: socket.userLocation.id
               }).returning('id').then((channel_id) => {
+                console.log(socket.userLocation.id);
                 channelData.tags.forEach((tag_name) => {
                   knex('tags')
                   .select('id')
@@ -286,7 +302,35 @@ module.exports = function(io) {
       }
     });
     socket.on('disconnect', function(){
-      console.log("Socket disconnected");
+      userCount -= 1;
+      io.emit('action', {type: 'USERCOUNT', payload: userCount});
     });
   });
-};
+}
+
+
+function generateRandomColor() {
+  let rand = Math.random();
+  let color;
+  if (0 <= rand && rand < 0.25) {
+    color = 'red';
+  } else if (0.25 <= rand && rand < 0.50) {
+    color = 'green';
+  } else if (0.50 <= rand && rand < 0.75) {
+    color = 'blue';
+  } else if (0.75 <= rand && rand < 1) {
+    color = 'purple';
+  }
+  return color;
+}
+
+
+function parseMessage (message) {
+  var formatted = message;
+  var imageFileExtension = /([^\s]+\.(jpg|png|gif))/g;
+  return {
+    __html: sanitizeHtml(
+        formatted.replace(imageFileExtension, (x) => {return '<img src="'+x+'">'}),
+        {allowedTags: ['img']}
+    )};
+}

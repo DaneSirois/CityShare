@@ -11,7 +11,6 @@ class FeedList__container extends Component {
   renderUpdates(feedItems) {
 
     return feedItems.map((update, index) => {
-      console.log(update);
       return (
         <FeedItem__component key={index} updateData={update} />
       )

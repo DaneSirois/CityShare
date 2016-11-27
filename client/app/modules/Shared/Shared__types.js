@@ -22,11 +22,13 @@ export const LOGOUT_USER = 'LOGOUT_USER';
 export const AUTHENTICATE_USER = 'AUTHENTICATE_USER';
 export const USER_AUTHENTICATED = 'USER_AUTHENTICATED';
 export const SET_USERNAME = 'SET_USERNAME';
+export const SET_USER_ID = 'SET_USER_ID';
 
 // Portal Types:
 export const NEW_CHANNEL = 'NEW_CHANNEL';
 export const GET_CHANNELS = 'GET_CHANNELS';
 export const ADD_TO_CHANNEL_LIST = 'ADD_TO_CHANNEL_LIST';
+export const GET_ADMIN_ID = 'GET_ADMIN_ID';
 
 // Feed Types:
 export const NEW_UPDATE = 'NEW_UPDATE';
