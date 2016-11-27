@@ -22,28 +22,18 @@ class FeedBar__container extends Component {
   }
 
   render() {
-    console.log(this.props.userId, this.props.adminId);
-    if (this.props.topics.length && Number(this.props.userId) === Number(this.props.adminId)) {
+    if (this.props.topics.length && this.props.isAdmin && this.props.loggedIn) {
       return (
         <footer className={style.footer}>
-          <h1> Feed </h1>
           <textarea className={style.input} onChange={this.handleInputChange} value={this.state.update} type="text">
           </textarea>
           <button className={style.submit} onClick={this.handleSubmit.bind(this)}>Update</button>
         </footer>
       )
-    } else if (this.props.topics.length) {
+    } else {
       return (
         <footer className={style.footer}>
-          <h1> Feed </h1>
-          <textarea className={style.input} onChange={this.handleInputChange} value={this.state.update} type="text" disabled>
-          </textarea>
-          <button className={style.submit} onClick={this.handleSubmit.bind(this)} disabled>Update</button>
         </footer>
-      )
-    } else {
-      return(
-        <h1>No Topics</h1>
       )
     }
   }
@@ -52,8 +42,9 @@ class FeedBar__container extends Component {
 function mapStateToProps(state) {
   return ({
     topics: state.Feed.topics,
+    loggedIn: state.User.loggedIn,
     userId: state.User.userId,
-    adminId: state.Portal.adminId
+    isAdmin: state.Feed.isAdmin
   });
 };
 
