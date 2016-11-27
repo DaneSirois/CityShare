@@ -24,12 +24,19 @@
   position: absolute;
     top: 0px;
     left: 0px;
+<<<<<<< Updated upstream
 
   height: 100%;
   width: 50px;
 
   padding: 13px;
 
+=======
+  height: 100%;
+  width: 50px;
+  padding: 0px;
+  line-height: 55px;
+>>>>>>> Stashed changes
   border-right: 1px solid white;
 }
 

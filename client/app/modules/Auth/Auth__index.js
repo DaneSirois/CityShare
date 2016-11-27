@@ -53,4 +53,5 @@ const mapDispatchToProps = function (dispatch) {
     }
   }
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Auth__module);

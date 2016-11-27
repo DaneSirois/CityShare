@@ -6,6 +6,12 @@ export InitializeApp from './Shared__action__InitializeApp.js';
 export showCP from './Shared__action__showCP.js';
 export changeAuthTab from './Shared__action__changeAuthTab.js';
 
+<<<<<<< Updated upstream
+=======
+// Channel Actions:
+export TOGGLE_CHANNEL_FORM__action from './Shared__action__TOGGLE_CHANNEL_FORM.js';
+
+>>>>>>> Stashed changes
 // Chatroom Actions:
 export newMessage from './Shared__action__newMessage.js';
 

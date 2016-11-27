@@ -113,7 +113,6 @@ module.exports = function(io) {
             emit__action('GET_CHANNELS', channels);
           })
         break;
-
         case 'socket/FETCH_CHANNEL_STATE':
           knex('messages')
           .select()

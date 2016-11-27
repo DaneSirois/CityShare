@@ -2,6 +2,12 @@
 export const RENDER_APP = 'RENDER_APP';
 export const INITIALIZE_APP = 'INITIALIZE_APP';
 
+<<<<<<< Updated upstream
+=======
+// Channel Types:
+export const TOGGLE_CHANNEL_FORM = 'TOGGLE_CHANNEL_FORM';
+
+>>>>>>> Stashed changes
 // Chatroom Types:
 export const NEW_MESSAGE = 'NEW_MESSAGE';
 export const ADD_MESSAGE = 'ADD_MESSAGE';

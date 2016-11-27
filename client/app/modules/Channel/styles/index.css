@@ -1,0 +1,28 @@
+.NewChannelButton__container { /* <div> - New Channel Button */
+  cursor: pointer;
+  text-align: center;
+  position: absolute;
+    top: 0px;
+    right: 50px;
+  height: 100%;
+  width: 50px;
+  padding: 0px;
+  line-height: 55px;
+}
+    
+    .NewChannelButton__icon { /* <i> - Font Awesome Icon */ 
+      color: white;
+      font-size: 1.3em;
+    }
+
+.ChannelForm__container { /* <div> - Container for the actual <form> */
+  z-index: 5;
+  position: fixed;
+    top: 50px;
+    right: 0px;
+
+  height: 300px;
+
+  background-color: grey;
+  border: 1px solid black;
+}
