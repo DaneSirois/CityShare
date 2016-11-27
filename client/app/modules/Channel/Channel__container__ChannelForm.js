@@ -30,7 +30,7 @@ class ChannelForm__container extends Component {
   render() {
     return (
       <div className={style.ChannelForm__container}>
-        <form id="new-channel" onSubmit={this.props.handleSubmit(this.state)}>
+        <form id="new-channel" onSubmit={this.props.handleSubmit}>
           <h2>New Channel</h2>
           <input type="text" onChange={this.handleNameInput.bind(this)} placeholder="Name your channel." />
           <textarea onChange={this.handleTagInput.bind(this)} placeholder="List some tags." />
@@ -44,8 +44,8 @@ class ChannelForm__container extends Component {
 const mapDispatchToProps = function (dispatch) {
   return {
     handleSubmit: (name, tags) => {
-      var channelData = {
-        name: name,
+      const channelData = {
+        name,
         tags: tags.split(' ')
       }
       dispatch(actions.newChannel(channelData));

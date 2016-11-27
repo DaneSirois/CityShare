@@ -10,24 +10,31 @@ class Location__container extends Component {
     this.renderCity = this.renderCity.bind(this);
   }
   renderCity(userData) {
+    let formattedChannelName;
+    if (this.props.channelName) {
+      formattedChannelName = " > " + this.props.channelName;
+    }
     return userData.map((data, index) => {
       return (
-        <h1 className={style.location_text} key={index}>{data.city}</h1> 
+        <h1 className={style.location_text}>{data.city}{formattedChannelName}</h1> 
       )
     });
   }
   render() {
     return (
-      <Link to={"/"}>
-        {this.renderCity(this.props.location)}
-      </Link>
+      <div>
+        <Link to={"/"}>
+          {this.renderCity(this.props.location)}
+        </Link>
+      </div>
     );
   };
 };
 
 function mapStateToProps(state) {
   return ({
-    location: state.Loading.location
+    location: state.Loading.location,
+    channelName: state.Channel.channelName
   });
 };
 
