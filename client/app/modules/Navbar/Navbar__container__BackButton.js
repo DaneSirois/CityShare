@@ -3,10 +3,13 @@ import { Link } from 'react-router';
 import style from './styles/index.css';
 
 class BackButton__container extends Component {
+  componentWillUnmount() {
+    this.props.clearChannel();
+  }
   render() {
     return (
     	<Link to={"/"}>
-	      <div className={style.BackButton__container}>	
+	      <div className={style.BackButton__container}>
 	        	<i className="fa fa-arrow-circle-o-left" aria-hidden="true"></i>
 	      </div>
       </Link>
