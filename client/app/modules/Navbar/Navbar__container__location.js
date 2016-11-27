@@ -5,21 +5,10 @@ import { Link } from 'react-router';
 import style from './styles/index.css';
 
 class Location__container extends Component {
-  constructor (props) {
-    super(props);
-    this.renderCity = this.renderCity.bind(this);
-  }
-  renderCity(userData) {
-    return userData.map((data, index) => {
-      return (
-        <h1 className={style.location_text} key={index}>{data.city}</h1> 
-      )
-    });
-  }
   render() {
     return (
       <Link to={"/"}>
-        {this.renderCity(this.props.location)}
+        <h1 className={style.location_text}>{this.props.location}</h1>
       </Link>
     );
   };

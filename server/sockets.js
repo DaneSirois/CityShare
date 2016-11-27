@@ -102,8 +102,7 @@ module.exports = function(io) {
                 });
               }
           });
-
-          broadcast__action('ADD_LOCATION', socket.userLocation);
+          emit__action('ADD_LOCATION', socket.userLocation.city);
         break;
         case 'socket/GET_CHANNELS':
           knex('channels')
@@ -120,8 +119,7 @@ module.exports = function(io) {
           .select('admin_id')
           .where('id', action.payload)
           .then((result) => {
-            console.log(result[0].admin_id === socket._user.id);
-            emit__action('IS_ADMIN', result[0].admin_id === socket._user.id);
+            emit__action('GET_ADMIN_ID', result[0].admin_id);
           })
           knex('messages')
           .select()
@@ -145,7 +143,7 @@ module.exports = function(io) {
                 }
                 if (i == topics.length - 1) {
                   emit__action('ADD_UPDATES', updatesBundle);
-                  emit__action('ADD_TOPICS', topics);
+                  emit__action('ADD_TOPICS', topics.reverse());
                 }
               })
             })
