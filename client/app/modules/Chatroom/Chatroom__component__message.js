@@ -23,7 +23,6 @@ function msToTime (s) {
   var days = (new Date(s)).getDay();
   var month = (new Date(s)).getMonth();
   var year = (new Date(s)).getFullYear();
-  console.log(s);
   var ms = Number(s) % 1000;
   s = (s - ms) / 1000;
   var secs = s % 60;

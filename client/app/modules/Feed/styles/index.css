@@ -14,9 +14,7 @@
 }
 
 
-/*Feed Bar*/
-
-/* ===== ChatBar ===== */
+/*===========Feed Bar===========*/
 .footer { /* <footer> - Contains the input bar to submit messages */
   position: absolute;
     bottom: 0px;
@@ -41,12 +39,15 @@
     }
 
     .input { /* <input> - Bar to type text to send to chatroom */
+      position: relative;
+      display: block;
       height: 100%;
       width: 100%;
       font-family: 'Raleway';
       padding-left: 10px;
+      margin: 5px 0;
 
       border: 2px solid #4e4e4e;
 
-      border-radius:8px;
+      border-radius:5px;
     }

@@ -1,11 +1,11 @@
 .container { /* <div> - Root container */
+  position: absolute;
   overflow-y: scroll;
-  display: inline-block;
   padding-top:30px;
   height: 100%;
-  width: 100%;
   margin: 0px auto;
-
+  right: 680px;
+  left: 0px;
   background-color: #ffffff;
 
 }
@@ -95,5 +95,5 @@
 
       border: 2px solid #4e4e4e;
 
-      border-radius:8px;
+      border-radius:10px;
     }
