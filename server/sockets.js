@@ -117,10 +117,10 @@ module.exports = function(io) {
         break;
         case 'socket/FETCH_CHANNEL_STATE':
           knex('channels')
-          .select('admin_id')
+          .select()
           .where('id', action.payload)
           .then((result) => {
-            console.log(result[0].admin_id === socket._user.id);
+            emit__action('SET_CHANNEL_NAME', result[0].name);
             emit__action('IS_ADMIN', result[0].admin_id === socket._user.id);
           })
           knex('messages')
