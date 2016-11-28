@@ -1,25 +1,44 @@
 // Import Dependencies:
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import style from './styles/index.css';
 import ReactSwipe from 'react-swipe';
-// import styles from './Chatroom__styles.css';
 
 import FeedList__container from './Feed__container__FeedList.js';
 import TopicsList__container from './Feed__container__TopicsList.js';
-import FeedBar__container from './Feed__container__FeedBar.js';
+import UpdateBar__container from './Feed__container__UpdateBar.js';
 
 // Root Component:
 class Feed__module extends Component {
+  renderHeader (headlinesExists, adminId, userId) {
+    if (headlinesExists && adminId === userId) {
+      return (
+        <div className={style.Feed__header}>
+          <UpdateBar__container />
+        </div>
+      )
+    }
+  }
   render() {
     return (
-      <div className={style.container}>
-        <TopicsList__container channel_id={this.props.channel_id} />
-        <FeedBar__container />
+      <div className={style.Feed__container}>
+        {this.renderHeader.bind(this)(this.props.topics.length, this.props.adminId, this.props.userId)}
+        <div className={style.Feed__body}>
+          <TopicsList__container channel_id={this.props.channel_id} />
+        </div>
       </div>
-
     );
   };
 };
 
-export default Feed__module;
+function mapStateToProps(state) {
+  return ({
+    topics: state.Feed.topics,
+    userId: state.User.userId,
+    adminId: state.Feed.adminId
+  });
+};
+
+export default connect(mapStateToProps)(Feed__module);
+

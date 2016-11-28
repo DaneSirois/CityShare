@@ -38,7 +38,7 @@ class Topic__container extends Component {
     if (topicData.isActive && this.props.userId === this.props.adminId) {
       return (
         <input
-          className={style.activeTopic}
+          className={style.headline__active}
           value={this.state.name}
           onFocus={this.holdStatic.bind(this)}
           onChange={this.handleInput.bind(this)}
@@ -47,7 +47,7 @@ class Topic__container extends Component {
       );
     } else {
       return (
-        <h1>{topicData.name}</h1>
+        <h2 className={style.Headline__title}>{topicData.name}</h2>
       );
     }
   }
@@ -67,11 +67,15 @@ class Topic__container extends Component {
 
   render() {
     return (
-      <article className={style.topic}>
-        {this.renderHeader(this.props.topicData)}
-        <ul>
-          {this.renderUpdates(this.props.updates)}
-        </ul>
+      <article className={style.Headline}>
+        <header className={style.Headline__header}>
+          {this.renderHeader(this.props.topicData)}
+        </header>
+        <div className={style.Headline__body}>
+          <ul>
+            {this.renderUpdates(this.props.updates)}
+          </ul>
+        </div>
       </article>
     );
   };
