@@ -1,41 +1,116 @@
-.container {
+/*=========== Feed ===========*/
+
+.Feed__container { /* <div> */
+  /*
+    Contains:
+      > <header> - .Feed__header
+      > <div> - .Feed__body
+  */
 }
 
-.activeTopic {
-  border: 0;
-  font-family: 'Raleway';
-  position: relative;
-  top: 0;
-  font-size: 3em;
+    .Feed__header { /* <header> */ 
+      position: absolute;
+        top: 0px;
+        right: 0px;
+        left: 0px;
 
-}
+      min-height: 100px;
+      background-color: #ececec;
 
-.topic { /* <article> */
-
-  padding: 20px 10px;
-
-  border-bottom: 1px solid black;
-}
-    
-    .Article__title { /* <h2> */
-
-      font-weight: 1.3em;
-      text-align: center;
-      margin: 0px;
-      text-decoration: underline;
+      border-bottom: 1px solid black;
     }
 
-/*===========Feed Bar===========*/
-.footer { /* <footer> - Contains the input bar to submit messages */
-  position: absolute;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
+    .Feed__body { /* <body> */
+      position: absolute;
+        top: 100px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+    }
 
-  height: 42px;
-  background-color: #FFFFFF;
 
+/*=========== Headline ===========*/
+.Headline { /* <article> - Represents a new point of discussion */
+  /*
+    Contains:
+      > <article> - .Headline--active
+      > <h2> - .Headline__title
+  */
+  position: relative;
+  padding: 0px 10px;
+  height: 100px;
+  width: 100%;
+
+  background-color: #e6e6e6;
+  border-bottom: 1px solid black;
 }
+
+    .Headline--active { /* <article> */
+      position: relative;
+      top: 0;
+      font-size: 3em;
+      border: 0;
+    }
+    
+    .Headline__title { /* <h2> */
+
+      font-size: 1.3em;
+      font-weight: bold;
+      text-align: center;
+      line-height: 100px;
+      margin: 0px;
+    }
+
+/*=========== UpdateBar ===========*/
+.UpdateBar { /* <div> -  Bar to submit an update */
+  /* 
+    Contains:
+      > <textarea> - .UpdateBar__textarea
+      > <button> - .UpdateBar__button
+      > <footer> - /UpdateBar__footer
+  */
+  position: absolute;
+    top: 0px;
+    bottom: 0px;
+  width: 100%;
+}
+
+    .UpdateBar__textarea { /* <textarea> */
+      outline: none;
+      resize: none;
+
+      height: 100%;
+      width: 100%;
+
+      margin: 0px;
+      background-color: lightgrey;
+
+      border: 0px;
+    }
+
+    .UpdateBar__textarea:focus { /* <textarea> (STATE) */
+      background-color: #eee;
+    }
+
+
+    .UpdateBar__footer { /* <footer> */
+      position: absolute;
+        bottom: 0px;
+      height: 28px;
+      width: 100%;
+      background-color: #eaeaea;
+      border-top: 1px solid darkgrey;
+    }
+      .UpdateBar__button { /* <button> */ 
+        position: absolute;
+          right: 0px;
+        height: 100%;
+        width: 80px;
+        border: 0px;
+        border-left: 1px solid darkgrey;
+      }
+
+
 
     .input_form { /* <form> */
       position: relative;
@@ -47,18 +122,4 @@
       margin: 0px auto;
       padding: 8px;
 
-    }
-
-    .input { /* <input> - Bar to type text to send to chatroom */
-      position: relative;
-      display: block;
-      height: 100%;
-      width: 100%;
-      font-family: 'Raleway';
-      padding-left: 10px;
-      margin: 5px 0;
-
-      border: 2px solid #4e4e4e;
-
-      border-radius:5px;
     }

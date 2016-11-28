@@ -39,7 +39,6 @@ class HeadlineList__container extends Component {
     } else {
       return(
         <form onSubmit={this.props.handleSubmit(this.state.headline, this.props.channel_id)} >
-          <h2>Enter Headline</h2>
           <input onChange={this.handleInputChange.bind(this)} type="text" placeholder="Next headline:" />
         </form>
       )

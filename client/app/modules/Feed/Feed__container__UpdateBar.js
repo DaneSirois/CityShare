@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import * as actions from '../Shared/actions/index.js';
 import style from './styles/index.css';
 
-class FeedBar__container extends Component {
+class UpdateBar__container extends Component {
   constructor(props) {
     super(props)
     this.state = {update: ''}
@@ -17,34 +17,25 @@ class FeedBar__container extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.handleSubmit(this.state.update, this.props.topics[0].id);
+    this.props.handleSubmit(this.state.update, this.props.headlines[0].id);
     this.setState({ update: '' })
   }
 
   render() {
-    if (this.props.headlines.length && this.props.adminId === this.props.userId) {
-      return (
-        <footer className={style.footer}>
-          <textarea className={style.input} onChange={this.handleInputChange} value={this.state.update} type="text">
-          </textarea>
-          <button className={style.submit} onClick={this.handleSubmit.bind(this)}>Update</button>
+    return (
+      <div className={style.UpdateBar}>
+        <textarea className={style.UpdateBar__textarea} onChange={this.handleInputChange} placeholder={"Make an update:"} value={this.state.update} type="text"></textarea>
+        <footer className={style.UpdateBar__footer}>
+          <button className={style.UpdateBar__button} onClick={this.handleSubmit.bind(this)}>Post</button>
         </footer>
-      )
-    } else {
-      return (
-        <footer className={style.footer}>
-        </footer>
-      )
-    }
+      </div>
+    )
   }
 };
 
 function mapStateToProps(state) {
   return ({
     headlines: state.Feed.headlines,
-    loggedIn: state.User.loggedIn,
-    userId: state.User.userId,
-    adminId: state.Feed.adminId
   });
 };
 
@@ -61,4 +52,4 @@ const mapDispatchToProps = function (dispatch) {
   }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeedBar__container);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateBar__container);

@@ -19,9 +19,8 @@ function messageHeadlineCoupler (messages, headlineFirst, headlineSecond) {
 class MasterLog__container extends Component {
   renderHeadlineLists(headlineList) {
     let headlines = headlineList.map((headline) => headline);
-    console.log("Inside of masterlog", headlines);
+
     return headlines.reverse().map((headline, index, headlines) => {
-      
       if(this.props.chatLog) {
         return (
           <li className={style.Headline__divider} key={headline.id}>

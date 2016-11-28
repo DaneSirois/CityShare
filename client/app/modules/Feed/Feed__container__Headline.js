@@ -68,10 +68,10 @@ class Headline__container extends Component {
   render() {
     return (
       <article className={style.Headline}>
-        <header className={style.Headline__container}>
+        <header className={style.Headline__header}>
           {this.renderHeader(this.props.headlineData)}
         </header>
-        <div className={style.Updates__container}>
+        <div className={style.Headline__updates}>
           <ul>
             {this.renderUpdates(this.props.updates)}
           </ul>
