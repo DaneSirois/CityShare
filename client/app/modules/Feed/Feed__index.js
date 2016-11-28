@@ -5,7 +5,6 @@ import style from './styles/index.css';
 import ReactSwipe from 'react-swipe';
 // import styles from './Chatroom__styles.css';
 
-import FeedList__container from './Feed__container__FeedList.js';
 import TopicsList__container from './Feed__container__TopicsList.js';
 import FeedBar__container from './Feed__container__FeedBar.js';
 

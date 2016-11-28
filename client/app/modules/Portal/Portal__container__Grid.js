@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import { Link } from 'react-router';
 import Masonry from 'react-masonry-component';
 
-import Tile__component from './Portal__component__Tile.js';
+import Tile__component from './Portal__container__Tile.js';
 
 import style from './styles/index.css'
 import * as actions from '../Shared/actions/index.js';
@@ -19,6 +19,7 @@ class Grid__container extends Component {
     super(props);
     this.renderChannels = this.renderChannels.bind(this);
     this.countUsersInChannel = this.countUsersInChannel.bind(this);
+    this.fetchHeadline = this.fetchHeadline.bind(this);
   }
 
   componentWillMount() {
@@ -37,6 +38,12 @@ class Grid__container extends Component {
     }, 0);
   }
 
+  fetchHeadline(headlines, channel_id) {
+    return headlines.find((headline) => {
+      return headline.channel_id === channel_id;
+    })
+  }
+
 
   renderChannels(channelList) {
     let sizes = ['lg', 'sm', 'sm', 'md', 'md', 'sm', 'sm','lg', 'sm', 'md', 'sm', 'sm', 'lg', 'md', 'sm', 'sm', 'sm', 'md', 'lg', 'sm', 'sm', 'sm', 'sm', 'md', 'sm', 'md', 'sm', 'sm', 'sm']
@@ -45,7 +52,7 @@ class Grid__container extends Component {
       return (
         <div className={[style.doge, style[sizes[index % sizes.length]]].join(" ")} key={channel.id}>
           <Link to={"channel/" + channel.id}>
-            <Tile__component channelData={channel} userCount={this.countUsersInChannel(this.props.userCount, channel.id)}/>
+            <Tile__component channelData={channel} headline={this.fetchHeadline(this.props.headlines, channel.id)} userCount={this.countUsersInChannel(this.props.userCount, channel.id)}/>
           </Link>
         </div>
       )
@@ -66,8 +73,7 @@ function mapStateToProps(state) {
   return ({
     channelList: state.Portal.channelList,
     userCount: state.Portal.userCount,
-    messages: state.Chatroom.chatLog,
-    topics: state.Feed.topics,
+    headlines: state.Feed.topics,
     updates: state.Feed.updates
   });
 };

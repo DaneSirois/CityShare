@@ -107,6 +107,11 @@ module.exports = function(io) {
           emit__action('ADD_LOCATION', socket.userLocation.city);
         break;
         case 'socket/GET_CHANNELS':
+          knex('topics')
+          .select()
+          .then((topics) => {
+            emit__action('ADD_TOPICS', topics.reverse());
+          });
 
           // Replace channel ID whence socket came from with null upon
           // return to portal. Emit latest userArray to user.
@@ -214,7 +219,10 @@ module.exports = function(io) {
           emit__action('SET_USER_ID', null);
         break;
         case 'socket/NEW_MESSAGE':
-          console.log('got to backend', action.payload);
+          // NOTIFIES TILE OF MESSAGE
+          broadcast__action('MESSAGE_ALERT', action.payload.channel_id);
+
+          // ADD MESSAGE TO DATABASE
           knex('messages').insert({
             message_text: action.payload.message_text,
             user_id: socket._user.id,
