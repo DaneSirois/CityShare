@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import style from './styles/index.css'
 
@@ -18,20 +19,31 @@ function randomColor(){
   }
 }
 
-class Tile__component extends Component {
+class Tile__container extends Component {
+
   produceImgLink(id) {
     return `background-image: ./img/tile${id - 29}.jpg`
+  }
+
+  renderHeadline(headline) {
+    if (headline) {
+      return headline.name
+    }
   }
   render() {
     return (
       <div className={style.tile} style={{backgroundImage: `url(https://dl.dropboxusercontent.com/u/5961627/tile${this.props.channelData.id - 29}.jpg)`}}>
         <div className={style.overlay} style={{backgroundColor: randomColor()}}>
           <span className={style.headline}>
+            {this.renderHeadline.bind(this)(this.props.headline)}
           </span>
         </div>
         <footer className={style.footer}>
           <span className={style.channelName}>
             {this.props.channelData.name}
+          </span>
+          <span className={style.userCount}>
+            {this.props.userCount}
           </span>
         </footer>
       </div>
@@ -39,4 +51,11 @@ class Tile__component extends Component {
   };
 };
 
-export default Tile__component;
+function mapStateToProps(state) {
+  return ({
+    messageAlert: state.Portal.messageAlert,
+  });
+};
+
+
+export default connect(mapStateToProps)(Tile__container);

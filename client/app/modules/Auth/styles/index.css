@@ -24,6 +24,15 @@
   margin: 0px auto;
   padding: 0px;
 }
+button, input {
+  overflow: visible;
+  height:50px;
+  width:300px;
+  font-family: inherit;
+  padding-left: 5px;
+  font-size: 18px;
+  display: block;
+}
 
 .form_tab { /* <li> */
   list-style: none;

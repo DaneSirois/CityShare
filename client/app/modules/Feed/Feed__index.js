@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import style from './styles/index.css';
 import ReactSwipe from 'react-swipe';
 
-import FeedList__container from './Feed__container__FeedList.js';
 import TopicsList__container from './Feed__container__TopicsList.js';
 import UpdateBar__container from './Feed__container__UpdateBar.js';
 

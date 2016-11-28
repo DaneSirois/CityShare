@@ -30,7 +30,7 @@ class ChannelForm__container extends Component {
   render() {
     return (
       <div className={style.ChannelForm__container}>
-        <form id="new-channel" onSubmit={this.props.handleSubmit}>
+        <form id="new-channel" onSubmit={this.props.handleSubmit(this.state.name, this.state.tags)}>
           <h2>New Channel</h2>
           <input type="text" onChange={this.handleNameInput.bind(this)} placeholder="Name your channel." />
           <textarea onChange={this.handleTagInput.bind(this)} placeholder="List some tags." />

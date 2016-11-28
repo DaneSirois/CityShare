@@ -1,5 +1,5 @@
 .Masonry {
-  isFitWidth: true; 
+  isFitWidth: true;
 }
 
 .Grid {
@@ -12,7 +12,9 @@
   height: 100%;
   top: 0;
   left: 0;
-  border-radius: 7px;
+}
+.hover {
+
 }
 
 .tile {
@@ -25,11 +27,15 @@
   font-weight: bold;
 }
 
+.userCount {
+  float: right;
+}
+
 .headline {
   word-wrap:break-word;
   color: white;
 }
-.channelName {
+.channelName, .userCount {
   word-wrap: break-word;
   color: white;
   font-size: 1.3em;
@@ -83,7 +89,6 @@
  margin-bottom: 5px;
  position: relative;
  border: 1px solid #b7b7b7;
- border-radius: 6px;
 }
 
 .footer {
@@ -94,7 +99,6 @@
   background-color: #3e3e3e;
   height: 40px;
   border-top: 1px solid black;
-  border-radius: 0px 0px 6px 6px;
   padding: 0px 10px;
   line-height: 40px;
 }
