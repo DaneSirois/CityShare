@@ -5,7 +5,7 @@ const Updates__reducer = (state = [], action) => {
 
   switch(action.type) {
     case ADD_UPDATE:
-      console.log(state);
+      console.log("Inside of Updates reducer:", action.payload);
       return [action.payload, ...state];
     case ADD_UPDATES:
       return action.payload;

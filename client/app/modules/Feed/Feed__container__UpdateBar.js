@@ -35,7 +35,7 @@ class UpdateBar__container extends Component {
 
 function mapStateToProps(state) {
   return ({
-    headlines: state.Feed.headlines,
+    headlines: state.Feed.headlines
   });
 };
 

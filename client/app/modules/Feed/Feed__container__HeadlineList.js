@@ -21,6 +21,7 @@ class HeadlineList__container extends Component {
       return headlinesList.map((headline, i) => {
         if (Number(headline.channel_id) === Number(this.props.channel_id)) {
           let isActive = i === 0 ? true : false;
+          console.log(headline)
           return (
             <Headline__container 
             key={headline.id} 
