@@ -23,7 +23,7 @@ const inspect = (o, d = 1) => {
 
 // Socket IO:
 
-var userCount = 0;
+var userArray = [];
 
 
 module.exports = function(io) {
@@ -42,6 +42,8 @@ module.exports = function(io) {
       }, process.env.SECRET_JWT_KEY, { expiresIn: '1h' });
       return JWT;
     };
+
+    userArray.push(0);
 
     socket.on('action', (action) => {
       switch (action.type) {
@@ -105,6 +107,16 @@ module.exports = function(io) {
           emit__action('ADD_LOCATION', socket.userLocation.city);
         break;
         case 'socket/GET_CHANNELS':
+
+          // Replace channel ID whence socket came from with null upon
+          // return to portal. Emit latest userArray to user.
+          userArray.splice(userArray.findIndex((element) => {
+            return element === Number(socket.channel_id);
+          }), 1, 0);
+          socket.channel_id = 0;
+          broadcast__action('GET_USER_COUNT', userArray);
+
+          // Emit channel info to user.
           knex('channels')
             .select()
             .where({
@@ -115,6 +127,11 @@ module.exports = function(io) {
           })
         break;
         case 'socket/FETCH_CHANNEL_STATE':
+          userArray.splice(userArray.findIndex((element) => {
+            return element === Number(socket.channel_id);
+          }), 1, Number(action.payload));
+          socket.channel_id = Number(action.payload);
+          broadcast__action('GET_USER_COUNT', userArray);
           knex('channels')
           .select()
           .where('id', action.payload)
@@ -289,32 +306,16 @@ module.exports = function(io) {
             }
           })
         break;
-
       }
     });
     socket.on('disconnect', function(){
-      userCount -= 1;
-      io.emit('action', {type: 'USERCOUNT', payload: userCount});
+      userArray.splice(userArray.findIndex((element) => {
+        return element === Number(socket.channel_id);
+      }), 1);
+      io.emit('action', {type: 'GET_USER_COUNT', payload: userArray});
     });
   });
 }
-
-
-function generateRandomColor() {
-  let rand = Math.random();
-  let color;
-  if (0 <= rand && rand < 0.25) {
-    color = 'red';
-  } else if (0.25 <= rand && rand < 0.50) {
-    color = 'green';
-  } else if (0.50 <= rand && rand < 0.75) {
-    color = 'blue';
-  } else if (0.75 <= rand && rand < 1) {
-    color = 'purple';
-  }
-  return color;
-}
-
 
 function parseMessage (message) {
   var formatted = message;

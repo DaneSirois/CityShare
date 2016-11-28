@@ -33,6 +33,9 @@ class Tile__component extends Component {
           <span className={style.channelName}>
             {this.props.channelData.name}
           </span>
+          <span className={style.userCount}>
+            {this.props.userCount}
+          </span>
         </footer>
       </div>
     );

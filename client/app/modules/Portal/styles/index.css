@@ -1,5 +1,5 @@
 .Masonry {
-  isFitWidth: true; 
+  isFitWidth: true;
 }
 
 .Grid {
@@ -25,11 +25,15 @@
   font-weight: bold;
 }
 
+.userCount {
+  float: right;
+}
+
 .headline {
   word-wrap:break-word;
   color: white;
 }
-.channelName {
+.channelName, .userCount {
   word-wrap: break-word;
   color: white;
   font-size: 1.3em;
