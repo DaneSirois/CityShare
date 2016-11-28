@@ -131,20 +131,21 @@ module.exports = function(io) {
           knex('topics')
           .select()
           .where('channel_id', action.payload)
-          .then((topics) => {
-            let updatesBundle = []
-            topics.forEach((topic, i, topics) => {
+          .then((headlines) => {
+            const updatesBundle = [];
+            headlines.forEach((headline, i, headlines) => {
               knex('updates')
               .select()
-              .where('topic_id', topic.id)
+              .where('topic_id', headline.id)
               .orderBy('created_at', 'desc')
               .then((updates) => {
                 for (let i = 0; i < updates.length; i += 1) {
                   updatesBundle.push(updates[i]);
                 }
-                if (i == topics.length - 1) {
+                if (i == headlines.length - 1) {
                   emit__action('ADD_UPDATES', updatesBundle);
-                  emit__action('ADD_TOPICS', topics.reverse());
+                  console.log(headlines);
+                  emit__action('HEADLINES_ADD__type', headlines.reverse());
                 }
               })
             })
@@ -217,14 +218,14 @@ module.exports = function(io) {
         case 'socket/NEW_UPDATE':
           knex('updates').insert({
             content: action.payload.content,
-            topic_id: action.payload.topic_id, // FIIIIIIXXXXX THIIIIISSSS
+            topic_id: action.payload.headline_id, // FIIIIIIXXXXX THIIIIISSSS
             created_at: new Date(),
             updated_at: new Date()
           }).returning('id').then((update_id) => {
             broadcast__action('ADD_UPDATE', {
               id: update_id[0],
               content: action.payload.content,
-              topic_id: action.payload.topic_id, // CHANGE THIS
+              topic_id: action.payload.headline_id, // CHANGE THIS
               created_at: Number(new Date())
             });
           });
@@ -232,16 +233,16 @@ module.exports = function(io) {
         case 'socker/FETCH_UPDATES':
           knex('updates').select().orderBy()
         break;
-        case 'socket/NEW_TOPIC':
+        case 'socket/HEADLINE_NEW__type':
           knex('topics').insert({
-            name: action.payload.name,
+            name: action.payload.title,
             channel_id: action.payload.channel_id,
             created_at: new Date(),
             updated_at: new Date()
-          }).returning('id').then((topic_id) => {
-            broadcast__action('ADD_TOPIC', {
-              id: topic_id[0],
-              name: action.payload.name,
+          }).returning('id').then((headline_id) => {
+            broadcast__action('HEADLINE_NEW__type', {
+              id: headline_id[0],
+              title: action.payload.title,
               created_at: new Date(),
               channel_id: action.payload.channel_id});
           })

@@ -37,13 +37,13 @@
   /*display: block;*/
 }
 
-.topicDivider {
+.Headline__divider {
   border-top: 1px solid #e6e6e6;
   position: relative;
   margin: 0 20px;
 }
 
-.topicName {
+.Headline__title {
   top: -10px;
   left: 50%;
   padding: 0 15px;
@@ -54,7 +54,7 @@
   transform: translate(-50%);
 }
 
-.topicMessages {
+.Headline__messageList {
   padding: 25px 20px;
 }
 

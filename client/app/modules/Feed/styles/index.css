@@ -10,9 +10,20 @@
 
 }
 
-.topic {
-}
+.topic { /* <article> */
 
+  padding: 20px 10px;
+
+  border-bottom: 1px solid black;
+}
+    
+    .Article__title { /* <h2> */
+
+      font-weight: 1.3em;
+      text-align: center;
+      margin: 0px;
+      text-decoration: underline;
+    }
 
 /*===========Feed Bar===========*/
 .footer { /* <footer> - Contains the input bar to submit messages */

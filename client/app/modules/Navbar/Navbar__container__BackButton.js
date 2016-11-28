@@ -3,9 +3,6 @@ import { Link } from 'react-router';
 import style from './styles/index.css';
 
 class BackButton__container extends Component {
-  componentWillUnmount() {
-    this.props.clearChannel();
-  }
   render() {
     return (
     	<Link to={"/"}>

@@ -7,10 +7,10 @@ import Update__component from './Feed__component__Update.js';
 
 import style from './styles/index.css'
 
-class Topic__container extends Component {
+class Headline__container extends Component {
   constructor (props) {
     super(props);
-    this.state = { name: this.props.topicData.name, nameStatic: '' }
+    this.state = { title: this.props.headlineData.title, nameStatic: '' }
     this.renderUpdates = this.renderUpdates.bind(this);
     this.renderHeader = this.renderHeader.bind(this);
   }
@@ -20,41 +20,41 @@ class Topic__container extends Component {
   }
 
   handleInput(event) {
-    this.setState({name:event.target.value})
+    this.setState({title: event.target.value})
   }
 
-  changeTopic(event) {
+  changeHeadline(event) {
     if (event.key === 'Enter') {
-      this.props.handleSubmit(this.state.name, this.props.channel_id);
+      this.props.handleSubmit(this.state.title, this.props.channel_id);
       this.setState({nameStatic: event.target.value});
     }
   }
 
   revert(event) {
-    this.setState({name: this.state.nameStatic})
+    this.setState({title: this.state.nameStatic})
   }
 
-  renderHeader(topicData) {
-    if (topicData.isActive && this.props.userId === this.props.adminId) {
+  renderHeader(headlineData) {
+    if (headlineData.isActive && this.props.userId === this.props.adminId) {
       return (
         <input
-          className={style.activeTopic}
+          className={style.activeHeadline}
           value={this.state.name}
           onFocus={this.holdStatic.bind(this)}
           onChange={this.handleInput.bind(this)}
-          onKeyUp={this.changeTopic.bind(this)}
+          onKeyUp={this.changeHeadline.bind(this)}
           onBlur={this.revert.bind(this)} />
       );
     } else {
       return (
-        <h1>{topicData.name}</h1>
+        <h2 className={style.Headline__title}>{headlineData.title}</h2>
       );
     }
   }
 
   renderUpdates(updates) {
     return updates.map((update) => {
-      if (update.topic_id === this.props.topicData.topic_id) {
+      if (update.topic_id === this.props.headlineData.headline_id) {
         return (
           <Update__component
             key={update.id}
@@ -67,11 +67,15 @@ class Topic__container extends Component {
 
   render() {
     return (
-      <article className={style.topic}>
-        {this.renderHeader(this.props.topicData)}
-        <ul>
-          {this.renderUpdates(this.props.updates)}
-        </ul>
+      <article className={style.Headline}>
+        <header className={style.Headline__container}>
+          {this.renderHeader(this.props.headlineData)}
+        </header>
+        <div className={style.Updates__container}>
+          <ul>
+            {this.renderUpdates(this.props.updates)}
+          </ul>
+        </div>
       </article>
     );
   };
@@ -87,15 +91,15 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSubmit: (topicName, channel_id) => {
-      let topic = {
-        name: topicName,
+    handleSubmit: (headlineTitle, channel_id) => {
+      let headline = {
+        title: headlineTitle,
         channel_id: channel_id
       }
-      dispatch(actions.newTopic(topic));
+      dispatch(actions.HEADLINE_NEW(headline));
     }
   }
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Topic__container);
+export default connect(mapStateToProps, mapDispatchToProps)(Headline__container);

@@ -9,23 +9,24 @@ function ageInMs(dbObject) {
   return dbObject ? new Date(dbObject.created_at).getTime() : Infinity;
 }
 
-function messageTopicCoupler (messages, topicFirst, topicSecond) {
+function messageHeadlineCoupler (messages, headlineFirst, headlineSecond) {
   return messages.filter((message) => {
-    return  (ageInMs(message) > ageInMs(topicFirst)
-      && ageInMs(message) <= ageInMs(topicSecond));
+    return (ageInMs(message) > ageInMs(headlineFirst)
+      && ageInMs(message) <= ageInMs(headlineSecond));
   });
 }
 
-
 class MasterLog__container extends Component {
-  renderTopicLists(topicList) {
-    let topics = topicList.map((topic) => topic);
-    return topics.reverse().map((topic, index, topics) => {
+  renderHeadlineLists(headlineList) {
+    let headlines = headlineList.map((headline) => headline);
+    console.log("Inside of masterlog", headlines);
+    return headlines.reverse().map((headline, index, headlines) => {
+      
       if(this.props.chatLog) {
         return (
-          <li className={style.topicDivider}>
-            <p className={style.topicName}>{topic.name}</p>
-            <MessageList__container key={topic.id} messages={messageTopicCoupler(this.props.chatLog, topic, topics[index+1])} topic={topic.name} created_at={topic.created_at} />
+          <li className={style.Headline__divider} key={headline.id}>
+            <p className={style.Headline__title}>{headline.name}</p>
+            <MessageList__container key={headline.id} messages={messageHeadlineCoupler(this.props.chatLog, headline, headlines[index+1])} created_at={headline.created_at} />
           </li>
         )
       }
@@ -34,7 +35,7 @@ class MasterLog__container extends Component {
   render() {
     return (
       <ul className={style.masterLogContainer}>
-        {this.renderTopicLists.bind(this)(this.props.topics)}
+        {this.renderHeadlineLists.bind(this)(this.props.headlines)}
       </ul>
     );
   };
@@ -43,7 +44,7 @@ class MasterLog__container extends Component {
 // GOTTA DO THIS:
 function mapStateToProps(state) {
   return ({
-    topics: state.Feed.topics,
+    headlines: state.Feed.headlines,
     chatLog: state.Chatroom.chatLog
   });
 };

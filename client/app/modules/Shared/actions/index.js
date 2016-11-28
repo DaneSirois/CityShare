@@ -24,7 +24,7 @@ export getChannels from './Shared__action__getChannels.js';
 
 // Feed Actions:
 export newUpdate from './Shared__action__newUpdate.js';
-export newTopic from './Shared__action__newTopic.js';
+export HEADLINE_NEW from './Shared__action__HEADLINE_NEW.js';
 
 //Loading Actions:
 export {fetchLocation} from './Shared__action__FetchLocation.js';

@@ -14,8 +14,8 @@ class MessageList__container extends Component {
   }
   render() {
     return (
-      <ul className={style.topicMessages}>
-        {this.renderMessages.bind(this)(this.props.messages)}
+      <ul className={style.Headline__messageList}>
+        {this.renderMessages.bind(this)(this.props.chatLog)}
       </ul>
     );
   };

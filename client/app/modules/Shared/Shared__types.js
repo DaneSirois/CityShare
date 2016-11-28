@@ -35,9 +35,8 @@ export const GET_ADMIN_ID = 'GET_ADMIN_ID';
 export const NEW_UPDATE = 'NEW_UPDATE';
 export const ADD_UPDATE = 'ADD_UPDATE';
 export const ADD_UPDATES = 'ADD_UPDATES';
-export const NEW_TOPIC = 'NEW_TOPIC';
-export const ADD_TOPIC = 'ADD_TOPIC';
-export const ADD_TOPICS = 'ADD_TOPICS';
+export const HEADLINE_NEW__type = 'HEADLINE_NEW__type';
+export const HEADLINES_ADD__type = 'HEADLINES_ADD__type';
 export const ADD_TO_FEEDLIST = 'ADD_TO_FEEDLIST';
 
 // Channel Types:
