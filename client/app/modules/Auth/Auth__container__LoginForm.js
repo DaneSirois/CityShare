@@ -21,12 +21,14 @@ class LoginForm__container extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(this.state)}>
-        <h2>Log In Form</h2>
-        <input type="text" onChange={this.handleUsernameInput.bind(this)} placeholder={"Username"} />
-        <input type="text" onChange={this.handlePasswordInput.bind(this)} placeholder={"Password"} />
-        <button>Login</button>
-      </form>
+      <div className="formDiv">
+        <form onSubmit={this.props.handleSubmit(this.state)}>
+          <h2>Log In Form</h2>
+          <input type="text" onChange={this.handleUsernameInput.bind(this)} placeholder={"Username"} />
+          <input type="text" onChange={this.handlePasswordInput.bind(this)} placeholder={"Password"} />
+          <button>Login</button>
+        </form>
+      </div>
     );
   };
 };
