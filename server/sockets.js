@@ -260,6 +260,7 @@ module.exports = function(io) {
         case 'socket/NEW_TOPIC':
           knex('topics').insert({
             name: action.payload.name,
+            img_url: action.payload.img_url,
             channel_id: action.payload.channel_id,
             created_at: new Date(),
             updated_at: new Date()
@@ -280,6 +281,7 @@ module.exports = function(io) {
             } else {
               knex('channels').insert({
                 name: channelData.name,
+                color: channelData.color,
                 admin_id: socket._user.id,
                 city_id: socket.userLocation.id
               }).returning('id').then((channel_id) => {

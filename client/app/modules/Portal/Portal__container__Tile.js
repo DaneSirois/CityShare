@@ -33,7 +33,7 @@ class Tile__container extends Component {
   render() {
     return (
       <div className={style.tile} style={{backgroundImage: `url(https://dl.dropboxusercontent.com/u/5961627/tile${this.props.channelData.id - 29}.jpg)`}}>
-        <div className={style.overlay} style={{backgroundColor: randomColor()}}>
+        <div className={style.overlay} style={{backgroundColor: this.props.channelData.color}}>
           <span className={style.headline}>
             {this.renderHeadline.bind(this)(this.props.headline)}
           </span>

@@ -10,7 +10,7 @@ import style from './styles/index.css'
 class Topic__container extends Component {
   constructor (props) {
     super(props);
-    this.state = { name: this.props.topicData.name, nameStatic: '' }
+    this.state = { name: this.props.topicData.name, nameStatic: '', img_url: '' }
     this.renderUpdates = this.renderUpdates.bind(this);
     this.renderHeader = this.renderHeader.bind(this);
   }
@@ -25,7 +25,7 @@ class Topic__container extends Component {
 
   changeTopic(event) {
     if (event.key === 'Enter') {
-      this.props.handleSubmit(this.state.name, this.props.channel_id);
+      this.props.handleSubmit(this.state.name, this.state.img_url, this.props.channel_id);
       this.setState({nameStatic: event.target.value});
     }
   }
@@ -34,16 +34,27 @@ class Topic__container extends Component {
     this.setState({name: this.state.nameStatic})
   }
 
+ handleImageInput(event) {
+    this.setState({img_url:event.target.value})
+  }
+
   renderHeader(topicData) {
     if (topicData.isActive && this.props.userId === this.props.adminId) {
       return (
-        <input
-          className={style.activeTopic}
-          value={this.state.name}
-          onFocus={this.holdStatic.bind(this)}
-          onChange={this.handleInput.bind(this)}
-          onKeyUp={this.changeTopic.bind(this)}
-          onBlur={this.revert.bind(this)} />
+        <div>
+          <input
+            className={style.activeTopic}
+            value={this.state.name}
+            onFocus={this.holdStatic.bind(this)}
+            onChange={this.handleInput.bind(this)}
+            onKeyUp={this.changeTopic.bind(this)}
+            onBlur={this.revert.bind(this)} />
+          <input className={style.imgInput}
+            placeholder="image url (optional)"
+            value={this.state.img_url}
+            onChange={this.handleImageInput.bind(this)}
+          />
+        </div>
       );
     } else {
       return (
@@ -87,9 +98,10 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSubmit: (topicName, channel_id) => {
+    handleSubmit: (topicName, img_url, channel_id) => {
       let topic = {
         name: topicName,
+        img_url: img_url,
         channel_id: channel_id
       }
       dispatch(actions.newTopic(topic));
