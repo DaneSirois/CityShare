@@ -39,7 +39,7 @@ class Headline__container extends Component {
       return (
         <input
           className={style.activeHeadline}
-          value={this.state.name}
+          value={this.state.title}
           onFocus={this.holdStatic.bind(this)}
           onChange={this.handleInput.bind(this)}
           onKeyUp={this.changeHeadline.bind(this)}
