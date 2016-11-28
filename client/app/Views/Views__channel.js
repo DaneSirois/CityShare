@@ -30,21 +30,27 @@ class ChannelView extends Component {
                   <Feed__module channel_id={this.props.params.id}/>
                 </div>
               </ReactSwipe>
+            </div>
           ) : (
             <div>
-               <div className={shared_style.Navbar__container}>
+              <div className={shared_style.Navbar__container}>
                 <Navbar__module/>
               </div>
+
               <div className={style.Chatroom__module}>
                 <Chatroom__module channel_id={this.props.params.id}/>
               </div>
+
               <div className={style.Feed__module}>
                 <Feed__module channel_id={this.props.params.id}/>
               </div>
             </div>
+
           )}
+          </Media>
       </div>
     );
+
   }
 }
 
