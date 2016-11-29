@@ -43,7 +43,9 @@ class Tile__container extends Component {
           <span className={style.channelName}>
             {this.props.channelData.name}
           </span>
+
           <span className={style.userCount}>
+            <i className="fa fa-commenting-o" style={{"padding-right": "7px"}} aria-hidden="true"></i>
             {this.props.userCount}
           </span>
         </footer>

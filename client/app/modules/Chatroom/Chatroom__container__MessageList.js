@@ -6,7 +6,7 @@ class MessageList__container extends Component {
   renderMessages(chatLog) {
     return chatLog.map((message, index) => {
       return (
-        <Message__component key={index} content={message.message_text} username={message.username || "Anonymous"} time={message.created_at || "Before Time"} />
+        <Message__component key={index} content={message.message_text} username={message.username || "Anonymous"} />
       )
     });
   }

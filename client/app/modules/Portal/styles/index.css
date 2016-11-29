@@ -4,7 +4,6 @@
 
 .Grid {
   margin: 0px auto;
-  
 }
 
 .tile, .overlay {
@@ -39,7 +38,7 @@
 .channelName, .userCount {
   word-wrap: break-word;
   color: white;
-  font-size: 1.3em;
+  font-size: 14px;
 }
 
 .sm {
@@ -93,7 +92,7 @@
 }
 
 .doge:hover {
-  border: 1px solid #fff;
+  border: 1px solid white;
 }
 
 .footer {
@@ -106,6 +105,5 @@
   border-top: 1px solid black;
   padding: 0px 10px;
   line-height: 40px;
-
 }
 
