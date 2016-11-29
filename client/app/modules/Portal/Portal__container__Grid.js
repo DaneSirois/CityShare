@@ -19,7 +19,6 @@ class Grid__container extends Component {
     super(props);
     this.renderChannels = this.renderChannels.bind(this);
     this.countUsersInChannel = this.countUsersInChannel.bind(this);
-    this.fetchHeadline = this.fetchHeadline.bind(this);
   }
 
   componentWillMount() {
@@ -29,30 +28,21 @@ class Grid__container extends Component {
   sizeTile(arg1, arg2, arg3) {
   }
 
-  sortTiles(channels) {
-  }
-
   countUsersInChannel(userArray, channel_id) {
     return userArray.reduce((count, socketChannel) => {
       return socketChannel  === channel_id ? count += 1 : count;
     }, 0);
   }
 
-  fetchHeadline(headlines, channel_id) {
-    return headlines.find((headline) => {
-      return headline.channel_id === channel_id;
-    })
-  }
-
-
-  renderChannels(channelList) {
+  renderChannels(channels) {
     let sizes = ['lg', 'sm', 'sm', 'md', 'md', 'sm', 'sm','lg', 'sm', 'md', 'sm', 'sm', 'lg', 'md', 'sm', 'sm', 'sm', 'md', 'lg', 'sm', 'sm', 'sm', 'sm', 'md', 'sm', 'md', 'sm', 'sm', 'sm']
     sizes = ['lg', 'md', 'sm', 'sm', 'sm', 'md', 'lg', 'sm', 'sm', 'sm', 'sm', 'md', 'sm', 'md', 'sm', 'sm', 'sm']
-    return channelList.map((channel, index) => {
+    // console.log(this.props.messages);
+    return channels.sort((a,b) => b.score - a.score).map((channel, index) => {
       return (
         <div className={[style.doge, style[sizes[index % sizes.length]]].join(" ")} key={channel.id}>
           <Link to={"channel/" + channel.id}>
-            <Tile__component channelData={channel} headline={this.fetchHeadline(this.props.headlines, channel.id)} userCount={this.countUsersInChannel(this.props.userCount, channel.id)}/>
+            <Tile__component channelData={channel} headline={channel.headline} userCount={this.countUsersInChannel(this.props.userCount, channel.id)}/>
           </Link>
         </div>
       )
@@ -60,9 +50,10 @@ class Grid__container extends Component {
   }
 
   render() {
+    console.log(this.props.channels);
     return (
       <Masonry className={[style.Masonry, style.Grid].join(" ")} options={masonryOptions}>
-        {this.renderChannels(this.props.channelList)}
+        {this.renderChannels(this.props.channels)}
       </Masonry>
     );
   };
@@ -71,12 +62,15 @@ class Grid__container extends Component {
 
 function mapStateToProps(state) {
   return ({
-    channelList: state.Portal.channelList,
+    channels: state.Portal.refreshPortal,
     userCount: state.Portal.userCount,
     headlines: state.Feed.topics,
-    updates: state.Feed.updates
+    updates: state.Feed.updates,
+    messages: state.Chatroom.messages
   });
-};
+}
+
+Grid__container.defaultProps = {messages: []}
 
 const mapDispatchToProps = function (dispatch) {
   return {
@@ -84,6 +78,6 @@ const mapDispatchToProps = function (dispatch) {
       dispatch(actions.getChannels());
     }
   }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Grid__container);

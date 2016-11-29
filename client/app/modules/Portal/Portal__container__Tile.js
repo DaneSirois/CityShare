@@ -30,12 +30,13 @@ class Tile__container extends Component {
       return headline.name
     }
   }
+
   render() {
     return (
       <div className={style.tile} style={{backgroundImage: `url(https://dl.dropboxusercontent.com/u/5961627/tile${this.props.channelData.id - 29}.jpg)`}}>
         <div className={style.overlay} style={{backgroundColor: this.props.channelData.color}}>
           <span className={style.headline}>
-            {this.renderHeadline.bind(this)(this.props.headline)}
+            {this.props.headline}
           </span>
         </div>
         <footer className={style.footer}>

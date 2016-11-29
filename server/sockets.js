@@ -107,11 +107,7 @@ module.exports = function(io) {
           emit__action('ADD_LOCATION', socket.userLocation.city);
         break;
         case 'socket/GET_CHANNELS':
-          knex('topics')
-          .select()
-          .then((topics) => {
-            emit__action('ADD_TOPICS', topics.reverse());
-          });
+          //GETS HEADLINES
 
           // Replace channel ID whence socket came from with null upon
           // return to portal. Emit latest userArray to user.
@@ -128,7 +124,17 @@ module.exports = function(io) {
               city_id: socket.userLocation.id
             })
           .then((channels) => {
-            emit__action('GET_CHANNELS', channels);
+            //GETS MESSAGES
+            knex('messages')
+            .select()
+            .then((messages) => {
+              knex('topics')
+              .select()
+              .then((topics) => {
+                socket.emit('action', { type: 'REFRESH_PORTAL', channels, messages, topics: topics.reverse()});
+                emit__action('ADD_TOPICS', topics);
+              });
+            })
           })
         break;
         case 'socket/FETCH_CHANNEL_STATE':
@@ -254,7 +260,7 @@ module.exports = function(io) {
             });
           });
         break;
-        case 'socker/FETCH_UPDATES':
+        case 'socket/FETCH_UPDATES':
           knex('updates').select().orderBy()
         break;
         case 'socket/NEW_TOPIC':
@@ -265,11 +271,14 @@ module.exports = function(io) {
             created_at: new Date(),
             updated_at: new Date()
           }).returning('id').then((topic_id) => {
-            broadcast__action('ADD_TOPIC', {
+            let topic = {
               id: topic_id[0],
               name: action.payload.name,
+              img_url: action.payload.img_url,
               created_at: new Date(),
-              channel_id: action.payload.channel_id});
+              channel_id: action.payload.channel_id};
+            broadcast__action('ADD_TOPIC', topic);
+            broadcast__action('REFRESH_PORTAL', topic);
           })
         break;
         case 'socket/NEW_CHANNEL':

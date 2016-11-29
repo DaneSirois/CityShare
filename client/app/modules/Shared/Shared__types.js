@@ -28,10 +28,12 @@ export const SET_USER_ID = 'SET_USER_ID';
 // Portal Types:
 export const NEW_CHANNEL = 'NEW_CHANNEL';
 export const GET_CHANNELS = 'GET_CHANNELS';
+export const REFRESH_PORTAL = 'REFRESH_PORTAL';
 export const ADD_TO_CHANNEL_LIST = 'ADD_TO_CHANNEL_LIST';
 export const GET_ADMIN_ID = 'GET_ADMIN_ID';
 export const GET_USER_COUNT = 'GET_USER_COUNT';
-export const MESSAGE_ALERT = 'MESSAGE_ALERT'
+export const MESSAGE_ALERT = 'MESSAGE_ALERT';
+export const GET_MESSAGES = 'GET_MESSAGES';
 
 // Feed Types:
 export const NEW_UPDATE = 'NEW_UPDATE';
