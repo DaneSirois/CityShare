@@ -13,7 +13,11 @@ class Chatroom__module extends Component {
   }
 
   scrollToBottom() {
-    this.containerEl.scrollTop = this.containerEl.scrollHeight;
+    if (this.containerEl) {
+      this.containerEl.scrollTop = this.containerEl.scrollHeight;
+    } else {
+      this.scrollTop = this.scrollHeight;
+    }
   }
 
   render() {
@@ -22,7 +26,7 @@ class Chatroom__module extends Component {
         <MasterLog__container handleUpdate={this.scrollToBottom.bind(this)} />
         <ChatBar__container channel_id={this.props.channel_id} />
       </div>
-      
+
     );
   };
 };

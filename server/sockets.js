@@ -160,21 +160,33 @@ module.exports = function(io) {
           .where('channel_id', action.payload)
           .then((topics) => {
             let updatesBundle = []
-            topics.forEach((topic, i, topics) => {
-              knex('updates')
-              .select()
-              .where('topic_id', topic.id)
-              .orderBy('created_at', 'desc')
-              .then((updates) => {
-                for (let i = 0; i < updates.length; i += 1) {
-                  updatesBundle.push(updates[i]);
-                }
-                if (i == topics.length - 1) {
-                  emit__action('ADD_UPDATES', updatesBundle);
-                  emit__action('ADD_TOPICS', topics.reverse());
-                }
+            if (topics.length) {
+              topics.forEach((topic, index, topics) => {
+                knex('updates')
+                .select()
+                .where('topic_id', topic.id)
+                .orderBy('created_at', 'desc')
+                .then((updates) => {
+                  if (updates.length) {
+                    for (let i = 0; i < updates.length; i += 1) {
+                      console.log("i=", i);
+                      updatesBundle.push(updates[i]);
+                    }
+                    if (index == topics.length - 1) {
+                      console.log("in the if");
+                      emit__action('ADD_UPDATES', updatesBundle);
+                      emit__action('ADD_TOPICS', topics.reverse());
+                    }
+                  } else if (index == topics.length - 1) {
+                    emit__action('ADD_TOPICS', topics.reverse());
+                    emit__action('ADD_UPDATES', updatesBundle);
+                  }
+                })
               })
-            })
+            } else {
+              emit__action('ADD_TOPICS', topics.reverse());
+              emit__action('ADD_UPDATES', updatesBundle);
+            }
           })
         break;
         case 'socket/SIGNUP_USER':

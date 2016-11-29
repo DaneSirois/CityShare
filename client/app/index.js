@@ -51,7 +51,6 @@ const scoreTiles__middleware = (store) => (next) => (action) => {
         }).reduce((score, message) => {
           return score + Math.pow(((new Date(message.created_at)).getTime() / Date.now()), 2);
         }, 0)
-        console.log("HERE",action.topics);
         let headline = action.topics.find((topic) => topic.channel_id === channel.id)
         channel.headline = headline ? headline.name : '';
         channel.img_url = headline ? headline.img_url : '';
