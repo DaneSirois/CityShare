@@ -12,7 +12,7 @@ import App__module from './modules/App/App__index.js';
 import Loading__module from './modules/Loading/Loading__index.js';
 import Portal__module from './modules/Portal/Portal__index.js';
 import Channel__view from './Views/Views__channel.js';
-
+import './assets/normalize.css';
 import * as actions from './modules/Shared/actions/index.js';
 import './assets/global.css';
 
