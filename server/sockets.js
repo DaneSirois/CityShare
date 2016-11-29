@@ -132,7 +132,6 @@ module.exports = function(io) {
               .select()
               .then((topics) => {
                 socket.emit('action', { type: 'REFRESH_PORTAL', channels, messages, topics: topics.reverse()});
-                emit__action('ADD_TOPICS', topics);
               });
             })
           })
@@ -278,7 +277,22 @@ module.exports = function(io) {
               created_at: new Date(),
               channel_id: action.payload.channel_id};
             broadcast__action('ADD_TOPIC', topic);
-            broadcast__action('REFRESH_PORTAL', topic);
+            knex('channels')
+            .select()
+            .where({
+              city_id: socket.userLocation.id
+            })
+            .then((channels) => {
+              knex('messages')
+              .select()
+              .then((messages) => {
+                knex('topics')
+                .select()
+                .then((topics) => {
+                io.emit('action', { type: 'REFRESH_PORTAL', channels, messages, topics: topics.reverse()});
+                });
+              });
+            });
           })
         break;
         case 'socket/NEW_CHANNEL':
