@@ -20,24 +20,24 @@ class Feed__module extends Component {
   handleInput(event) {
     this.setState({ name: event.target.value });
   }
-
-  changeTopic(event) {
-    if (event.key === 'Enter') {
-      this.props.handleSubmit(this.state.name, this.props.channel_id);
-    }
+  resetInput() {
+    this.setState({ name: "" });
   }
-
   renderHeader (adminId, userId) {
     if (adminId === userId) {
       return (
         <header className={style.Feed__header}>
-          <textarea
-            className={style.Headline__new}
-            value={this.state.name}
-            placeholder={"Enter a new Headline.."}
-            onChange={this.handleInput.bind(this)}
-            onKeyUp={this.changeTopic.bind(this)}
-          ></textarea>
+          <form onSubmit={this.props.handleSubmit.bind(this)(this.state.name, this.props.channel_id)}>
+            <textarea
+              className={style.Headline__new}
+              value={this.state.name}
+              placeholder={"Enter a new Headline.."}
+              onChange={this.handleInput.bind(this)}
+            ></textarea>
+            <div className={style.Feed__header__submitBar}>
+              <button className={style.UpdateBar__button}>Submit</button>
+            </div>
+          </form>
         </header>
       )
     }
@@ -76,7 +76,8 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSubmit: (topicName, channel_id) => {
+    handleSubmit: (topicName, channel_id) => (event) => {
+      event.preventDefault();
       let topic = {
         name: topicName,
         channel_id: channel_id

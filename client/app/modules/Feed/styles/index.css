@@ -16,9 +16,17 @@
 
       min-height: 80px;
       background-color: #ececec;
-
+      padding-bottom: 30px;
       border-bottom: 1px solid black;
     }
+        .Feed__header__submitBar { /* <div> */ 
+          position: absolute;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+          height: 30px;
+          border-top: 1px solid #ececec;
+        }
 
     .Feed__body { /* <body> */
       position: absolute;
