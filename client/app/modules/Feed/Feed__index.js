@@ -76,10 +76,11 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSubmit: (topicName, channel_id) => (event) => {
+    handleSubmit: (topicName, img_url, channel_id) => (event) => {
       event.preventDefault();
       let topic = {
         name: topicName,
+        img_url: img_url,
         channel_id: channel_id
       }
       dispatch(actions.newTopic(topic));

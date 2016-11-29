@@ -107,11 +107,7 @@ module.exports = function(io) {
           emit__action('ADD_LOCATION', socket.userLocation.city);
         break;
         case 'socket/GET_CHANNELS':
-          knex('topics')
-          .select()
-          .then((topics) => {
-            emit__action('ADD_TOPICS', topics.reverse());
-          });
+          //GETS HEADLINES
 
           // Replace channel ID whence socket came from with null upon
           // return to portal. Emit latest userArray to user.
@@ -128,7 +124,16 @@ module.exports = function(io) {
               city_id: socket.userLocation.id
             })
           .then((channels) => {
-            emit__action('GET_CHANNELS', channels);
+            //GETS MESSAGES
+            knex('messages')
+            .select()
+            .then((messages) => {
+              knex('topics')
+              .select()
+              .then((topics) => {
+                socket.emit('action', { type: 'REFRESH_PORTAL', channels, messages, topics: topics.reverse()});
+              });
+            })
           })
         break;
         case 'socket/FETCH_CHANNEL_STATE':
@@ -254,21 +259,40 @@ module.exports = function(io) {
             });
           });
         break;
-        case 'socker/FETCH_UPDATES':
+        case 'socket/FETCH_UPDATES':
           knex('updates').select().orderBy()
         break;
         case 'socket/NEW_TOPIC':
           knex('topics').insert({
             name: action.payload.name,
+            img_url: action.payload.img_url,
             channel_id: action.payload.channel_id,
             created_at: new Date(),
             updated_at: new Date()
           }).returning('id').then((topic_id) => {
-            broadcast__action('ADD_TOPIC', {
+            let topic = {
               id: topic_id[0],
               name: action.payload.name,
+              img_url: action.payload.img_url,
               created_at: new Date(),
-              channel_id: action.payload.channel_id});
+              channel_id: action.payload.channel_id};
+            broadcast__action('ADD_TOPIC', topic);
+            knex('channels')
+            .select()
+            .where({
+              city_id: socket.userLocation.id
+            })
+            .then((channels) => {
+              knex('messages')
+              .select()
+              .then((messages) => {
+                knex('topics')
+                .select()
+                .then((topics) => {
+                io.emit('action', { type: 'REFRESH_PORTAL', channels, messages, topics: topics.reverse()});
+                });
+              });
+            });
           })
         break;
         case 'socket/NEW_CHANNEL':
@@ -280,6 +304,7 @@ module.exports = function(io) {
             } else {
               knex('channels').insert({
                 name: channelData.name,
+                color: channelData.color,
                 admin_id: socket._user.id,
                 city_id: socket.userLocation.id
               }).returning('id').then((channel_id) => {
