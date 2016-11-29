@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
-
 import style from './styles/index.css';
-
-
-
 class Message__component extends Component {
   render() {
     return (

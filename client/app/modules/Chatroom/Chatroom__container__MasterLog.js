@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
+import * as ReactDOM from 'react-dom';
 import style from './styles/index.css';
 
 import MessageList__container from './Chatroom__container__MessageList.js';
@@ -16,10 +16,16 @@ function messageTopicCoupler (messages, topicFirst, topicSecond) {
   });
 }
 
-
 class MasterLog__container extends Component {
+
+  componentDidUpdate() {
+    this.props.handleUpdate();
+  }
+
   renderTopicLists(topicList) {
     let topics = topicList.map((topic) => topic);
+    console.log(topics);
+    console.log("topiclist", topicList)
     return topics.reverse().map((topic, index, topics) => {
       if(this.props.chatLog) {
         return (

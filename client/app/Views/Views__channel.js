@@ -13,6 +13,7 @@ class ChannelView extends Component {
     this.props.handleLoad(this.props.params.id);
   }
 
+
   render() {
     return (
       <div className={style.container}>

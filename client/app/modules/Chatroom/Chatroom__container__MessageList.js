@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
 import Message__component from './Chatroom__component__message.js';
 import style from './styles/index.css';
-
 class MessageList__container extends Component {
   renderMessages(chatLog) {
     return chatLog.map((message, index) => {

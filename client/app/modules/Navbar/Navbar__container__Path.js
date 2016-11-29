@@ -7,7 +7,7 @@ import style from './styles/index.css';
 
 class Path__container extends Component {
   componentWillUnmount() {
-    this.props.clearChannel();
+    {this.props.clearChannel}
   }
 
   renderChannelName (channelName) {
