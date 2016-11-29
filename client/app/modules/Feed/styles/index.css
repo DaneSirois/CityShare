@@ -14,7 +14,7 @@
         right: 0px;
         left: 0px;
 
-      min-height: 100px;
+      min-height: 80px;
       background-color: #ececec;
 
       border-bottom: 1px solid black;
@@ -22,7 +22,15 @@
 
     .Feed__body { /* <body> */
       position: absolute;
-        top: 100px;
+        top: 80px;
+        right: 0px;
+        bottom: 0px;
+        left: 0px;
+    }
+
+    .Feed__body__admin { /* <body> */
+      position: absolute;
+        top: 0px;
         right: 0px;
         bottom: 0px;
         left: 0px;
@@ -49,6 +57,20 @@
       background-color: #e6e6e6;
       border-bottom: 1px solid black;
     }
+        .Headline__new { /* <textarea> */ 
+          position: absolute;
+            top: 0px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+          outline: none;
+          resize: none;
+
+          height: 100%;
+          width: 100%;
+          padding: 10px;
+          border: 0px;
+        }
         .Headline__title { /* <h2> */
           font-size: 1.3em;
           font-weight: bold;
@@ -98,19 +120,20 @@
       > <button> - .UpdateBar__button
       > <footer> - .UpdateBar__footer
   */
-  position: absolute;
-    top: 0px;
-    bottom: 0px;
+  position: relative;
   width: 100%;
+  border-bottom: 1px solid black;
 }
 
     .UpdateBar__textarea { /* <textarea> */
       outline: none;
       resize: none;
 
+      min-height: 100px;
       height: 100%;
       width: 100%;
 
+      padding: 10px;
       margin: 0px;
       background-color: lightgrey;
 
@@ -125,7 +148,7 @@
     .UpdateBar__footer { /* <footer> */
       position: absolute;
         bottom: 0px;
-      height: 28px;
+      height: 30px;
       width: 100%;
       background-color: #eaeaea;
       border-top: 1px solid darkgrey;

@@ -2,6 +2,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import * as actions from '../Shared/actions/index.js';
+
 import style from './styles/index.css';
 import ReactSwipe from 'react-swipe';
 
@@ -10,11 +12,47 @@ import UpdateBar__container from './Feed__container__UpdateBar.js';
 
 // Root Component:
 class Feed__module extends Component {
-  renderHeader (headlinesExists, adminId, userId) {
-    if (headlinesExists && adminId === userId) {
+  constructor (props) {
+    super(props);
+    this.state = { name: "" }
+  }
+
+  handleInput(event) {
+    this.setState({ name: event.target.value });
+  }
+
+  changeTopic(event) {
+    if (event.key === 'Enter') {
+      this.props.handleSubmit(this.state.name, this.props.channel_id);
+    }
+  }
+
+  renderHeader (adminId, userId) {
+    if (adminId === userId) {
       return (
-        <div className={style.Feed__header}>
-          <UpdateBar__container />
+        <header className={style.Feed__header}>
+          <textarea
+            className={style.Headline__new}
+            value={this.state.name}
+            placeholder={"Enter a new Headline.."}
+            onChange={this.handleInput.bind(this)}
+            onKeyUp={this.changeTopic.bind(this)}
+          ></textarea>
+        </header>
+      )
+    }
+  }
+  renderBody (adminId, userId) {
+    if (adminId === userId) {
+      return (
+        <div className={style.Feed__body}>
+          <TopicsList__container channel_id={this.props.channel_id} />
+        </div>
+      )
+    } else {
+      return (
+        <div className={style.Feed__body__admin}>
+          <TopicsList__container channel_id={this.props.channel_id} />
         </div>
       )
     }
@@ -22,10 +60,8 @@ class Feed__module extends Component {
   render() {
     return (
       <div className={style.Feed__container}>
-        {this.renderHeader.bind(this)(this.props.topics.length, this.props.adminId, this.props.userId)}
-        <div className={style.Feed__body}>
-          <TopicsList__container channel_id={this.props.channel_id} />
-        </div>
+        {this.renderHeader.bind(this)(this.props.adminId, this.props.userId)}
+        {this.renderBody.bind(this)(this.props.adminId, this.props.userId)}
       </div>
     );
   };
@@ -33,11 +69,22 @@ class Feed__module extends Component {
 
 function mapStateToProps(state) {
   return ({
-    topics: state.Feed.topics,
     userId: state.User.userId,
     adminId: state.Feed.adminId
   });
 };
 
-export default connect(mapStateToProps)(Feed__module);
+const mapDispatchToProps = function (dispatch) {
+  return {
+    handleSubmit: (topicName, channel_id) => {
+      let topic = {
+        name: topicName,
+        channel_id: channel_id
+      }
+      dispatch(actions.newTopic(topic));
+    }
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Feed__module);
 
