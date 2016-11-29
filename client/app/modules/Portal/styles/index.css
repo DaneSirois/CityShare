@@ -4,6 +4,7 @@
 
 .Grid {
   margin: 0px auto;
+  
 }
 
 .tile, .overlay {
@@ -91,6 +92,10 @@
  border: 1px solid #b7b7b7;
 }
 
+.doge:hover {
+  border: 1px solid #fff;
+}
+
 .footer {
   position: absolute;
     bottom: 0px;
@@ -101,5 +106,6 @@
   border-top: 1px solid black;
   padding: 0px 10px;
   line-height: 40px;
+
 }
 
