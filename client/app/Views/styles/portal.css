@@ -4,19 +4,25 @@
 
 .Portal__Container {
   position: absolute;
-    top: 50px;
+    top: 80px;
   overflow-y: scroll;
   height: 100%;
   width: 100%;
-  padding: 15px;
+  padding: 15px 15px;
   margin: 0px auto;
-  background: linear-gradient(180deg, #000000, #2a2a2a);
-background-size: 400% 400%;
-  -webkit-animation: AnimationName 20s ease infinite;
--moz-animation: AnimationName 20s ease infinite;
-animation: AnimationName 20s ease infinite;
+  background-color: #2a2a2a;
 }
 
+.Tags__container { /* <div> */
+  position: fixed;
+    top: 50px;
+    right: 0px;
+    left: 0px;
+    z-index: 1;
+  height: 30px;
+  background-color: #ececec;
+  border-bottom: 1px solid black;
+}
 
 @-webkit-keyframes AnimationName {
     0%{background-position:51% 0%}
@@ -33,3 +39,4 @@ animation: AnimationName 20s ease infinite;
     50%{background-position:50% 100%}
     100%{background-position:51% 0%}
 }
+
