@@ -20,7 +20,7 @@ module.exports = function(app) {
 
   app.post('/upload', upload.single('file'), function(req, res, next){
     console.log('req.file', req.file)
-    res.send(`http://localhost:3000/${req.file.path}`);
+    res.send(`http://159.203.35.124:3000/${req.file.path}`);
   });
 
   app.get('/public/images/:imgID', function(req, res, next){
