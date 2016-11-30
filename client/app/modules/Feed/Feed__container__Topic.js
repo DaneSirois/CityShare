@@ -9,7 +9,6 @@ import UpdateBar__container from './Feed__container__UpdateBar.js';
 import style from './styles/index.css'
 
 class Topic__container extends Component {
-
   renderUpdateBar(topicData) {
     if (topicData.isActive && this.props.userId === this.props.adminId) {
       return (
@@ -32,8 +31,12 @@ class Topic__container extends Component {
   }
 
   render() {
+    const localstyle = {
+      backgroundImage: 'url(' + this.props.img_url + ')'
+    }
+
     return (
-      <article className={style.Headline}>
+      <article className={[localstyle.backgroundImage, style.Headline].join(" ")}>
         <header className={style.Headline__header}>
           <h2 className={style.Headline__title}>{this.props.topicData.name}</h2>
         </header>

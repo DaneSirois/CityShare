@@ -59,7 +59,7 @@ class Feed__module extends Component {
     if (adminId === userId) {
       return (
         <header className={style.Feed__header}>
-          <form onSubmit={this.props.handleSubmit.bind(this)(this.state.name, this.state.img, this.props.channel_id)}>
+          <form onSubmit={this.props.handleSubmit.bind(this)(this.state.name, this.state.image_url, this.props.channel_id), this.resetInput.bind(this)}>
             <textarea
               className={style.Headline__new}
               value={this.state.name}
@@ -122,15 +122,16 @@ function mapStateToProps(state) {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSubmit: (topicName, img_url, channel_id) => (event) => {
+    handleSubmit: (topicName, img_url, channel_id, resetInput) => (event) => {
       event.preventDefault();
-      let topic = {
+      let headline = {
         name: topicName,
         img_url: img_url,
         channel_id: channel_id
       }
-      this.resetInput();
-      dispatch(actions.newTopic(topic));
+      console.log(headline);
+      resetInput();
+      dispatch(actions.newTopic(headline));
     }
   }
 };
