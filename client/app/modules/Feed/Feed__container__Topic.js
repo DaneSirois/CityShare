@@ -31,7 +31,6 @@ class Topic__container extends Component {
   }
 
   render() {
-    console.log(style);
     const localstyle = {
       backgroundImage: 'url(' + this.props.topicData.img_url + ')'
     }
