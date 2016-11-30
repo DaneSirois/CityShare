@@ -23,7 +23,7 @@ class TopicsList__container extends Component {
         if (Number(topic.channel_id) === Number(this.props.channel_id)) {
           let isActive = i === 0 ? true : false;
           return (
-            <Topic__container key={topic.id} channel_id={this.props.channel_id} topicData={ {name: topic.name, created_at: topic.created_at, topic_id: topic.id, isActive: isActive} }/>
+            <Topic__container key={topic.id} channel_id={this.props.channel_id} topicData={ {name: topic.name, img_url: topic.img_url, created_at: topic.created_at, topic_id: topic.id, isActive: isActive} }/>
           )
         }
       });

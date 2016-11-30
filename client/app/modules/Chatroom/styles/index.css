@@ -5,7 +5,7 @@
 }
 
 .masterLogContainer {
-  padding-bottom: 20px;
+  padding-bottom: 36px;
   padding-top: 20px;
 }
 
@@ -65,9 +65,14 @@
     right: 0px;
     left: 0px;
 
-  height: 42px;
-  background-color: #FFFFFF;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-right: 3px;
+  padding-left: 3px;
 
+  height: 36px;
+
+  background-color: #efefef;
 }
 
     .input_form { /* <form> */
@@ -78,8 +83,6 @@
       width: 100%;
 
       margin: 0px auto;
-      padding: 8px;
-
     }
 
     .input { /* <input> - Bar to type text to send to chatroom */
@@ -88,9 +91,9 @@
       font-family: 'Raleway';
       padding-left: 10px;
 
-      border: 2px solid #4e4e4e;
+      border: 1px solid #4e4e4e;
 
-      border-radius:10px;
+      border-radius:6px;
     }
 
 .spinner {

@@ -49,7 +49,7 @@ class Grid__container extends Component {
       return (
         <div className={[style.doge, style[sizes[index % sizes.length]]].join(" ")} key={channel.id}>
           <Link to={"channel/" + channel.id}>
-            <Tile__component channelData={channel} headline={channel.headline} userCount={this.countUsersInChannel(this.props.userCount, channel.id)}/>
+            <Tile__component channelData={channel} headline={channel.headline} img_url={channel.img_url} userCount={this.countUsersInChannel(this.props.userCount, channel.id)}/>
           </Link>
         </div>
       )
