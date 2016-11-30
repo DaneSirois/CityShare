@@ -323,6 +323,7 @@ module.exports = function(io) {
         break;
         case 'socket/NEW_CHANNEL':
           const channelData = action.payload;
+          console.log(channelData);
           knex('channels').select('id').where('name', channelData.name)
           .then((result) => {
             if (result.length) {

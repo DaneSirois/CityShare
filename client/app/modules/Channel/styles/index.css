@@ -9,8 +9,8 @@
   padding: 0px;
   line-height: 55px;
 }
-    
-    .NewChannelButton__icon { /* <i> - Font Awesome Icon */ 
+
+    .NewChannelButton__icon { /* <i> - Font Awesome Icon */
       color: white;
       font-size: 1.3em;
     }
@@ -26,3 +26,52 @@
   background-color: grey;
   border: 1px solid black;
 }
+
+.Uploaded__image { /* <img> */
+      height: 29px;
+      width: 30px;
+    }
+
+    .Image__upload__container { /* <div> */
+      cursor: pointer;
+      position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+      padding: 6px;
+    }
+
+.DeleteButton__container, .Dropzone__container, .Uploaded__image__container, .AddButton__container {
+  position: absolute;
+    top: 0px;
+    bottom: 0px;
+  cursor: pointer;
+}
+    .DeleteButton__container { /* <div> */
+      right: 0px;
+      border-left: 1px solid darkgrey;
+      width: 30px;
+      padding: 7px 8px;
+    }
+    .Uploaded__image__container { /* <div> */
+      z-index: 5;
+      left: 0px;
+      right: 80px;
+      padding: 0px;
+      border-right: 1px solid darkgrey;
+    }
+    .Dropzone__container { /* <div> */
+      width: 30px;
+    }
+    .AddButton__container { /* <div> */
+      left: 0px;
+      border-right: 1px solid darkgrey;
+      width: 30px;
+      padding: 7px 6px;
+    }
+    .AddButton__container i { /* <i> */
+      color: #2a2a2a;
+    }
+    .DeleteButton__container i {
+      color: #2a2a2a;
+    }

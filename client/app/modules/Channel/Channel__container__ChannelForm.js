@@ -10,7 +10,6 @@ class ChannelForm__container extends Component {
     this.state = {
       name: '',
       tags: '',
-      color: ''
     }
   }
 
@@ -22,10 +21,6 @@ class ChannelForm__container extends Component {
     this.setState({ tags: event.target.value})
   }
 
-  handleColorInput(event) {
-    this.setState({ color: event.target.value})
-  }
-
   handleSubmit(event) {
     event.preventDefault();
     this.props.handleSubmit(this.state.name, this.state.tags);
@@ -35,12 +30,11 @@ class ChannelForm__container extends Component {
   render() {
     return (
       <div className={style.ChannelForm__container}>
-        <form id="new-channel" onSubmit={this.props.handleSubmit(this.state.name, this.state.tags, this.state.color)}>
+        <form id="new-channel">
           <h2>New Channel</h2>
           <input type="text" onChange={this.handleNameInput.bind(this)} placeholder="Name your channel." />
           <input type="text" onChange={this.handleTagInput.bind(this)} placeholder="List some tags." />
-          <input onChange={this.handleColorInput.bind(this)} placeholder="Input RGBa color code." />
-          <button>Create</button>
+          <button onClick={this.handleSubmit.bind(this)}>Create</button>
         </form>
       </div>
     );
@@ -49,11 +43,12 @@ class ChannelForm__container extends Component {
 
 const mapDispatchToProps = function (dispatch) {
   return {
-    handleSubmit: (name, tags, color) => {
+    handleSubmit: (name, tags) => {
       const channelData = {
-        name,
+        name: name,
         tags: tags.split(' ')
       }
+      console.log(channelData);
       dispatch(actions.newChannel(channelData));
     }
   }
