@@ -136,6 +136,22 @@ module.exports = function(io) {
             })
           })
         break;
+        case 'socket/FILTER_CHANNELS':
+          knex('tags')
+          .select('id')
+          .where({name: action.payload})
+          .then((tags) => {
+            knex('tag_channel')
+            .select('channel_id')
+            .where({'tag_id': tags[0].id})
+            .then((channels) => {
+              let filterResults = channels.map((channel) => {
+                return channel.channel_id;
+              });
+              emit__action('FILTER_CHANNELS', filterResults);
+            });
+          });
+        break;
         case 'socket/FETCH_CHANNEL_STATE':
           userArray.splice(userArray.findIndex((element) => {
             return element === Number(socket.channel_id);
@@ -169,11 +185,9 @@ module.exports = function(io) {
                 .then((updates) => {
                   if (updates.length) {
                     for (let i = 0; i < updates.length; i += 1) {
-                      console.log("i=", i);
                       updatesBundle.push(updates[i]);
                     }
                     if (index == topics.length - 1) {
-                      console.log("in the if");
                       emit__action('ADD_UPDATES', updatesBundle);
                       emit__action('ADD_TOPICS', topics.reverse());
                     }

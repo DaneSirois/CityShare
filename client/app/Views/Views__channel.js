@@ -8,9 +8,14 @@ import * as actions from '../modules/Shared/actions/index.js';
 import Media from 'react-media'
 import style from './styles/channel.css';
 import shared_style from './styles/shared.css';
+
 class ChannelView extends Component {
   componentWillMount() {
     this.props.handleLoad(this.props.params.id);
+  }
+
+  componentWillUnmount() {
+    this.props.clearChannelState();
   }
 
 
@@ -60,6 +65,9 @@ const mapDispatchToProps = function (dispatch) {
   return {
     handleLoad: (channel_id) => {
       dispatch(actions.fetchChannelState(channel_id));
+    },
+    clearChannelState: () => {
+      dispatch(actions.clearChannelState());
     }
   }
 };
