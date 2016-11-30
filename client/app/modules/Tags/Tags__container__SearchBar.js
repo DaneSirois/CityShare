@@ -32,12 +32,15 @@ class SearchBar__container extends Component {
       )
     })
   }
+  handleClick(event) {
+    console.log(event);
+  }
 
   render() {
-    var tags = ['Sports', 'Food', 'Video Games']
+    var tags = ['Sports', 'Food', 'Movies', 'Television']
     return (
       <div className={style.searchBar}>
-        <div className={style.tag} onClick={console.log('cool')}>
+        <div className={style.tag} onClick={this.handleClick.bind(this)}>
           <a>All</a>
         </div>
         {this.renderTags(tags)}
