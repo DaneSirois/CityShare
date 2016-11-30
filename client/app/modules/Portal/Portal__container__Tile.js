@@ -45,7 +45,7 @@ class Tile__container extends Component {
           </span>
 
           <span className={style.userCount}>
-            <i className="fa fa-commenting-o" style={{"padding-right": "7px"}} aria-hidden="true"></i>
+            <i className="fa fa-commenting-o" style={{"paddingRight": "7px"}} aria-hidden="true"></i>
             {this.props.userCount}
           </span>
         </footer>
