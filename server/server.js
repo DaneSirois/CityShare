@@ -6,6 +6,6 @@ const socket_server = require('./sockets')(io);
 
 server.listen(3000);
 
-app.post('/upload', function(req, res) {
-
+app.get('/upload', function(req, res) {
+	res.send('working');
 });

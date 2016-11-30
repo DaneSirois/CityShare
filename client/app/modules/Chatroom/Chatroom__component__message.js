@@ -6,7 +6,7 @@ class Message__component extends Component {
       <li className={style.message}>
         <span className={style.meta}>
           <span className={style.username}>{this.props.username} </span>
-          <span>: </span>
+          <span className={style.time}>{msToTime(this.props.time)} >> </span>
         </span>
         <span className={style.content}>{this.props.content}</span>
       </li>
@@ -16,8 +16,8 @@ class Message__component extends Component {
 
 function msToTime (s) {
   s = (new Date(s)).getTime();
-  var days = (new Date(s)).getDay();
-  var month = (new Date(s)).getMonth();
+  var days = (new Date(s)).getDate();
+  var month = (new Date(s)).getMonth() + 1;
   var year = (new Date(s)).getFullYear();
   var ms = Number(s) % 1000;
   s = (s - ms) / 1000;

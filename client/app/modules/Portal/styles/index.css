@@ -70,7 +70,8 @@
   height: 390px;
 }
     .lg .headline {
-      font-size: 2em;
+      padding-left:10px;
+      font-size: 25px;
     }
     /*.lg .channelName {
     }
@@ -95,6 +96,14 @@
   border: 1px solid white;
 }
 
+.headerOverlay {
+  padding-top:5px;
+  position:absolute;
+  top: 0px;
+  background-color: rgba(62, 62, 62, 0.82);
+  height:40px;
+  width:100%;
+}
 .footer {
   position: absolute;
     bottom: 0px;

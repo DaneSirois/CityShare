@@ -10,26 +10,6 @@
   width: 100%;
   padding: 15px;
   margin: 0px auto;
-  background: linear-gradient(180deg, #000000, #2a2a2a);
-background-size: 400% 400%;
-  -webkit-animation: AnimationName 20s ease infinite;
--moz-animation: AnimationName 20s ease infinite;
-animation: AnimationName 20s ease infinite;
+  background-color: #2a2a2a;
 }
 
-
-@-webkit-keyframes AnimationName {
-    0%{background-position:51% 0%}
-    50%{background-position:50% 100%}
-    100%{background-position:51% 0%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:51% 0%}
-    50%{background-position:50% 100%}
-    100%{background-position:51% 0%}
-}
-@keyframes AnimationName { 
-    0%{background-position:51% 0%}
-    50%{background-position:50% 100%}
-    100%{background-position:51% 0%}
-}
