@@ -64,7 +64,7 @@ const scoreTiles__middleware = (store) => (next) => (action) => {
 
 
 
-const socket = io('http://159.203.42.30:3000');
+const socket = io('http://159.203.35.124:3000');
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
 const store = createStore(root_reducer, applyMiddleware(socketIoMiddleware, localStorage_middleware, scoreTiles__middleware));
 
