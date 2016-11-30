@@ -22,7 +22,7 @@ function randomColor(){
 class Tile__container extends Component {
 
   produceImgLink(id) {
-    return `background-image: ./img/tile${id - 29}.jpg`
+    return `background-image: ${this.props.img_url}`
   }
 
   renderHeadline(headline) {
@@ -33,7 +33,7 @@ class Tile__container extends Component {
 
   render() {
     return (
-      <div className={style.tile} style={{backgroundImage: `url(https://dl.dropboxusercontent.com/u/5961627/tile${this.props.channelData.id - 29}.jpg)`}}>
+      <div className={style.tile} style={{backgroundImage: `url(${this.props.img_url})`}}>
         <div className={style.overlay} style={{backgroundColor: this.props.channelData.color}}>
           <div className={style.headerOverlay}>
             <span className={style.headline}>

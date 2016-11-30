@@ -5,6 +5,7 @@ export const INITIALIZE_APP = 'INITIALIZE_APP';
 // Channel Types:
 export const TOGGLE_CHANNEL_FORM = 'TOGGLE_CHANNEL_FORM';
 export const SET_CHANNEL_NAME = 'SET_CHANNEL_NAME';
+export const CLEAR_CHANNEL_STATE = 'CLEAR_CHANNEL_STATE';
 
 // Chatroom Types:
 export const NEW_MESSAGE = 'NEW_MESSAGE';
@@ -34,6 +35,8 @@ export const GET_ADMIN_ID = 'GET_ADMIN_ID';
 export const GET_USER_COUNT = 'GET_USER_COUNT';
 export const MESSAGE_ALERT = 'MESSAGE_ALERT';
 export const GET_MESSAGES = 'GET_MESSAGES';
+export const FILTER_CHANNELS = 'FILTER_CHANNELS';
+export const CLEAR_TAGS = 'CLEAR_TAGS';
 
 // Feed Types:
 export const NEW_UPDATE = 'NEW_UPDATE';
