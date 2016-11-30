@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import style from './styles/index.css';
 
 import * as actions from '../Shared/actions/index.js';
 
@@ -28,10 +29,7 @@ class TopicsList__container extends Component {
       });
     } else {
       return(
-        <form onSubmit={this.props.handleSubmit(this.state.topic, this.props.channel_id)} >
-          <h2>Enter Topic</h2>
-          <input onChange={this.handleInputChange.bind(this)} type="text" placeholder="Set a topic" />
-        </form>
+        <div className={style.spinner}></div>
       )
     }
   }
