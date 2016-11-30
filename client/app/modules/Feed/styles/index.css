@@ -54,13 +54,14 @@
   */
   position: relative;
 }
-    
     .Headline__header { /* <header> */ 
       position: relative;
       padding: 0px 10px;
-      height: 100px;
+      height: 200px;
       width: 100%;
 
+      background-repeat: no-repeat;
+      background-position: center;
       background-color: #e6e6e6;
       border-bottom: 1px solid black;
     }
@@ -83,7 +84,7 @@
           font-size: 1.3em;
           font-weight: bold;
           text-align: center;
-          line-height: 100px;
+          line-height: 200px;
           margin: 0px;
         }
 
@@ -206,12 +207,12 @@
     top: 0px;
     bottom: 0px;
   cursor: pointer;
-  padding: 7px 8px;
 }
     .DeleteButton__container { /* <div> */ 
       right: 0px;
       border-left: 1px solid darkgrey;
       width: 30px;
+      padding: 7px 8px;
     }
     .Uploaded__image__container { /* <div> */
       z-index: 5;
@@ -227,6 +228,7 @@
       left: 0px;
       border-right: 1px solid darkgrey;
       width: 30px;
+      padding: 7px 6px;
     }
     .AddButton__container i { /* <i> */ 
       color: #2a2a2a;

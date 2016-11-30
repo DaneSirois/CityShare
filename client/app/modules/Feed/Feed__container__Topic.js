@@ -31,13 +31,14 @@ class Topic__container extends Component {
   }
 
   render() {
+    console.log(style);
     const localstyle = {
-      backgroundImage: 'url(' + this.props.img_url + ')'
+      backgroundImage: 'url(' + this.props.topicData.img_url + ')'
     }
 
     return (
-      <article className={[localstyle.backgroundImage, style.Headline].join(" ")}>
-        <header className={style.Headline__header}>
+      <article className={style.Headline}>
+        <header style={localstyle} className={style.Headline__header}>
           <h2 className={style.Headline__title}>{this.props.topicData.name}</h2>
         </header>
         <div className={style.Headline__body}>

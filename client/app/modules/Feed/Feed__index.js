@@ -59,7 +59,7 @@ class Feed__module extends Component {
     if (adminId === userId) {
       return (
         <header className={style.Feed__header}>
-          <form onSubmit={this.props.handleSubmit.bind(this)(this.state.name, this.state.image_url, this.props.channel_id), this.resetInput.bind(this)}>
+          <form onSubmit={this.props.handleSubmit.bind(this)(this.state.name, this.state.image_url, this.props.channel_id)}>
             <textarea
               className={style.Headline__new}
               value={this.state.name}
@@ -78,7 +78,7 @@ class Feed__module extends Component {
 
               <Dropzone className={style.Dropzone__container} onDrop={this.onDrop.bind(this)} multiple={false} accept={'image/*'}>
                 <div className={style.AddButton__container} onClick={this.resetImageURL.bind(this)}>
-                  <i className="fa fa-plus" aria-hidden="true"></i>
+                  <i className="fa fa-picture-o" aria-hidden="true"></i>
                 </div>
               </Dropzone>
               <button className={style.UpdateBar__button}>Submit</button>
@@ -130,7 +130,7 @@ const mapDispatchToProps = function (dispatch) {
         channel_id: channel_id
       }
       console.log(headline);
-      resetInput();
+      // resetInput();
       dispatch(actions.newTopic(headline));
     }
   }
