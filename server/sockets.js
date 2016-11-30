@@ -323,6 +323,7 @@ module.exports = function(io) {
         break;
         case 'socket/NEW_CHANNEL':
           const channelData = action.payload;
+          console.log(channelData);
           knex('channels').select('id').where('name', channelData.name)
           .then((result) => {
             if (result.length) {
@@ -335,6 +336,13 @@ module.exports = function(io) {
                 city_id: socket.userLocation.id
               }).returning('id').then((channel_id) => {
                 console.log(socket.userLocation.id);
+                knex('topics').insert({
+                  name: channelData.headline,
+                  channel_id: channel_id[0],
+                  img_url: channelData.img_url
+                }).then((results) => {
+                  console.log(results);
+                })
                 channelData.tags.forEach((tag_name) => {
                   knex('tags')
                   .select('id')

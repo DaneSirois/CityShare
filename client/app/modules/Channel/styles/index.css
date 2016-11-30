@@ -9,8 +9,8 @@
   padding: 0px;
   line-height: 55px;
 }
-    
-    .NewChannelButton__icon { /* <i> - Font Awesome Icon */ 
+
+    .NewChannelButton__icon { /* <i> - Font Awesome Icon */
       color: white;
       font-size: 1.3em;
     }
@@ -26,3 +26,177 @@
   background-color: grey;
   border: 1px solid black;
 }
+
+.Uploaded__image { /* <img> */
+      height: 29px;
+      width: 30px;
+    }
+
+    .Image__upload__container { /* <div> */
+      cursor: pointer;
+      position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+      padding: 6px;
+    }
+
+.DeleteButton__container, .Dropzone__container, .Uploaded__image__container, .AddButton__container {
+  position: absolute;
+    top: 0px;
+    bottom: 0px;
+  cursor: pointer;
+}
+    .DeleteButton__container { /* <div> */
+      right: 0px;
+      border-left: 1px solid darkgrey;
+      width: 30px;
+      padding: 7px 8px;
+    }
+    .Uploaded__image__container { /* <div> */
+      z-index: 5;
+      left: 0px;
+      right: 80px;
+      padding: 0px;
+      border-right: 1px solid darkgrey;
+    }
+    .Dropzone__container { /* <div> */
+      width: 30px;
+    }
+    .AddButton__container { /* <div> */
+      left: 0px;
+      border-right: 1px solid darkgrey;
+      width: 30px;
+      padding: 7px 6px;
+    }
+    .AddButton__container i { /* <i> */
+      color: #2a2a2a;
+    }
+    .DeleteButton__container i {
+      color: #2a2a2a;
+    }
+
+.Feed__header__submitBar { /* <div> */
+          position: absolute;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+          height: 30px;
+          border-top: 1px solid #ececec;
+        }
+
+        /*=========== UpdateBar ===========*/
+.UpdateBar { /* <div> -  Bar to submit an update */
+  /*
+    Contains:
+      > <textarea> - .UpdateBar__textarea
+      > <button> - .UpdateBar__button
+      > <footer> - .UpdateBar__footer
+  */
+  position: relative;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+    .UpdateBar__textarea { /* <textarea> */
+      outline: none;
+      resize: none;
+
+      min-height: 100px;
+      height: 100%;
+      width: 100%;
+
+      padding: 10px;
+      margin: 0px;
+      background-color: lightgrey;
+
+      border: 0px;
+    }
+
+    .UpdateBar__textarea:focus { /* <textarea> (STATE) */
+      background-color: #eee;
+    }
+
+
+    .UpdateBar__footer { /* <footer> */
+      position: absolute;
+        bottom: 0px;
+      height: 30px;
+      width: 100%;
+      background-color: #eaeaea;
+      border-top: 1px solid darkgrey;
+    }
+      .UpdateBar__button { /* <button> */
+        position: absolute;
+          right: 0px;
+        height: 100%;
+        width: 80px;
+        border: 0px;
+        border-left: 1px solid darkgrey;
+      }
+
+
+
+    .input_form { /* <form> */
+      position: relative;
+      display: block;
+
+      height: 100%;
+      width: 100%;
+
+      margin: 0px auto;
+      padding: 8px;
+
+    }
+
+/* Image Upload */
+
+
+    .Uploaded__image { /* <img> */
+      height: 29px;
+      width: 30px;
+    }
+
+    .Image__upload__container { /* <div> */
+      cursor: pointer;
+      position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+      padding: 6px;
+    }
+
+.DeleteButton__container, .Dropzone__container, .Uploaded__image__container, .AddButton__container {
+  position: absolute;
+    top: 0px;
+    bottom: 0px;
+  cursor: pointer;
+}
+    .DeleteButton__container { /* <div> */
+      right: 0px;
+      border-left: 1px solid darkgrey;
+      width: 30px;
+      padding: 7px 8px;
+    }
+    .Uploaded__image__container { /* <div> */
+      z-index: 5;
+      left: 0px;
+      right: 80px;
+      padding: 0px;
+      border-right: 1px solid darkgrey;
+    }
+    .Dropzone__container { /* <div> */
+      width: 30px;
+    }
+    .AddButton__container { /* <div> */
+      left: 0px;
+      border-right: 1px solid darkgrey;
+      width: 30px;
+      padding: 7px 6px;
+    }
+    .AddButton__container i { /* <i> */
+      color: #2a2a2a;
+    }
+    .DeleteButton__container i {
+      color: #2a2a2a;
+    }
