@@ -9,7 +9,7 @@ import style from './styles/index.css'
 import * as actions from '../Shared/actions/index.js';
 
 const masonryOptions = {
-  transitionDuration: 20,
+  transitionDuration: 420 ,
   columnWidth: 200,
   fitWidth: true
 };

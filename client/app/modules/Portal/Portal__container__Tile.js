@@ -35,9 +35,11 @@ class Tile__container extends Component {
     return (
       <div className={style.tile} style={{backgroundImage: `url(${this.props.img_url})`}}>
         <div className={style.overlay} style={{backgroundColor: this.props.channelData.color}}>
-          <span className={style.headline}>
-            {this.props.headline}
-          </span>
+          <div className={style.headerOverlay}>
+            <span className={style.headline}>
+              {this.props.headline}
+            </span>
+          </div>
         </div>
         <footer className={style.footer}>
           <span className={style.channelName}>
