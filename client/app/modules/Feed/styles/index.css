@@ -14,9 +14,8 @@
         right: 0px;
         left: 0px;
 
-      min-height: 80px;
+      min-height: 100px;
       background-color: #ececec;
-      padding-bottom: 30px;
       border-bottom: 1px solid black;
     }
         .Feed__header__submitBar { /* <div> */ 
@@ -30,7 +29,7 @@
 
     .Feed__body { /* <body> */
       position: absolute;
-        top: 80px;
+        top: 100px;
         right: 0px;
         bottom: 0px;
         left: 0px;
@@ -77,6 +76,7 @@
           height: 100%;
           width: 100%;
           padding: 10px;
+          padding-bottom: 30px;
           border: 0px;
         }
         .Headline__title { /* <h2> */
@@ -183,3 +183,58 @@
       padding: 8px;
 
     }
+
+/* Image Upload */
+
+
+    .Uploaded__image { /* <img> */ 
+      height: 29px;
+      width: 30px;
+    }
+
+    .Image__upload__container { /* <div> */
+      cursor: pointer;
+      position: absolute;
+        top: 0px;
+        bottom: 0px;
+        left: 0px;
+      padding: 6px;
+    }
+
+.DeleteButton__container, .Dropzone__container, .Uploaded__image__container, .AddButton__container {
+  position: absolute;
+    top: 0px;
+    bottom: 0px;
+  cursor: pointer;
+  padding: 7px 8px;
+}
+    .DeleteButton__container { /* <div> */ 
+      right: 0px;
+      border-left: 1px solid darkgrey;
+      width: 30px;
+    }
+    .Uploaded__image__container { /* <div> */
+      z-index: 5;
+      left: 0px;
+      right: 80px;
+      padding: 0px;
+      border-right: 1px solid darkgrey;
+    }
+    .Dropzone__container { /* <div> */ 
+      width: 30px;
+    }
+    .AddButton__container { /* <div> */ 
+      left: 0px;
+      border-right: 1px solid darkgrey;
+      width: 30px;
+    }
+    .AddButton__container i { /* <i> */ 
+      color: #2a2a2a;
+    }
+    .DeleteButton__container i {
+      color: #2a2a2a;
+    }
+
+
+
+

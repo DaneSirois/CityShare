@@ -169,7 +169,6 @@ module.exports = function(io) {
                 .then((updates) => {
                   if (updates.length) {
                     for (let i = 0; i < updates.length; i += 1) {
-                      console.log("i=", i);
                       updatesBundle.push(updates[i]);
                     }
                     if (index == topics.length - 1) {
