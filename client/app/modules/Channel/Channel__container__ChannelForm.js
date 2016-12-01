@@ -38,7 +38,7 @@ class ChannelForm__container extends Component {
   }
 
   resetImageURL () {
-    this.setState({ image_url: "localhost:3000/public/images/default-headline-bg.jpg" });
+    this.setState({ image_url: "159.203.35.124:3000/public/images/default-headline-bg.jpg" });
   }
 
   handleInput (event) {
@@ -58,7 +58,7 @@ class ChannelForm__container extends Component {
     data.append('secondParam', 0);
     data.append('file', new Blob(imageFile, { type: 'image/jpeg' }));
 
-    axios.post('http://localhost:3000/upload', data).then((img_url) => {
+    axios.post('http://159.203.35.124:3000/upload', data).then((img_url) => {
       this.setState({ image_url: img_url.data });
       console.log(this.state.image_url);
       this.set_uploadStatus("COMPLETE");
@@ -83,7 +83,7 @@ class ChannelForm__container extends Component {
               maxLength='90'
             />
             <div className={style.ChannelForm__headline__imageBar}>
-              {this.state.image_url !== 'localhost:3000/public/images/default-headline-bg.jpg' ?
+              {this.state.image_url !== '159.203.35.124:3000/public/images/default-headline-bg.jpg' ?
               <div className={style.Uploaded__image__container}>
                 <img className={style.Uploaded__image} src={this.state.image_url} />
                 <div className={style.DeleteButton__container} onClick={this.resetImageURL.bind(this)}>

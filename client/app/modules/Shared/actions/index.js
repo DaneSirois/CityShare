@@ -23,6 +23,7 @@ export SetUsername from './Shared__action__SetUsername.js';
 export newChannel from './Shared__action__NewChannel.js';
 export getChannels from './Shared__action__getChannels.js';
 export filterChannels from './Shared__action__filterChannels.js';
+export clearTags from './Shared__action__clearTags.js'
 
 // Feed Actions:
 export newUpdate from './Shared__action__newUpdate.js';

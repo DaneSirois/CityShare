@@ -17,7 +17,7 @@ import UpdateBar__container from './Feed__container__UpdateBar.js';
 class Feed__module extends Component {
   constructor (props) {
     super(props);
-    this.state = { name: "", image_url: "localhost:3000/public/images/default-headline-bg.jpg"}
+    this.state = { name: "", image_url: "http://159.203.35.124:3000/public/images/default-headline-bg.jpg"}
   }
 
   handleInput (event) {
@@ -29,7 +29,7 @@ class Feed__module extends Component {
   }
 
   resetImageURL () {
-    this.setState({ image_url: "localhost:3000/public/images/default-headline-bg.jpg" });
+    this.setState({ image_url: "http://159.203.35.124:3000/public/images/default-headline-bg.jpg" });
   }
 
   set_uploadStatus(status) {
@@ -45,7 +45,7 @@ class Feed__module extends Component {
     data.append('secondParam', 0);
     data.append('file', new Blob(imageFile, { type: 'image/jpeg' }));
 
-    axios.post('http://localhost:3000/upload', data).then((img_url) => {
+    axios.post('http://159.203.35.124:3000/upload', data).then((img_url) => {
       this.setState({ image_url: img_url.data });
       console.log(this.state.image_url);
       this.set_uploadStatus("COMPLETE");
@@ -67,7 +67,7 @@ class Feed__module extends Component {
               onChange={this.handleInput.bind(this)}
             ></textarea>
             <div className={style.Feed__header__submitBar}>
-              {this.state.image_url !== 'localhost:3000/public/images/default-headline-bg.jpg' ? 
+              {this.state.image_url !== '159.203.35.124:3000/public/images/default-headline-bg.jpg' ? 
               <div className={style.Uploaded__image__container}>
                 <img className={style.Uploaded__image} src={this.state.image_url} />
                 <div className={style.DeleteButton__container} onClick={this.resetImageURL.bind(this)}>

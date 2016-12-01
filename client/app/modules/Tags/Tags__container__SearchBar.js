@@ -11,6 +11,7 @@ class SearchBar__container extends Component {
     super(props)
     this.state = {tag: ''}
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleClick = this.handleClick.bind(this)
   }
   componentWillUnmount(){
     this.props.clearTags();
@@ -18,29 +19,30 @@ class SearchBar__container extends Component {
   handleInputChange(event) {
       this.setState({tag: event.target.value});
   }
-  handleSubmit(e) {
+  handleSubmit(tag) {
     e.preventDefault();
-    this.props.handleSubmit(this.state.tag);
+    console.log(tag);
+    this.props.handleSubmit(tag);
     this.setState({ tag: '' })
   }
   renderTags(tags) {
     return tags.map((tag) => {
       return(
-        <div className={style.tag}>
-          {tag}
+        <div className={style.tag} onClick={(e) => this.props.handleSubmit(tag)}>
+          <a>{tag}</a>
         </div>
       )
     })
   }
   handleClick(event) {
-    console.log(event);
+    this.props.handleSubmit
   }
 
   render() {
-    var tags = ['Sports', 'Food', 'Movies', 'Television']
+    var tags = ['Tech', 'News', 'Sports', 'Foodies', 'Movies', 'Television', 'Music', 'Nightlife', 'Gaming', 'Books', 'Anime', 'Fashion', 'Mountaineering', 'Random' ]
     return (
       <div className={style.searchBar}>
-        <div className={style.tag} onClick={this.handleClick.bind(this)}>
+        <div className={style.tag} onClick={(e) => this.props.clearTags()}>
           <a>All</a>
         </div>
         {this.renderTags(tags)}
