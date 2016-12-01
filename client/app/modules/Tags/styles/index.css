@@ -57,6 +57,10 @@
   padding: 0px;
 
 }
+.TagBar__container:hover { /* <div> */
+  background-color:black;
+
+}
 
 .searchInput {
   display: inline-block;
@@ -73,4 +77,10 @@
   display: inline-block;
   padding: 0 20px;
   line-height: 35px;
+}
+
+.tag:hover {
+  background-color:rgb(64, 64, 64);
+  color:white;
+  cursor: pointer;
 }

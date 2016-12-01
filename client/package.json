@@ -43,7 +43,7 @@
     "node-uuid": "^1.4.7",
     "pg": "^6.1.0",
     "postcss-load-config": "^1.0.0",
-    "react": "^15.2.1",
+    "react": "15.2.1",
     "react-dom": "15.2.1",
     "react-dropzone": "^3.7.3",
     "react-masonry-component": "^4.4.0",

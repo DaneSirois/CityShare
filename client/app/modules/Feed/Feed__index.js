@@ -17,7 +17,7 @@ import UpdateBar__container from './Feed__container__UpdateBar.js';
 class Feed__module extends Component {
   constructor (props) {
     super(props);
-    this.state = { name: "", image_url: "http://159.203.35.124:3000/public/images/default-headline-bg.jpg"}
+    this.state = { name: "", image_url: ""}
   }
 
   handleInput (event) {
@@ -29,7 +29,7 @@ class Feed__module extends Component {
   }
 
   resetImageURL () {
-    this.setState({ image_url: "http://159.203.35.124:3000/public/images/default-headline-bg.jpg" });
+    this.setState({ image_url: "" });
   }
 
   set_uploadStatus(status) {
@@ -67,7 +67,7 @@ class Feed__module extends Component {
               onChange={this.handleInput.bind(this)}
             ></textarea>
             <div className={style.Feed__header__submitBar}>
-              {this.state.image_url !== '159.203.35.124:3000/public/images/default-headline-bg.jpg' ? 
+              {this.state.image_url !== '' ? 
               <div className={style.Uploaded__image__container}>
                 <img className={style.Uploaded__image} src={this.state.image_url} />
                 <div className={style.DeleteButton__container} onClick={this.resetImageURL.bind(this)}>
