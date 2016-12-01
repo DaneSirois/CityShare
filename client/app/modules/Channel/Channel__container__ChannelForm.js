@@ -38,7 +38,7 @@ class ChannelForm__container extends Component {
   }
 
   resetImageURL () {
-    this.setState({ image_url: "159.203.35.124:3000/public/images/default-headline-bg.jpg" });
+    this.setState({ image_url: "159.203.42.30:3000/public/images/default-headline-bg.jpg" });
   }
 
   handleInput (event) {
