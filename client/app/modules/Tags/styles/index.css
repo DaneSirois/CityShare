@@ -61,7 +61,7 @@
 
 
 .searchInput {
-  display: inline-block;
+  display: inline;
   height: 20px;
   width: 150px;
   text-decoration: none;
