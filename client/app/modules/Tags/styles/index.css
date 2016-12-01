@@ -57,12 +57,6 @@
   padding: 0px;
 
 }
-.TagBar__container:hover { /* <div> */
-  background-color:black;
-
-}
-
-
 
 .searchInput {
   display: inline;

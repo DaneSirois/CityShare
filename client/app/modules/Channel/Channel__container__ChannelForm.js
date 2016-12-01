@@ -118,6 +118,7 @@ const mapDispatchToProps = function (dispatch) {
       }
       console.log(channelData);
       dispatch(actions.newChannel(channelData));
+      dispatch(actions.RenderApp(false))
       dispatch(actions.getChannels());
     }
   }
