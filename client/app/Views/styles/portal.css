@@ -6,6 +6,7 @@
   position: absolute;
     top: 80px;
   overflow-y: scroll;
+  z-index: -1;
   height: 100%;
   width: 100%;
   padding: 15px 15px;
@@ -18,9 +19,8 @@
     top: 50px;
     right: 0px;
     left: 0px;
-    z-index: 1;
-  height: 30px;
-  background-color: #ececec;
+  height: 35px;
+  background-color: #e6e6e6;
   border-bottom: 1px solid black;
 }
 

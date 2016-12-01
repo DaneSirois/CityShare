@@ -7,12 +7,15 @@
   height: 100%;
   width: 50px;
   padding: 0px;
-  line-height: 55px;
 }
 
     .NewChannelButton__icon { /* <i> - Font Awesome Icon */
+      display: block;
+      margin: 0px auto;
+      text-align: center;
+      line-height: 50px;
+      font-size: 1.5em;
       color: white;
-      font-size: 1.3em;
     }
 
 .ChannelForm__container { /* <div> - Container for the actual <form> */
@@ -21,24 +24,88 @@
     top: 50px;
     right: 0px;
 
-  height: 300px;
+  width: 500px;
+  padding: 20px;
 
-  background-color: grey;
+  background-color: #e6e6e6;
+
+  border-radius: 0px 0px 0px 10px;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.ChannelForm__header__text { /* <h2> */ 
+  margin: 0px auto 20px;
+  text-align: center;
+  color: #3e3e3e;
+}
+
+.ChannelForm__input { /* <input> */ 
+  display: block;
+  height: 40px;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 0px 10px;
+
+  border-radius: 4px;
   border: 1px solid black;
 }
 
-.Uploaded__image { /* <img> */
+.ChannelForm__headline__container { /* <div> */ 
+  position: relative;
+  height: 90px;
+  margin-bottom: 10px;
+}
+
+.ChannelForm__textarea { /* <textarea> */ 
+  resize: none;
+ 
+  padding: 10px 10px 40px;
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+}
+
+    .ChannelForm__headline__imageBar { /* <div> */
+      position: absolute;
+        right: 1px;
+        bottom: 1px;
+        left: 1px;
+      height: 30px;
+      background-color: white;
+      border-radius: 0px 0px 4px 4px;
+      border-top: 1px solid #3e3e3e;
+    }
+
+    .ChannelForm__input__submitButton { /* <button> */ 
+      cursor: pointer;
+      display: block;
+      height: 30px;
+      width: 100px;
+      margin: 20px auto 0px;
+      background-color: white;
+      border-radius: 4px;
+      border: 1px solid black;
+    }
+
+    .Uploaded__image { /* <img> */
+      z-index: 5;
       height: 29px;
       width: 30px;
+      background-color: #e6e6e6;
+      border-radius: 0px 0px 0px 4px;
+      border-right: 1px solid #3e3e3e;
     }
 
     .Image__upload__container { /* <div> */
       cursor: pointer;
       position: absolute;
         top: 0px;
+        right: 0px;
         bottom: 0px;
         left: 0px;
       padding: 6px;
+      border: 0px;
     }
 
 .DeleteButton__container, .Dropzone__container, .Uploaded__image__container, .AddButton__container {
@@ -46,26 +113,26 @@
     top: 0px;
     bottom: 0px;
   cursor: pointer;
+  border: 0px;
 }
     .DeleteButton__container { /* <div> */
       right: 0px;
-      border-left: 1px solid darkgrey;
+      border-left: 1px solid #3e3e3e;
       width: 30px;
       padding: 7px 8px;
     }
     .Uploaded__image__container { /* <div> */
       z-index: 5;
       left: 0px;
-      right: 80px;
+      right: 0px;
       padding: 0px;
-      border-right: 1px solid darkgrey;
     }
     .Dropzone__container { /* <div> */
       width: 30px;
     }
     .AddButton__container { /* <div> */
       left: 0px;
-      border-right: 1px solid darkgrey;
+      border-right: 1px solid #3e3e3e;
       width: 30px;
       padding: 7px 6px;
     }
@@ -75,15 +142,6 @@
     .DeleteButton__container i {
       color: #2a2a2a;
     }
-
-.Feed__header__submitBar { /* <div> */
-          position: absolute;
-            right: 0px;
-            bottom: 0px;
-            left: 0px;
-          height: 30px;
-          border-top: 1px solid #ececec;
-        }
 
         /*=========== UpdateBar ===========*/
 .UpdateBar { /* <div> -  Bar to submit an update */
@@ -117,7 +175,6 @@
       background-color: #eee;
     }
 
-
     .UpdateBar__footer { /* <footer> */
       position: absolute;
         bottom: 0px;
@@ -135,8 +192,6 @@
         border-left: 1px solid darkgrey;
       }
 
-
-
     .input_form { /* <form> */
       position: relative;
       display: block;
@@ -147,56 +202,4 @@
       margin: 0px auto;
       padding: 8px;
 
-    }
-
-/* Image Upload */
-
-
-    .Uploaded__image { /* <img> */
-      height: 29px;
-      width: 30px;
-    }
-
-    .Image__upload__container { /* <div> */
-      cursor: pointer;
-      position: absolute;
-        top: 0px;
-        bottom: 0px;
-        left: 0px;
-      padding: 6px;
-    }
-
-.DeleteButton__container, .Dropzone__container, .Uploaded__image__container, .AddButton__container {
-  position: absolute;
-    top: 0px;
-    bottom: 0px;
-  cursor: pointer;
-}
-    .DeleteButton__container { /* <div> */
-      right: 0px;
-      border-left: 1px solid darkgrey;
-      width: 30px;
-      padding: 7px 8px;
-    }
-    .Uploaded__image__container { /* <div> */
-      z-index: 5;
-      left: 0px;
-      right: 80px;
-      padding: 0px;
-      border-right: 1px solid darkgrey;
-    }
-    .Dropzone__container { /* <div> */
-      width: 30px;
-    }
-    .AddButton__container { /* <div> */
-      left: 0px;
-      border-right: 1px solid darkgrey;
-      width: 30px;
-      padding: 7px 6px;
-    }
-    .AddButton__container i { /* <i> */
-      color: #2a2a2a;
-    }
-    .DeleteButton__container i {
-      color: #2a2a2a;
     }

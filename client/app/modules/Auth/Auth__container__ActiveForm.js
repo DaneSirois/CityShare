@@ -13,7 +13,7 @@ class ActiveForm__container extends Component {
     if (tab === "signupForm") {
       return (
         <ul className={style.tab_list}>
-          <li className={style.form_tab} onClick={() => this.props.changeTab("loginForm")} >Login</li>
+          <li className={[style.form_tab, style.border_right].join(" ")} onClick={() => this.props.changeTab("loginForm")} >Login</li>
           <li className={[style.form_tab, style.form_tab_selected].join(" ")} onClick={() => this.props.changeTab("signupForm")} >Signup</li>
         </ul>
       )
@@ -21,7 +21,7 @@ class ActiveForm__container extends Component {
       return (
         <ul className={style.tab_list}>
           <li className={[style.form_tab, style.form_tab_selected].join(" ")} onClick={() => this.props.changeTab("loginForm")} >Login</li>
-          <li className={style.form_tab} onClick={() => this.props.changeTab("signupForm")} >Signup</li>
+          <li className={[style.form_tab, style.border_left].join(" ")} onClick={() => this.props.changeTab("signupForm")} >Signup</li>
         </ul>
       )
     }
@@ -39,8 +39,8 @@ class ActiveForm__container extends Component {
   }
   render() {
     return (
-      <div className={style.CP_container}>
-        <header>
+      <div className={style.CP__container}>
+        <header className={style.CP__header}>
           {this.renderTabsList(this.props.activeForm)}
         </header>
         {this.renderForm(this.props.activeForm)}

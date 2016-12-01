@@ -21,7 +21,12 @@
 .location_text {
   margin-left: 65px;
 }
-
+.location_text__alone {
+  margin-left: 12px;
+}
+.cleardefaultstyles {
+  display: inline;
+}
 .BackButton__container { /* <div> */
   cursor: pointer;
   text-align: center;

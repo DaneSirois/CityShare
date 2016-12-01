@@ -1,5 +1,5 @@
 /* ==== AuthButton ==== */
-.AuthButton_container { /* <div> */ 
+.AuthButton__container, .AuthButton__container__open { /* <div> */ 
   cursor: pointer;
   position: absolute;
     top: 0px;
@@ -8,15 +8,30 @@
   height: 100%;
   width: 50px;
 
-  padding: 12px;
-
   background-color: inherit;
   border-left: 1px solid white;
 }
 
-.AuthButton_container i { /* <i> - Font Awesome */ 
+.AuthButton__container__open {
+  background-color: #e6e6e6;
+}
+
+.AuthButton__container i { /* <i> - Font Awesome */ 
+  display: block;
+  margin: 0px auto;
+  text-align: center;
+  line-height: 50px;
   font-size: 1.5em;
   color: white;
+}
+
+.AuthButton__container__open i {
+  display: block;
+  margin: 0px auto;
+  text-align: center;
+  line-height: 50px;
+  font-size: 1.5em;
+  color: #3a3a3a;
 }
 
 /* ==== FormTabs ==== */
@@ -26,6 +41,7 @@
 }
 
 .form_tab { /* <li> */
+  cursor: pointer;
   list-style: none;
   display: block;
   float: left;
@@ -35,31 +51,76 @@
 
   height: 40px;
   width: 50%;
-
+  background-color: #B9B9B9;
   border-bottom: 1px solid black;
 }
 
 .form_tab_selected {
-  background-color: #2a2a2a;
-  color: white;
+  background-color: #e6e6e6;
+  color: #3e3e3e;
+  border: 0px;
 }
 
-.form_tab:first-child {
+.border_right {
+  border-radius: 0px 0px 5px 0px;
   border-right: 1px solid black;
 }
+.border_left {
+  border-radius: 0px 0px 0px 5px;
+  border-left: 1px solid black;
+}
+
+.Auth__input { /* <input> */ 
+  display: block;
+  height: 40px;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 0px 10px;
+
+  border-radius: 4px;
+  border: 1px solid black;
+}
+    .Auth__input__submitButton { /* <button> */ 
+      cursor: pointer;
+      display: block;
+      float: right;
+      height: 38px;
+      width: 80px;
+      margin: 0px;
+      background-color: white;
+      border-radius: 4px;
+      border: 1px solid black;
+    }
 
 /* ==== CP ==== */
-.CP_container {
+.CP__container {
   z-index: 5;
   position: fixed;
     top: 50px;
     right: 0px;
-    bottom: 0px;
 
   width: 500px;
 
-  background-color: grey;
+  background-color: #e6e6e6;
 
-  border-left: 1px solid black;
+  border-radius: 0px 0px 0px 10px;
+  border-left: 2px solid black;
+  border-bottom: 2px solid black;
 }
+
+    .CP__header { /* <header> */ 
+      position: absolute;
+        top: 0px;
+
+      height: 40px;
+      width: 100%;
+    }
+
+    .Auth__form__container { /* <div> */ 
+      overflow: hidden;
+      position: relative;
+      margin-top: 40px;
+      padding: 20px;
+      width: 100%;
+    }
 

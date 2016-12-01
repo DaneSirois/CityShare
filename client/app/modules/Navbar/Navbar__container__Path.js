@@ -10,20 +10,28 @@ class Path__container extends Component {
     this.props.clearChannel();
   }
 
-  renderChannelName (channelName) {
+  renderContent (channelName) {
     if (channelName) {
       return (
-        <h2 className={style.channelName}> &nbsp;> {channelName}</h2>
+        <div className={style.cleardefaultstyles}>
+          <Link to={"/"}>
+            <h1 className={style.location_text}>{this.props.location}</h1>
+          </Link>
+          <h2 className={style.channelName}> &nbsp;> {channelName}</h2>
+        </div>
+      )
+    } else {
+      return (
+        <Link to={"/"}>
+          <h1 className={[style.channelName, style.location_text__alone].join(" ")}>{this.props.location}</h1>
+        </Link>
       )
     }
   }
   render() {
     return (
       <div>
-        <Link to={"/"}>
-          <h1 className={style.location_text}>{this.props.location}</h1>
-        </Link>
-        {this.renderChannelName.bind(this)(this.props.channelName)}
+        {this.renderContent.bind(this)(this.props.channelName)}
       </div>
     );
   };

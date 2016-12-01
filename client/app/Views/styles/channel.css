@@ -9,7 +9,7 @@
     top: 50px;
     left: 0px;
     bottom: 0px;
-    z-index:0;
+    z-index: 0;
   max-width: 61.8%;
   width: 100%;
   border-right: 1px solid black;
@@ -21,7 +21,7 @@
   position: absolute;
     top: 50px;
     right: 0px;
-    z-index:0;
+    z-index: 0;
   height: 100%;
   width: 38.2%;
 }
