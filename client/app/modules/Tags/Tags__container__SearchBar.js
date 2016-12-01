@@ -47,9 +47,6 @@ class SearchBar__container extends Component {
         </div>
         {this.renderTags(tags)}
         <div className={style.tag}>
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <input className={style.searchInput} placeholder="Filter by Tag" onChange={this.handleInputChange.bind(this)} value={this.state.tag} type="text" />
-          </form>
         </div>
       </div>
     );
