@@ -43,7 +43,7 @@ class SearchBar__container extends Component {
     return (
       <div className={style.searchBar}>
         <div className={style.tag} onClick={(e) => this.props.clearTags()}>
-          <a>All</a>
+          All
         </div>
         {this.renderTags(tags)}
         <div className={style.tag}>
