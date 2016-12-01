@@ -36,9 +36,9 @@ class Tile__container extends Component {
       <div className={style.tile} style={{backgroundImage: `url(${this.props.img_url})`}}>
         <div className={style.overlay} style={{backgroundColor: this.props.channelData.color}}>
           <div className={style.headerOverlay}>
-            <span className={style.headline}>
+            <marquee className={style.headline} scrollamount='15' hspace="0" scrolldelay="60">
               {this.props.headline}
-            </span>
+            </marquee>
           </div>
         </div>
         <footer className={style.footer}>
