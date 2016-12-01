@@ -58,19 +58,20 @@
 
 }
 
-.searchInput {
-  display: inline-block;
-  height: 20px;
-  width: 150px;
-  text-decoration: none;
-  display: inline;
-  text-align: left;
-  margin: 0px;
-  line-height: 30px;
-}
+    .TagBar__searchbar {
+      display: inline-block;
+      height: 20px;
+      width: 150px;
+      text-decoration: none;
+      display: inline;
+      text-align: left;
+      margin: 0px;
+      line-height: 30px;
+    }
 
-.tag {
-  display: inline-block;
-  padding: 0 20px;
-  line-height: 35px;
-}
+    .tag {
+      cursor: pointer;
+      display: inline-block;
+      padding: 0 20px;
+      line-height: 35px;
+    }

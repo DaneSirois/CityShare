@@ -46,7 +46,7 @@
   height: 190px;
 }
     .sm .headline {
-      font-size: 1.2em;
+      font-size: 1.1em;
     }
    /* .sm .channelName {
     }
@@ -58,7 +58,7 @@
   height: 390px;
 }
     .md .headline {
-      font-size: 1.8em;
+      font-size: 1.1em;
     }
    /* .md .channelName {
     }
@@ -97,12 +97,12 @@
 }
 
 .headerOverlay {
-  padding-top:5px;
-  position:absolute;
+  position: absolute;
   top: 0px;
   background-color: rgba(62, 62, 62, 0.82);
-  height:40px;
-  width:100%;
+  height: 28px;
+  width: 100%;
+  border-bottom: 1px solid black;
 }
 .footer {
   position: absolute;

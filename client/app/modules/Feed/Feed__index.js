@@ -67,7 +67,7 @@ class Feed__module extends Component {
               onChange={this.handleInput.bind(this)}
             ></textarea>
             <div className={style.Feed__header__submitBar}>
-              {this.state.image_url !== '159.203.35.124:3000/public/images/default-headline-bg.jpg' ? 
+              {this.state.image_url !== 'http://159.203.35.124:3000/public/images/default-headline-bg.jpg' ? 
               <div className={style.Uploaded__image__container}>
                 <img className={style.Uploaded__image} src={this.state.image_url} />
                 <div className={style.DeleteButton__container} onClick={this.resetImageURL.bind(this)}>
