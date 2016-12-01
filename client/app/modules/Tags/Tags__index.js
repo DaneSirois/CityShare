@@ -3,14 +3,14 @@ import React, {Component} from 'react';
 
 import styles from './styles/index.css';
 
-import SearchBar__container from './Tags__container__SearchBar.js';
+import TagBar__container from './Tags__container__TagBar.js';
 
 // Root Component:
 class Tags__module extends Component {
   render() {
     return (
       <nav className={styles.container}>
-        <SearchBar__container />
+        <TagBar__container />
       </nav>
     );
   };

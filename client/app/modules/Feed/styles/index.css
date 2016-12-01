@@ -24,7 +24,8 @@
             bottom: 0px;
             left: 0px;
           height: 30px;
-          border-top: 1px solid #ececec;
+          background-color: #e6e6e6;
+          border-top: 1px solid #3e3e3e;
         }
 
     .Feed__body { /* <body> */
@@ -56,13 +57,11 @@
 }
     .Headline__header { /* <header> */
       position: relative;
-      padding: 0px 10px;
       height: 200px;
       width: 100%;
 
-      background-repeat: no-repeat;
-      background-position: center;
-      background-color: #e6e6e6;
+      background-color: #3e3e3e;
+
       border-bottom: 1px solid black;
     }
         .Headline__new { /* <textarea> */
@@ -73,26 +72,47 @@
             left: 0px;
           outline: none;
           resize: none;
-
+          background-color: #fafafa;
           height: 100%;
           width: 100%;
           padding: 10px;
           padding-bottom: 30px;
           border: 0px;
         }
+        .Headline__new:focus { /* <textarea> */ 
+          background-color: white;
+        }
+        .Headline__title__container { /* <div> */
+          position: absolute;
+            top: 0;
+          height: 40px;
+          width: 100%;
+          background-color: rgba(255,255,255,1); 
+          border-bottom: 1px solid #3e3e3e;
+        }
         .Headline__title { /* <h2> */
           font-size: 1.3em;
           font-weight: bold;
-          text-align: center;
-          line-height: 200px;
+          line-height: 40px;
           margin: 0px;
+        }
+
+        .Headline__image { /* <div> */ 
+          position: absolute;
+            top: 40px;
+            right: 0px;
+            bottom: 0px;
+            left: 0px;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: auto 100%;
         }
 
     .Headline__body { /* <body> */
       position: relative;
     }
         .Headline__update { /* <li> */
-          border-bottom: 1px solid #2a2a2a;
+          border-bottom: 1px solid #3e3e3e;
         }
             .Headline__update__header { /* <header> */
               position: relative;
@@ -144,13 +164,13 @@
 
       padding: 10px;
       margin: 0px;
-      background-color: lightgrey;
+      background-color: #fafafa;
 
       border: 0px;
     }
 
     .UpdateBar__textarea:focus { /* <textarea> (STATE) */
-      background-color: #eee;
+      background-color: white;
     }
 
 
@@ -159,16 +179,17 @@
         bottom: 0px;
       height: 30px;
       width: 100%;
-      background-color: #eaeaea;
-      border-top: 1px solid darkgrey;
+      background-color: #e6e6e6;
+      border-top: 1px solid #3e3e3e;
     }
       .UpdateBar__button { /* <button> */
         position: absolute;
           right: 0px;
         height: 100%;
         width: 80px;
+        background-color: #B9B9B9;
         border: 0px;
-        border-left: 1px solid darkgrey;
+        border-left: 1px solid #3e3e3e;
       }
 
 

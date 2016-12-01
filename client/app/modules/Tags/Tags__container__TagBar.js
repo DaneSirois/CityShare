@@ -5,7 +5,7 @@ import style from './styles/index.css';
 
 import * as actions from '../Shared/actions/index.js';
 
-class SearchBar__container extends Component {
+class TagBar__container extends Component {
 
   constructor(props) {
     super(props)
@@ -39,17 +39,17 @@ class SearchBar__container extends Component {
   }
 
   render() {
-    var tags = ['Tech', 'News', 'Sports', 'Foodies', 'Movies', 'Television', 'Music', 'Nightlife', 'Gaming', 'Books', 'Anime', 'Fashion', 'Mountaineering', 'Random' ]
+    const tags = ['Tech', 'News', 'Sports', 'Foodies', 'Movies', 'Television', 'Music', 'Nightlife', 'Gaming', 'Books', 'Anime', 'Fashion', 'Mountaineering', 'Random' ]
     return (
-      <div className={style.searchBar}>
+      <div className={style.TagBar__container}>
         <div className={style.tag} onClick={(e) => this.props.clearTags()}>
           All
         </div>
         {this.renderTags(tags)}
         <div className={style.tag}>
-        <form className={style.searchInput} onSubmit={this.handleSubmit.bind(this)}>
-          <input className={style.searchInput} placeholder="Filter by Tag" onChange={this.handleInputChange.bind(this)} value={this.state.tag} type="text" />
-        </form>
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <input className={style.TagBar__searchbar} placeholder="Filter by Tag" onChange={this.handleInputChange.bind(this)} value={this.state.tag} type="text" />
+          </form>
         </div>
       </div>
     );
@@ -68,4 +68,4 @@ const mapDispatchToProps = function (dispatch) {
   }
 };
 
-export default connect(null, mapDispatchToProps)(SearchBar__container);
+export default connect(null, mapDispatchToProps)(TagBar__container);

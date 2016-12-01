@@ -53,27 +53,12 @@
 
 .TagBar__container { /* <div> */
   position: relative;
+  overflow: hidden;
   height: 100%;
   padding: 0px;
-
-}
-.TagBar__container:hover { /* <div> */
-  background-color:black;
-
 }
 
 
-
-.searchInput {
-  display: inline;
-  height: 20px;
-  width: 150px;
-  text-decoration: none;
-  display: inline;
-  text-align: left;
-  margin: 0px;
-  line-height: 30px;
-}
 
 .searchBar {
   overflow: hidden;
@@ -81,12 +66,23 @@
 
 .tag {
   display: inline;
-  padding: 20px 20px;
+  cursor: pointer;
+  padding: 8px 20px;
   line-height: 35px;
 }
 
 .tag:hover {
   background-color:rgb(64, 64, 64);
-  color:white;
-  cursor: pointer;
+  color: white;
 }
+
+    .TagBar__searchbar {
+      display: inline;
+      height: 20px;
+      width: 150px;
+      text-decoration: none;
+      display: inline;
+      text-align: left;
+      margin: 0px;
+      line-height: 30px;
+    }

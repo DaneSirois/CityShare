@@ -37,8 +37,11 @@ class Topic__container extends Component {
 
     return (
       <article className={style.Headline}>
-        <header style={localstyle} className={style.Headline__header}>
-          <h2 className={style.Headline__title}>{this.props.topicData.name}</h2>
+        <header className={style.Headline__header}>
+          <marquee className={style.Headline__title__container} scrollamount='15' hspace="0" scrolldelay="60">
+            <h2 className={style.Headline__title}>{this.props.topicData.name}</h2>
+          </marquee>
+          <div style={localstyle} className={style.Headline__image}></div>
         </header>
         <div className={style.Headline__body}>
           {this.renderUpdateBar.bind(this)(this.props.topicData)}
