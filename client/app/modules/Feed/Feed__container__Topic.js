@@ -38,7 +38,7 @@ class Topic__container extends Component {
     return (
       <article className={style.Headline}>
         <header className={style.Headline__header}>
-          <marquee className={style.Headline__title__container} scrollamount='15' hspace="0" scrolldelay="60">
+          <marquee className={style.Headline__title__container}>
             <h2 className={style.Headline__title}>{this.props.topicData.name}</h2>
           </marquee>
           <div style={localstyle} className={style.Headline__image}></div>

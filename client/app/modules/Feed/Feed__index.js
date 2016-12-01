@@ -17,7 +17,7 @@ import UpdateBar__container from './Feed__container__UpdateBar.js';
 class Feed__module extends Component {
   constructor (props) {
     super(props);
-    this.state = { name: "", image_url: ""}
+    this.state = {name: "", image_url: "http://159.203.35.124:3000/public/images/default-headline-bg.jpg"}
   }
 
   handleInput (event) {
@@ -29,7 +29,7 @@ class Feed__module extends Component {
   }
 
   resetImageURL () {
-    this.setState({ image_url: "" });
+    this.setState({image_url: "http://159.203.35.124:3000/public/images/default-headline-bg.jpg"});
   }
 
   set_uploadStatus(status) {
@@ -69,7 +69,7 @@ class Feed__module extends Component {
             <div className={style.Feed__header__submitBar}>
 
               {this.state.image_url !== 'http://159.203.35.124:3000/public/images/default-headline-bg.jpg' ? 
-              
+
               <div className={style.Uploaded__image__container}>
                 <img className={style.Uploaded__image} src={this.state.image_url} />
                 <div className={style.DeleteButton__container} onClick={this.resetImageURL.bind(this)}>
@@ -131,8 +131,6 @@ const mapDispatchToProps = function (dispatch) {
         img_url: img_url,
         channel_id: channel_id
       }
-      console.log(headline);
-      // resetInput();
       dispatch(actions.newTopic(headline));
     }
   }
