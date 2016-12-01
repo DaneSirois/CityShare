@@ -5,9 +5,11 @@ import style from './styles/index.css';
 class MessageList__container extends Component {
   renderMessages(chatLog) {
     return chatLog.map((message, index) => {
-      return (
-        <Message__component key={index} content={message.message_text} username={message.username || "Anonymous"} time={message.created_at || "Before Time"} />
-      )
+      if(Number(message.channel_id) === Number(this.props.channel_id))
+        return (
+          <Message__component key={index} content={message.message_text} username={message.username || "Anonymous"} time={message.created_at || "Before Time"} />
+        )
+
     });
   }
   render() {
