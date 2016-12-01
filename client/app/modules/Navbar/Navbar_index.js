@@ -1,5 +1,6 @@
 // Import Dependencies:
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import styles from './styles/index.css';
 
@@ -10,10 +11,15 @@ import Channel__module from '../Channel/Channel__index.js';
 
 // Root Component:
 class Navbar__module extends Component {
+  renderBackButton (channelName) {
+    if (channelName) {
+      return <BackButton__container />
+    }
+  }
   render() {
     return (
       <nav className={styles.container}>
-        <BackButton__container />
+        {this.renderBackButton.bind(this)(this.props.channelName)}
         <Path__container />
         <Channel__module />
         <Auth__module />
@@ -22,4 +28,10 @@ class Navbar__module extends Component {
   };
 };
 
-export default Navbar__module;
+function mapStateToProps(state) {
+  return ({
+    channelName: state.Channel.channelName
+  });
+};
+
+export default connect(mapStateToProps)(Navbar__module);

@@ -23,7 +23,7 @@ class Chatroom__module extends Component {
   render() {
     return (
       <div className={style.container} ref={(el) => this.containerEl = el}>
-        <MasterLog__container handleUpdate={this.scrollToBottom.bind(this)} />
+        <MasterLog__container channel_id ={this.props.channel_id} handleUpdate={this.scrollToBottom.bind(this)} />
         <ChatBar__container channel_id={this.props.channel_id} />
       </div>
 

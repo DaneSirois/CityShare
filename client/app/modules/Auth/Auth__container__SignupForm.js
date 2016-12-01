@@ -29,14 +29,15 @@ class SignupForm__container extends Component {
   }
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(this.state)}>
-        <h2>Sign Up Form</h2>
-        <input type="text" onChange={this.handleEmailInput.bind(this)} placeholder={"Email"} />
-        <input type="text" onChange={this.handleUsernameInput.bind(this)} placeholder={"Username"} />
-        <input type="text" onChange={this.handlePasswordInput.bind(this)} placeholder={"Password"} />
-        <input type="text" onChange={this.handlePasswordConfirmInput.bind(this)} placeholder={"Confirm Password"} />
-        <button>SignUp</button>
-      </form>
+      <div className={style.Auth__form__container}>
+        <form onSubmit={this.props.handleSubmit(this.state)}>
+          <input className={style.Auth__input} type="text" onChange={this.handleEmailInput.bind(this)} placeholder={"Email"} />
+          <input className={style.Auth__input} type="text" onChange={this.handleUsernameInput.bind(this)} placeholder={"Username"} />
+          <input className={style.Auth__input} type="text" onChange={this.handlePasswordInput.bind(this)} placeholder={"Password"} />
+          <input className={style.Auth__input} type="text" onChange={this.handlePasswordConfirmInput.bind(this)} placeholder={"Confirm Password"} />
+          <button className={style.Auth__input__submitButton}>SignUp</button>
+        </form>
+      </div>
     );
   };
 };

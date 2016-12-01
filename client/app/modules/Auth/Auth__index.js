@@ -24,7 +24,7 @@ class Auth__module extends Component {
   }
   render() {
     return (
-      <div className={style.Index__container}>
+      <div className={style.Auth__container}>
         {this.renderButton()}
         {this.renderForm()}
       </div>

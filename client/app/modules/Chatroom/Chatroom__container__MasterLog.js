@@ -26,11 +26,11 @@ class MasterLog__container extends Component {
     let topics = topicList.map((topic) => topic);
     if (this.props.topics.length) {
       return topics.reverse().map((topic, index, topics) => {
-        if(this.props.chatLog) {
+        if(this.props.chatLog && Number(topic.channel_id) === Number(this.props.channel_id)) {
           return (
             <li className={style.topicDivider} key={topic.id}>
               <p className={style.topicName}>{topic.name}</p>
-              <MessageList__container key={topic.id} messages={messageTopicCoupler(this.props.chatLog, topic, topics[index+1])} topic={topic.name} created_at={topic.created_at} />
+              <MessageList__container key={topic.id} channel_id={this.props.channel_id} messages={messageTopicCoupler(this.props.chatLog, topic, topics[index+1])} topic={topic.name} created_at={topic.created_at} />
             </li>
           )
         }

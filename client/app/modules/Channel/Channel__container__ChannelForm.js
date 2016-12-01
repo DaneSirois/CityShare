@@ -71,17 +71,18 @@ class ChannelForm__container extends Component {
   render() {
     return (
       <div className={style.ChannelForm__container}>
-        <form id="new-channel">
-          <h2>New Channel</h2>
-          <input type="text" onChange={this.handleNameInput.bind(this)} placeholder="Name your channel." />
-          <input type="text" onChange={this.handleTagInput.bind(this)} placeholder="List some tags." />
-          <textarea
-              className={style.Headline__new}
+        <form className={style.ChannelForm}>
+          <h2 className={style.ChannelForm__header__text}>Create a New Channel:</h2>
+          <input className={style.ChannelForm__input} type="text" onChange={this.handleNameInput.bind(this)} placeholder="Name your channel." />
+          <div className={style.ChannelForm__headline__container}>
+            <textarea
+              className={style.ChannelForm__textarea}
               value={this.state.headline}
               placeholder={"Enter a new Headline.."}
               onChange={this.handleInput.bind(this)}
-          />
-            <div className={style.Feed__header__submitBar}>
+              maxLength='90'
+            />
+            <div className={style.ChannelForm__headline__imageBar}>
               {this.state.image_url !== '159.203.35.124:3000/public/images/default-headline-bg.jpg' ?
               <div className={style.Uploaded__image__container}>
                 <img className={style.Uploaded__image} src={this.state.image_url} />
@@ -90,15 +91,16 @@ class ChannelForm__container extends Component {
                 </div>
               </div> : null}
 
-
               <Dropzone className={style.Dropzone__container} onDrop={this.onDrop.bind(this)} multiple={false} accept={'image/*'}>
                 <div className={style.AddButton__container} onClick={this.resetImageURL.bind(this)}>
                   <i className="fa fa-picture-o" aria-hidden="true"></i>
                 </div>
               </Dropzone>
             </div>
+          </div>
+          <input className={style.ChannelForm__input} type="text" onChange={this.handleTagInput.bind(this)} placeholder="List some tags." />
 
-          <button onClick={this.handleSubmit.bind(this)}>Create</button>
+          <button className={style.ChannelForm__input__submitButton} onClick={this.handleSubmit.bind(this)}>Create</button>
         </form>
       </div>
     )
@@ -116,6 +118,7 @@ const mapDispatchToProps = function (dispatch) {
       }
       console.log(channelData);
       dispatch(actions.newChannel(channelData));
+      dispatch(actions.getChannels());
     }
   }
 }
