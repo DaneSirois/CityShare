@@ -43,13 +43,13 @@ class SearchBar__container extends Component {
     return (
       <div className={style.searchBar}>
         <div className={style.tag} onClick={(e) => this.props.clearTags()}>
-          <a>All</a>
+          All
         </div>
         {this.renderTags(tags)}
         <div className={style.tag}>
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <input className={style.searchInput} placeholder="Filter by Tag" onChange={this.handleInputChange.bind(this)} value={this.state.tag} type="text" />
-          </form>
+        <form className={style.searchInput} onSubmit={this.handleSubmit.bind(this)}>
+          <input className={style.searchInput} placeholder="Filter by Tag" onChange={this.handleInputChange.bind(this)} value={this.state.tag} type="text" />
+        </form>
         </div>
       </div>
     );

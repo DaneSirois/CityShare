@@ -46,7 +46,8 @@
   height: 190px;
 }
     .sm .headline {
-      font-size: 1.2em;
+      line-height:100%;
+      font-size: 1.1em;
     }
    /* .sm .channelName {
     }
@@ -58,7 +59,8 @@
   height: 390px;
 }
     .md .headline {
-      font-size: 1.8em;
+      line-height:100%;
+      font-size: 1.1em;
     }
    /* .md .channelName {
     }
@@ -71,7 +73,8 @@
 }
     .lg .headline {
       padding-left:10px;
-      font-size: 25px;
+      line-height:100%;
+      font-size: 1.1em;
     }
     /*.lg .channelName {
     }
@@ -101,7 +104,7 @@
   position:absolute;
   top: 0px;
   background-color: rgba(62, 62, 62, 0.82);
-  height:40px;
+  height:28px;
   width:100%;
 }
 .footer {
