@@ -12,7 +12,7 @@ class Location__container extends Component {
   renderCity(userData) {
     return userData.map((data, index) => {
       return (
-        <h1 className={style.location_text} key={index}>{data.city}</h1> 
+        <h1 className={style.channelName} key={index}>{data.city}</h1> 
       )
     });
   }

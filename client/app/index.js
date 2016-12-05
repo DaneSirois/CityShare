@@ -5,6 +5,8 @@ import {createStore, applyMiddleware} from 'redux';
 
 import root_reducer from './root_reducer.js';
 import { Router, Route, hashHistory } from 'react-router';
+
+import thunk from 'redux-thunk';
 import createSocketIoMiddleware from 'redux-socket.io';
 import io from 'socket.io-client';
 
@@ -12,8 +14,10 @@ import App__module from './modules/App/App__index.js';
 import Loading__module from './modules/Loading/Loading__index.js';
 import Portal__module from './modules/Portal/Portal__index.js';
 import Channel__view from './Views/Views__channel.js';
-import './assets/normalize.css';
+
 import * as actions from './modules/Shared/actions/index.js';
+
+import './assets/normalize.css';
 import './assets/global.css';
 
 // Redux Middleware:
@@ -62,23 +66,22 @@ const scoreTiles__middleware = (store) => (next) => (action) => {
  }
 }
 
-
-
 const socket = io('http://159.203.35.124:3000');
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
-const store = createStore(root_reducer, applyMiddleware(socketIoMiddleware, localStorage_middleware, scoreTiles__middleware));
 
-console.log("Checking localStorage before InitializeApp", localStorage);
+// Build store with middleware:
+const middleware = [thunk, socketIoMiddleware, localStorage_middleware, scoreTiles__middleware];
+const store = applyMiddleware(...middleware)(createStore)(root_reducer);
 
-// Dispatch Initialization action
-
+// Get JWT from 'Localstorage':
 const user_JWT = JSON.parse(localStorage.getItem("user_JWT")) || undefined;
-console.log("checking value of user's JWT from localstorage BEFORE app initializes", user_JWT);
 
+// Dispatch Initialization action:
 setTimeout(() => {
   store.dispatch(actions.InitializeApp(user_JWT));
 }, 3000);
 
+// Mount the entry module:
 ReactDOM.render(
   <Provider store={store}>
     <App__module/>

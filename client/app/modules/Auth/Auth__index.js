@@ -1,28 +1,35 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import * as actions from '../Shared/actions/index.js';
+import AC from '../../action_controller.js';
+import style from './Auth__styles.css';
 
 import ActiveForm__container from './Auth__container__ActiveForm.js';
 import ToggleButton__component from './Auth__component__ToggleButton.js';
 import LogoutButton__component from './Auth__component__LogoutButton.js';
 
-import style from './styles/index.css';
-
 class Auth__module extends Component {
+  constructor (props) {
+    super(props);
+    this.logout = this.logout.bind(this);
+  }
+  logout () {
+    return AC.dispatch__LOGOUT_USER();
+  }
   renderButton () {
     if (this.props.loggedIn) {
-      return <LogoutButton__component handleClick={this.props.logout.bind(this)} />
+      return <LogoutButton__component handleClick={this.logout} />
     } else {
-      return <ToggleButton__component handleClick={this.props.handleClick.bind(this)} showCP={this.props.showCP} />
+      return <ToggleButton__component handleClick={() => this.props.handleClick.bind(this)(this.props.SHOW_CP)} showCP={this.props.SHOW_CP} />
     }
   }
   renderForm () {
-    if (this.props.showCP && !this.props.loggedIn) {
+    if (this.props.SHOW_CP && !this.props.loggedIn) {
       return <ActiveForm__container />
     }
   }
   render() {
+    console.log(AC);
     return (
       <div className={style.Auth__container}>
         {this.renderButton()}
@@ -35,23 +42,20 @@ class Auth__module extends Component {
 function mapStateToProps(state) {
   return ({
     loggedIn: state.User.loggedIn,
-    showCP: state.Auth.showCP
+    SHOW_CP: state.Auth.SHOW_CP
   });
 };
 
-const mapDispatchToProps = function (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
-    handleClick: (showCP) => {
-      if (showCP === false) {
-        dispatch(actions.showCP(true));  
+    handleClick: (SHOW_CP) => {
+      if (SHOW_CP === false) {
+        dispatch(AC.callback__SHOW_CP(true));  
       } else {
-        dispatch(actions.showCP(false));
+        dispatch(AC.callback__SHOW_CP(false));
       }
-    },
-    logout: () => {
-      dispatch(actions.LogoutUser());
     }
-  }
-};
+  };
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth__module);

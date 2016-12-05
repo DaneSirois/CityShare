@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import style from './styles/index.css';
+import style from './Auth__styles.css';
 
 class ToggleButton__component extends Component {
   renderButton (CP_open) {

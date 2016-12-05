@@ -1,0 +1,31 @@
+
+/* ====== Color Scheme ====== */
+
+  .Shared__primary_color { /* Darkgrey color */
+    color: #3e3e3e;
+  }
+
+  .Shared__secondary_color { /* Lightgrey color */
+    color: #e6e6e6;
+  }
+
+  .Shared__pop_color { /* Red color */
+    color: red;
+  }
+
+/* ====== Layout Limbs ====== */
+
+  .Shared__navbar_limb {
+    position: fixed;
+      top: 0px;
+      right: 0px;
+      left: 0px;
+    z-index: 1;
+    height: 50px;
+    background-color: #3e3e3e;
+    border-bottom: 1px solid black;
+  }
+
+/* ====== Components ====== */
+
+  

@@ -5,6 +5,8 @@
     left: 0px;
     z-index: 1;
   height: 50px;
-  background-color: #3e3e3e;
+  /* 'Backround-color:' */
+  /*composes: Shared__primary_color from "../../modules/Shared/Shared_styles.css";*/
+  background-color: grey;
   border-bottom: 1px solid black;
 }

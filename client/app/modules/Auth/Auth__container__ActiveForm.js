@@ -1,27 +1,34 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import style from './styles/index.css';
+import style from './Auth__styles.css';
 
-import * as actions from '../Shared/actions/index.js';
+import AC from '../../Action_controller.js';
 
 import LoginForm__container from './Auth__container__LoginForm.js';
 import SignupForm__container from './Auth__container__SignupForm.js';
 
 class ActiveForm__container extends Component {
+  constructor (props) {
+    super(props);
+    this.changeTab = this.changeTab.bind(this);
+  }
+  changeTab (tab) {
+    return AC.dispatch__CHANGE_AUTH_TAB(tab);
+  }
   renderTabsList (tab) {
     if (tab === "signupForm") {
       return (
         <ul className={style.tab_list}>
-          <li className={[style.form_tab, style.border_right].join(" ")} onClick={() => this.props.changeTab("loginForm")} >Login</li>
-          <li className={[style.form_tab, style.form_tab_selected].join(" ")} onClick={() => this.props.changeTab("signupForm")} >Signup</li>
+          <li className={[style.form_tab, style.border_right].join(" ")} onClick={() => this.changeTab("loginForm")} >Login</li>
+          <li className={[style.form_tab, style.form_tab_selected].join(" ")} onClick={() => this.changeTab("signupForm")} >Signup</li>
         </ul>
       )
     } else {
       return (
         <ul className={style.tab_list}>
-          <li className={[style.form_tab, style.form_tab_selected].join(" ")} onClick={() => this.props.changeTab("loginForm")} >Login</li>
-          <li className={[style.form_tab, style.border_left].join(" ")} onClick={() => this.props.changeTab("signupForm")} >Signup</li>
+          <li className={[style.form_tab, style.form_tab_selected].join(" ")} onClick={() => this.changeTab("loginForm")} >Login</li>
+          <li className={[style.form_tab, style.border_left].join(" ")} onClick={() => this.changeTab("signupForm")} >Signup</li>
         </ul>
       )
     }
@@ -51,18 +58,9 @@ class ActiveForm__container extends Component {
 
 function mapStateToProps(state) {
   return ({
-    activeForm: state.Auth.activeForm
+    ACTIVE_FORM: state.Auth.ACTIVE_FORM
   });
 };
 
-const mapDispatchToProps = function (dispatch) {
-  return {
-    changeTab: (tab) => {
-      
-      dispatch(actions.changeAuthTab(tab));
-    }
-  }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ActiveForm__container);
+export default connect(mapStateToProps)(ActiveForm__container);
 

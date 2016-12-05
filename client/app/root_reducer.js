@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 
 import App__reducers from './modules/App/reducers/index.js';
-import Auth__reducers from './modules/Auth/reducers/index.js';
+import Auth__reducers from './modules/Auth/Auth__API.js';
 import Channel__reducers from './modules/Channel/reducers/index.js';
 import User__reducers from './modules/User/reducers/index.js';
 import Chatroom__reducers from './modules/Chatroom/reducers/index.js';

@@ -15,15 +15,15 @@ class Path__container extends Component {
       return (
         <div className={style.cleardefaultstyles}>
           <Link to={"/"}>
-            <h1 className={style.location_text}>{this.props.location}</h1>
+            <h1 className={style.location_text}>{this.props.location} >&nbsp;</h1>
           </Link>
-          <h2 className={style.channelName}> &nbsp;> {channelName}</h2>
+          <h2 className={style.channelName}>{channelName}</h2>
         </div>
       )
     } else {
       return (
         <Link to={"/"}>
-          <h1 className={[style.channelName, style.location_text__alone].join(" ")}>{this.props.location}</h1>
+          <h1 className={[style.location_text, style.location_text__alone].join(" ")}>{this.props.location}</h1>
         </Link>
       )
     }

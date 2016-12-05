@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 
-import style from './styles/index.css';
+import style from './Auth__styles.css';
 
-import * as actions from '../Shared/actions/index.js';
+import AC from '../../action_controller.js';
 
 class LoginForm__container extends Component {
   constructor(props) {
@@ -12,6 +11,11 @@ class LoginForm__container extends Component {
       username: "",
       password: ""
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleSubmit (loginCreds) {
+    event.preventDefault();
+    AC.dispatch__LOGIN_USER(loginCreds);
   }
   handleUsernameInput (event) {
     this.setState({username: event.target.value});
@@ -22,7 +26,7 @@ class LoginForm__container extends Component {
   render() {
     return (
       <div className={style.Auth__form__container}>
-        <form onSubmit={this.props.handleSubmit(this.state)}>
+        <form onSubmit={(event) => this.handleSubmit(this.state)}>
           <input className={style.Auth__input} type="text" onChange={this.handleUsernameInput.bind(this)} placeholder={"Email"} />
           <input className={style.Auth__input} type="password" onChange={this.handlePasswordInput.bind(this)} placeholder={"Password"} />
           <button className={style.Auth__input__submitButton}>Login</button>
@@ -32,15 +36,6 @@ class LoginForm__container extends Component {
   };
 };
 
-const mapDispatchToProps = function (dispatch) {
-  return {
-    handleSubmit: (loginCreds) => (event) => {
-      event.preventDefault();
 
-      dispatch(actions.login(loginCreds));
-    }
-  }
-};
-
-export default connect(null, mapDispatchToProps)(LoginForm__container);
+export default LoginForm__container;
 
