@@ -30,6 +30,9 @@
 .userCount {
   float: right;
 }
+    .userCount i {
+      font-size: 0.9em;
+    }
 
 .headline {
   word-wrap: break-word;

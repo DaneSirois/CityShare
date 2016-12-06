@@ -23,7 +23,7 @@ class LoginForm__container extends Component {
     return (
       <div className={style.Auth__form__container}>
         <form onSubmit={this.props.handleSubmit(this.state)}>
-          <input className={style.Auth__input} type="text" onChange={this.handleUsernameInput.bind(this)} placeholder={"Username"} />
+          <input className={style.Auth__input} type="text" onChange={this.handleUsernameInput.bind(this)} placeholder={"Email"} />
           <input className={style.Auth__input} type="password" onChange={this.handlePasswordInput.bind(this)} placeholder={"Password"} />
           <button className={style.Auth__input__submitButton}>Login</button>
         </form>

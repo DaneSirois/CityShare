@@ -15,7 +15,7 @@ class ChannelForm__container extends Component {
       name: '',
       tags: '',
       headline: '',
-      image_url: ''
+      image_url: 'http://159.203.35.124:3000/public/images/default-headline-bg.jpg'
     }
   }
 
@@ -38,7 +38,7 @@ class ChannelForm__container extends Component {
   }
 
   resetImageURL () {
-    this.setState({ image_url: "159.203.42.30:3000/public/images/default-headline-bg.jpg" });
+    this.setState({ image_url: "http://159.203.35.124:3000/public/images/default-headline-bg.jpg" });
   }
 
   handleInput (event) {
@@ -83,7 +83,7 @@ class ChannelForm__container extends Component {
               maxLength='90'
             />
             <div className={style.ChannelForm__headline__imageBar}>
-              {this.state.image_url !== '159.203.35.124:3000/public/images/default-headline-bg.jpg' ?
+              {this.state.image_url !== 'http://159.203.35.124:3000/public/images/default-headline-bg.jpg' ?
               <div className={style.Uploaded__image__container}>
                 <img className={style.Uploaded__image} src={this.state.image_url} />
                 <div className={style.DeleteButton__container} onClick={this.resetImageURL.bind(this)}>
