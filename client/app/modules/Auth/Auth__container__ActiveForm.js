@@ -60,7 +60,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     changeTab: (tab) => {
-      dispatch(AC.request__CHANGE_AUTH_TAB(tab));
+      dispatch(AC.handle__CHANGE_AUTH_TAB(tab));
     }
   };
 };

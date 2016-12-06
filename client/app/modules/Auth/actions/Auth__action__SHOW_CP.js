@@ -1,9 +1,8 @@
-import {SHOW_CP__type} from '../Auth__types.js';
+import {type__SHOW_CP} from '../Auth__types.js';
 
 const SHOW_CP = (bool) => {
-  console.log("ISNDE OF ACTIOn");
   return {
-    type: SHOW_CP__type,
+    type: type__SHOW_CP,
     payload: bool
   }
 }

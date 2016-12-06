@@ -42,13 +42,13 @@ function mapDispatchToProps(dispatch) {
   return {
     handleClick: (SHOW_CP) => {
       if (SHOW_CP === false) {
-        dispatch(AC.request__SHOW_CP(true));  
+        dispatch(AC.handle__SHOW_CP(true));  
       } else {
-        dispatch(AC.request__SHOW_CP(false));
+        dispatch(AC.handle__SHOW_CP(false));
       }
     },
     logout: () => {
-      dispatch(AC.request__LOGOUT_USER());
+      dispatch(AC.handle__LOGOUT_USER());
     }
   };
 };

@@ -1,4 +1,4 @@
-
+// Import Dependencies:
 const utilities_module = require('./utilities.js');
 require("dotenv").config();
 const jwt = require('jsonwebtoken');
@@ -17,22 +17,23 @@ const knex = require('knex')({
   }
 });
 
+// Dev Tools:
 const inspect = (o, d = 1) => {
   console.log(util.inspect(o, { colors: true, depth: d }));
 };
 
 // Socket IO:
-
 var userArray = [];
-
 
 module.exports = function(io) {
   io.on('connection', (socket) => {
     console.log(`Socket connected: ${socket.id}`);
+
     const emit__action = (type, payload) => socket.emit('action', { type, payload });
     const broadcast__action = (type, payload) => io.emit('action', { type, payload });
+    
+    // User Config:
     socket.userLocation = {};
-
     const generateJWT = function (id, name) {
       const JWT = jwt.sign({
         data: {
@@ -42,16 +43,11 @@ module.exports = function(io) {
       }, process.env.SECRET_JWT_KEY, { expiresIn: '1h' });
       return JWT;
     };
-
     userArray.push(0);
 
     socket.on('action', (action) => {
       switch (action.type) {
-        case 'socket/INITIALIZE_APP':
-
-
-          // THIS NEVER GETS RAN, HENCE A TOKEN IS NEVER CACHED IN LOCALSTORAGE
-          // Nevermind.. Token should still get created when they login or signup
+        case 'socket/type__INITIALIZE_APP':
 
           // Initialize User:
           if (action.payload !== undefined) { // If token was found in localStorage:
@@ -65,23 +61,23 @@ module.exports = function(io) {
                 console.log("Token is expired or there was some type of error with it. here is the error:", err);
 
                 socket._user = null;
-                emit__action('LOGOUT_USER', false);
-                emit__action('RENDER_APP', true);
+                emit__action('type__LOGOUT_USER', false);
+                emit__action('type__RENDER_APP', true);
               } else { // If token IS valid:
 
                 console.log("No error with token. User is at this point confirmed and their session is valid. Here is the contents of their token:", decoded);
                 socket._user = {id: decoded.data.user_id, username: decoded.data.username, JWT: user_JWT};
-                emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
-                emit__action('SET_USERNAME', decoded.data.username);
-                emit__action('SET_USER_ID', decoded.data.user_id);
-                emit__action('RENDER_APP', true);
+                emit__action('type__USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
+                emit__action('type__SET_USERNAME', decoded.data.username);
+                emit__action('type__SET_USER_ID', decoded.data.user_id);
+                emit__action('type__RENDER_APP', true);
               }
             });
           }
 
           // Initialize Location:
+          emit__action('type__RENDER_APP', true);
 
-          emit__action('RENDER_APP', true);
         break;
         case 'socket/FETCH_LOCATION':
 
@@ -216,10 +212,10 @@ module.exports = function(io) {
 
               console.log("User Signed Up. Created 'socket._user' with:", socket._user);
 
-              emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
-              emit__action('SET_USERNAME', userCreds.username);
-              emit__action('SET_USER_ID', socket._user.id);
-              emit__action('RENDER_APP', true);
+              emit__action('type__USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
+              emit__action('type__SET_USERNAME', userCreds.username);
+              emit__action('type__SET_USER_ID', socket._user.id);
+              emit__action('type__RENDER_APP', true);
             });
           });
         break;
@@ -233,9 +229,9 @@ module.exports = function(io) {
 
               console.log("User Logged in. Created socket._user with:", socket._user);
 
-              emit__action('USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
-              emit__action('SET_USERNAME', socket._user.username);
-              emit__action('SET_USER_ID', socket._user.id);
+              emit__action('type__USER_AUTHENTICATED', {JWT: user_JWT, loggedIn: true});
+              emit__action('type__SET_USERNAME', socket._user.username);
+              emit__action('type__SET_USER_ID', socket._user.id);
             }
           });
         break;
@@ -245,9 +241,9 @@ module.exports = function(io) {
           socket._user = null;
           console.log("socket._user after logout:", socket._user);
 
-          emit__action('LOGOUT_USER', false);
-          emit__action('SET_USERNAME', "Anonymous");
-          emit__action('SET_USER_ID', null);
+          emit__action('type__LOGOUT_USER', false);
+          emit__action('type__SET_USERNAME', "Anonymous");
+          emit__action('type__SET_USER_ID', null);
         break;
         case 'socket/NEW_MESSAGE':
           // NOTIFIES TILE OF MESSAGE
@@ -355,7 +351,6 @@ module.exports = function(io) {
                         }).then((result) => {
                         });
                     } else {
-
                       knex('tags').insert({
                         name:tag_name
                       }).returning('id').then((tag_id) => {

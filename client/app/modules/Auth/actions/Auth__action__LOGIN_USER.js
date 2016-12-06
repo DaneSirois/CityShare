@@ -1,8 +1,8 @@
-import {LOGIN_USER__type} from '../Auth__types.js';
+import {type__LOGIN_USER} from '../Auth__types.js';
 
 const LOGIN_USER = (loginCreds) => {
   return {
-    type: `socket/${LOGIN_USER__type}`,
+    type: `socket/${type__LOGIN_USER}`,
     payload: loginCreds
   };
 };

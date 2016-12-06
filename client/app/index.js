@@ -1,26 +1,23 @@
+//[1] Import Dependencies:
 import React, {Component} from 'react';
+
 import * as ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
-
-import root_reducer from './root_reducer.js';
-import { Router, Route, hashHistory } from 'react-router';
 
 import thunk from 'redux-thunk';
 import createSocketIoMiddleware from 'redux-socket.io';
 import io from 'socket.io-client';
 
-import App__module from './modules/App/App__index.js';
-import Loading__module from './modules/Loading/Loading__index.js';
-import Portal__module from './modules/Portal/Portal__index.js';
-import Channel__view from './Views/Views__channel.js';
+import Root__reducer from './Root__reducer.js';
+import Root__component from './Root__component.js';
 
-import * as actions from './modules/Shared/actions/index.js';
+import AC from './action_controller.js';
 
 import './assets/normalize.css';
 import './assets/global.css';
 
-// Redux Middleware:
+//[2] Redux Middleware:
 const localStorage_middleware = (store) => (next) => (action) => {
   switch (action.type) {
     case 'USER_AUTHENTICATED':
@@ -43,48 +40,47 @@ const localStorage_middleware = (store) => (next) => (action) => {
       next(action);
   }
 };
-
 const scoreTiles__middleware = (store) => (next) => (action) => {
  switch (action.type) {
    case 'REFRESH_PORTAL':
-      //
-      action.channels.forEach((channel) => {
-        let messageArray = action.messages.map((message) => message);
-        channel.score = messageArray.filter((message) => {
-          return message.channel_id === channel.id;
-        }).reduce((score, message) => {
-          return score + Math.pow(((new Date(message.created_at)).getTime() / Date.now()), 2);
-        }, 0)
-        let headline = action.topics.find((topic) => topic.channel_id === channel.id)
-        channel.headline = headline ? headline.name : '';
-        channel.img_url = headline ? headline.img_url : '';
-      });
-  next(action);
-  break;
+    action.channels.forEach((channel) => {
+      let messageArray = action.messages.map((message) => message);
+      channel.score = messageArray.filter((message) => {
+        return message.channel_id === channel.id;
+      }).reduce((score, message) => {
+        return score + Math.pow(((new Date(message.created_at)).getTime() / Date.now()), 2);
+      }, 0)
+      let headline = action.topics.find((topic) => topic.channel_id === channel.id)
+      channel.headline = headline ? headline.name : '';
+      channel.img_url = headline ? headline.img_url : '';
+    });
+    next(action);
+    break;
   default:
     next(action);
  }
 }
 
-const socket = io('http://159.203.35.124:3000');
+//[3] Socket.io config:
+const socket = io('http://localhost:3000');
 const socketIoMiddleware = createSocketIoMiddleware(socket, "socket/");
 
-// Build store with middleware:
+//[4] Build store with middleware:
 const middleware = [thunk, socketIoMiddleware, localStorage_middleware, scoreTiles__middleware];
-const store = applyMiddleware(...middleware)(createStore)(root_reducer);
+const store = applyMiddleware(...middleware)(createStore)(Root__reducer);
 
-// Get JWT from 'Localstorage':
+//[5] Get JWT from 'Localstorage':
 const user_JWT = JSON.parse(localStorage.getItem("user_JWT")) || undefined;
 
-// Dispatch Initialization action:
+//[6] Dispatch Initialization action:
 setTimeout(() => {
-  store.dispatch(actions.InitializeApp(user_JWT));
+  store.dispatch(AC.handle__INITIALIZE_APP(user_JWT));
 }, 3000);
 
-// Mount the entry module:
+//[7] Mount the root component:
 ReactDOM.render(
   <Provider store={store}>
-    <App__module/>
+    <Root__component />
   </Provider>,
   document.getElementById('SRC')
 );

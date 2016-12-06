@@ -1,8 +1,8 @@
-import {CHANGE_AUTH_TAB__type} from '../Auth__types.js';
+import {type__CHANGE_AUTH_TAB} from '../Auth__types.js';
 
 const CHANGE_AUTH_TAB = (tab) => {
   return {
-    type: CHANGE_AUTH_TAB__type,
+    type: type__CHANGE_AUTH_TAB,
     payload: tab
   };
 };

@@ -35,7 +35,7 @@ function mapDispatchToProps(dispatch) {
   return {
     handleSubmit: (loginCreds) => {
       event.preventDefault();
-      dispatch(AC.request__LOGIN_USER(loginCreds));
+      dispatch(AC.handle__LOGIN_USER(loginCreds));
     }
   };
 };

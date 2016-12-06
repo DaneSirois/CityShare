@@ -1,24 +1,27 @@
+// Import Dependencies:
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ReactSwipe from 'react-swipe';
+import Media from 'react-media'
+
+// Import Modules:
 import Chatroom__module from '../modules/Chatroom/Chatroom__index.js';
 import Navbar__module from '../modules/Navbar/Navbar_index.js';
 import Feed__module from '../modules/Feed/Feed__index.js';
-import * as actions from '../modules/Shared/actions/index.js';
-import Media from 'react-media'
-import style from './styles/channel.css';
-import shared_style from './styles/shared.css';
 
-class ChannelView extends Component {
+import * as actions from '../modules/Shared/actions/index.js';
+
+import style from './Style__Channel.css';
+import shared_style from './Style__Shared.css';
+
+// The View:
+class Channel__View extends Component {
   componentWillMount() {
     this.props.handleLoad(this.props.params.id);
   }
-
   componentWillUnmount() {
     this.props.clearChannelState();
   }
-
-
   render() {
     return (
       <div className={style.container}>
@@ -51,15 +54,12 @@ class ChannelView extends Component {
                 <Feed__module channel_id={this.props.params.id}/>
               </div>
             </div>
-
           )}
-          </Media>
+        </Media>
       </div>
     );
-
-  }
-}
-
+  };
+};
 
 const mapDispatchToProps = function (dispatch) {
   return {
@@ -72,4 +72,4 @@ const mapDispatchToProps = function (dispatch) {
   }
 };
 
-export default connect(null, mapDispatchToProps)(ChannelView);
+export default connect(null, mapDispatchToProps)(Channel__View);

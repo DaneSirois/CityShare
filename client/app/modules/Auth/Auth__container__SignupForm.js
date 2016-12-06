@@ -52,7 +52,7 @@ function mapDispatchToProps(dispatch) {
           username: signupCreds.username,
           password: signupCreds.password
         }
-        dispatch(AC.request__SIGNUP_USER(userCreds));
+        dispatch(AC.handle__SIGNUP_USER(userCreds));
       }
     }
   };
