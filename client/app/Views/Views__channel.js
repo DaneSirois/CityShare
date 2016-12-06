@@ -4,6 +4,7 @@ import ReactSwipe from 'react-swipe';
 import Chatroom__module from '../modules/Chatroom/Chatroom__index.js';
 import Navbar__module from '../modules/Navbar/Navbar_index.js';
 import Feed__module from '../modules/Feed/Feed__index.js';
+import Widget__module from '../modules/Widget/Widget__index.js';
 import * as actions from '../modules/Shared/actions/index.js';
 import Media from 'react-media'
 import style from './styles/channel.css';
@@ -28,6 +29,9 @@ class ChannelView extends Component {
               <div className={shared_style.Navbar__container}>
                 <Navbar__module/>
               </div>
+              <div className={shared_style.Widget__container}>
+                <Widget__module/>
+              </div>
               <ReactSwipe className="carousel" swipeOptions={{continuous: false}}>
                 <div className={style.Chatroom__module}>
                   <Chatroom__module channel_id={this.props.params.id}/>
@@ -41,6 +45,9 @@ class ChannelView extends Component {
             <div>
               <div className={shared_style.Navbar__container}>
                 <Navbar__module/>
+              </div>
+              <div className={shared_style.Widget__container}>
+                <Widget__module/>
               </div>
 
               <div className={style.Chatroom__module}>
