@@ -9,16 +9,9 @@ import ToggleButton__component from './Auth__component__ToggleButton.js';
 import LogoutButton__component from './Auth__component__LogoutButton.js';
 
 class Auth__module extends Component {
-  constructor (props) {
-    super(props);
-    this.logout = this.logout.bind(this);
-  }
-  logout () {
-    return AC.dispatch__LOGOUT_USER();
-  }
   renderButton () {
     if (this.props.loggedIn) {
-      return <LogoutButton__component handleClick={this.logout} />
+      return <LogoutButton__component handleClick={() => this.props.logout.bind(this)} />
     } else {
       return <ToggleButton__component handleClick={() => this.props.handleClick.bind(this)(this.props.SHOW_CP)} showCP={this.props.SHOW_CP} />
     }
@@ -29,7 +22,6 @@ class Auth__module extends Component {
     }
   }
   render() {
-    console.log(AC);
     return (
       <div className={style.Auth__container}>
         {this.renderButton()}
@@ -50,12 +42,15 @@ function mapDispatchToProps(dispatch) {
   return {
     handleClick: (SHOW_CP) => {
       if (SHOW_CP === false) {
-        dispatch(AC.callback__SHOW_CP(true));  
+        dispatch(AC.request__SHOW_CP(true));  
       } else {
-        dispatch(AC.callback__SHOW_CP(false));
+        dispatch(AC.request__SHOW_CP(false));
       }
+    },
+    logout: () => {
+      dispatch(AC.request__LOGOUT_USER());
     }
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Auth__module);

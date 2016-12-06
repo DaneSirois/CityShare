@@ -15,33 +15,34 @@ import activeForm__reducer from './reducers/Auth__reducer__activeForm.js';
 
 // Actions:
 export const Auth__actions = {
-  callback__CHANGE_AUTH_TAB: function (tab) {
+  request__CHANGE_AUTH_TAB: function (tab) {
     return (dispatch) => {
       dispatch(CHANGE_AUTH_TAB(tab));
     };
   },
-  callback__SHOW_CP: function (bool) {
+  request__SHOW_CP: function (bool) {
     return (dispatch) => {
       dispatch(SHOW_CP(bool));
     };
   },
-  callback__LOGIN_USER: function (userCreds) {
+  request__LOGIN_USER: function (userCreds) {
     return (dispatch) => {
       dispatch(LOGIN_USER(userCreds))
     };
   },
-  callback__LOGOUT_USER: function () {
+  request__LOGOUT_USER: function () {
     return (dispatch) => {
       dispatch(LOGOUT_USER());
     };
   },
-  callback__SIGNUP_USER: function (userCreds) {
+  request__SIGNUP_USER: function (userCreds) {
     return (dispatch) => {
       dispatch(SIGNUP_USER(userCreds))
     };
   }
 };
 
+// Reducers:
 const Auth__reducers = combineReducers({
   SHOW_CP: showCP__reducer,
   ACTIVE_FORM: activeForm__reducer

@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import style from './Auth__styles.css';
-
 import AC from '../../action_controller.js';
+import style from './Auth__styles.css';
 
 class SignupForm__container extends Component {
   constructor(props) {
@@ -13,19 +12,6 @@ class SignupForm__container extends Component {
       username: "",
       password: "",
       passwordConfirm: ""
-    }
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleSubmit (signupCreds) {
-    event.preventDefault();
-
-    if (signupCreds.password.toString() === signupCreds.passwordConfirm.toString()) {
-      const userCreds = {
-        email: signupCreds.email,
-        username: signupCreds.username,
-        password: signupCreds.password
-      }
-      AC.dispatch__SIGNUP_USER(userCreds);
     }
   }
   handleEmailInput (event) {
@@ -43,7 +29,7 @@ class SignupForm__container extends Component {
   render() {
     return (
       <div className={style.Auth__form__container}>
-        <form onSubmit={(event) => this.handleSubmit(this.state)}>
+        <form onSubmit={(event) => this.props.handleSubmit.bind(this)(this.state)}>
           <input className={style.Auth__input} type="text" onChange={this.handleEmailInput.bind(this)} placeholder={"Email"} />
           <input className={style.Auth__input} type="text" onChange={this.handleUsernameInput.bind(this)} placeholder={"Username"} />
           <input className={style.Auth__input} type="password" onChange={this.handlePasswordInput.bind(this)} placeholder={"Password"} />
@@ -55,6 +41,22 @@ class SignupForm__container extends Component {
   };
 };
 
+function mapDispatchToProps(dispatch) {
+  return {
+    handleSubmit: (signupCreds) => {
+      event.preventDefault();
 
-export default SignupForm__container;
+      if (signupCreds.password.toString() === signupCreds.passwordConfirm.toString()) {
+        const userCreds = {
+          email: signupCreds.email,
+          username: signupCreds.username,
+          password: signupCreds.password
+        }
+        dispatch(AC.request__SIGNUP_USER(userCreds));
+      }
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SignupForm__container);
 

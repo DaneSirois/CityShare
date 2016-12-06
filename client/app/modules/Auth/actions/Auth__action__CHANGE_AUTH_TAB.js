@@ -4,7 +4,7 @@ const CHANGE_AUTH_TAB = (tab) => {
   return {
     type: CHANGE_AUTH_TAB__type,
     payload: tab
-  }
-}
+  };
+};
 
 export default CHANGE_AUTH_TAB;
