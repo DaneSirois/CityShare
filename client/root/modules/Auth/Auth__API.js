@@ -13,7 +13,7 @@ import SIGNUP_USER from './actions/Auth__action__SIGNUP_USER.js';
 import ShowCP__reducer from './reducers/Auth__reducer__ShowCP.js';
 import ActiveForm__reducer from './reducers/Auth__reducer__ActiveForm.js';
 
-// Actions:
+// Auth Actions:
 export const Auth__actions = {
   handle__CHANGE_AUTH_TAB: function (tab) {
     return (dispatch) => {
@@ -42,7 +42,7 @@ export const Auth__actions = {
   }
 };
 
-// Reducers:
+// Auth Reducers:
 const Auth__reducers = combineReducers({
   SHOW_CP: ShowCP__reducer,
   ACTIVE_FORM: ActiveForm__reducer

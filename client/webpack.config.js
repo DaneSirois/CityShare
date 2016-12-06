@@ -5,11 +5,11 @@ const autoprefixer = require('autoprefixer');
 module.exports = {
   devtool: 'eval',
   devServer: {
-    contentBase: "./app"
+    contentBase: "./root"
   },
   entry: [
     'webpack-dev-server/client?http://localhost:8080',
-    path.join(__dirname, './app/index.js')
+    path.join(__dirname, './root/Root__index.js')
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -21,13 +21,13 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'app'),
+        include: path.join(__dirname, 'root'),
         exclude: /node_modules/
       },
       {
         test: /\.js$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'app'),
+        include: path.join(__dirname, 'root'),
         exclude: /node_modules/
       },
       {
@@ -37,7 +37,7 @@ module.exports = {
           'css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]',
           'postcss-loader'
         ],
-        exclude: '/app/assets/'
+        exclude: '/root/assets/'
       }
     ]
   },

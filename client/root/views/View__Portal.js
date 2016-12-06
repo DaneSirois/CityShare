@@ -1,10 +1,11 @@
 // Import Dependencies:
 import React, {Component} from 'react';
 
-import Portal_style from './Style__Portal.css';
+import Portal_style from './View__Portal__style.css';
 import Shared_style from './Style__Shared.css';
 
-import Navbar__module from '../modules/Navbar/Navbar_index.js';
+// Import Partials / Modules:
+import Navbar__partial from '../partials/Partial__navbar.js';
 import Tags__module from '../modules/Tags/Tags__index.js';
 import Portal__module from '../modules/Portal/Portal__index.js';
 
@@ -14,9 +15,7 @@ class Portal__View extends Component {
     return (
       <div>
         <div className={Portal_style.container}>
-          <div className={Shared_style.Navbar__container}>
-            <Navbar__module/>
-          </div>
+          <Navbar__partial />
           <div className={Portal_style.Tags__container}>
             <Tags__module/>
           </div>

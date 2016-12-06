@@ -9,7 +9,7 @@ import RENDER_APP from './actions/App__action__RENDER_APP.js';
 // Import Reducers:
 import RenderApp__reducer from './reducers/App__reducer__RenderApp.js';
 
-// Actions:
+// App Actions:
 export const App__actions = {
   handle__INITIALIZE_APP: function (user_JWT) {
     return (dispatch) => {
@@ -23,7 +23,7 @@ export const App__actions = {
   }
 };
 
-// Reducers:
+// App Reducers:
 const App__reducers = combineReducers({
   RENDER_APP: RenderApp__reducer
 });

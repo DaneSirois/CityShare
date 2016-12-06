@@ -4,15 +4,14 @@ import { connect } from 'react-redux';
 import ReactSwipe from 'react-swipe';
 import Media from 'react-media'
 
-// Import Modules:
+// Import Partials / Modules:
+import Navbar__partial from '../partials/Partial__navbar.js';
 import Chatroom__module from '../modules/Chatroom/Chatroom__index.js';
-import Navbar__module from '../modules/Navbar/Navbar_index.js';
 import Feed__module from '../modules/Feed/Feed__index.js';
 
 import * as actions from '../modules/Shared/actions/index.js';
 
-import style from './Style__Channel.css';
-import shared_style from './Style__Shared.css';
+import style from './View__Channel__style.css';
 
 // The View:
 class Channel__View extends Component {
@@ -28,9 +27,7 @@ class Channel__View extends Component {
         <Media query="(max-width: 899px)">
           {matches => matches ? (
             <div>
-              <div className={shared_style.Navbar__container}>
-                <Navbar__module/>
-              </div>
+              <Navbar__partial />
               <ReactSwipe className="carousel" swipeOptions={{continuous: false}}>
                 <div className={style.Chatroom__module}>
                   <Chatroom__module channel_id={this.props.params.id}/>
@@ -42,14 +39,10 @@ class Channel__View extends Component {
             </div>
           ) : (
             <div>
-              <div className={shared_style.Navbar__container}>
-                <Navbar__module/>
-              </div>
-
+              <Navbar__partial />
               <div className={style.Chatroom__module}>
                 <Chatroom__module channel_id={this.props.params.id}/>
               </div>
-
               <div className={style.Feed__module}>
                 <Feed__module channel_id={this.props.params.id}/>
               </div>

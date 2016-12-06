@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'source-map',
 
   entry: [
-    './app/index.js'
+    './root/Root__index.js'
   ],
 
   output: {
@@ -34,13 +34,13 @@ module.exports = {
       {
         test: /\.jsx?$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'app'),
+        include: path.join(__dirname, 'root'),
         exclude: /node_modules/
       },
       {
         test: /\.js$/,
         loaders: ['babel'],
-        include: path.join(__dirname, 'app'),
+        include: path.join(__dirname, 'root'),
         exclude: /node_modules/
       },
       {
