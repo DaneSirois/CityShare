@@ -1,5 +1,5 @@
-StanleyPark App:
-==========================================
+# CityShare:
+
 The Hyper Local Social Networking Service
 
 
@@ -27,19 +27,11 @@ Modules:
   > Module names start with a capital letter
 
 Files:
-  Follow the Mountain(MTN) naming convention (Module__type__name):
+  Follow the (MTN) naming convention (module__type__name):
     > Prefix files with the name of their module (ex. 'Module')
-    > Follow that with the type of file using lowercase (ex. 'Module__container')
-    > Prepend with a unique name using camelCase (ex. 'Module__container__myContainer')
+    > Follow with the type of file using lowercase (ex. 'Module__container')
+    > End with a unique name using camelCase (ex. 'Module__container__myContainer')
     > Seperate each part with double underscores
-```
-
-### Linting:
-
-This project includes React ESLint configuration.
-
-```
-> npm run lint
 ```
 
 ### Dependencies:
