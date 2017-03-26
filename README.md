@@ -1,7 +1,8 @@
 # CityShare:
 
-The Hyper Local Social Networking Service
+Custom created the architecture and naming convention. In hindsight there are certainly a few things that I'd do differently, but it was a cool experiement nonetheless.
 
+We used a cool piece of Redux middleware called [Redux-socket.io](https://github.com/itaylor/redux-socket.io). This let us dispatch actions both to and from our websocket server. All of our network calls in this app were done using websockets.
 
 ### Usage:
 
