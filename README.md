@@ -1,38 +1,28 @@
 # CityShare:
 
-Custom created the architecture and naming convention. In hindsight there are certainly a few things that I'd do differently, but it was a cool experiement nonetheless.
+Custom created the architecture and naming convention. In hindsight there are a few things that I'd do differently, but it was a cool experiement nonetheless
 
-We used a cool piece of Redux middleware called [Redux-socket.io](https://github.com/itaylor/redux-socket.io). This let us dispatch actions both to and from our websocket server. All of our network calls in this app were done using websockets.
+We used a cool piece of Redux middleware called [Redux-socket.io](https://github.com/itaylor/redux-socket.io). This let us dispatch redux actions both to and from our websocket server. All of the network calls in this app were done via websockets.
 
-### Usage:
+### Naming Convention / Architecture (MTN):
 
+**Naming Convention:**
 ```
-> Fork: https://github.com/DaneSirois/StanleyPark,
-> Pull your fork,
-> Make Git branches mimic modules
-```
-
-Install the dependencies and start the server.
-
-```
-> npm install
-> npm start
-> open http://localhost:3000
+[MTN]: (Module__type__name):
+    > Prefix with name of module [PascalCase]: (ex. 'Module.js')
+    > Append with file type [lowercase]: (ex. 'Module__container.js')
+    > End with unique descriptor [camelCase]: (ex. 'Module__container__usefulComponent.js')
+    > Seperate with double underscores (ex. '__')
 ```
 
-### Naming Conventions:
-
+**Modules:**
 ```
-Modules:
-  > Name modules after features
-  > Module names start with a capital letter
+  > Name after features
+  > Start with capital letter
+  > Contains Containers, Components, Styles, and Reducers
+```
 
-Files:
-  Follow the (MTN) naming convention (module__type__name):
-    > Prefix files with the name of their module (ex. 'Module')
-    > Follow with the type of file using lowercase (ex. 'Module__container')
-    > End with a unique name using camelCase (ex. 'Module__container__myContainer')
-    > Seperate each part with double underscores
+-Contrived by @DaneSirois
 ```
 
 ### Dependencies:
