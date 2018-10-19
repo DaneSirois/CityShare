@@ -1,7 +1,4 @@
 # CityShare:
-
-Custom created the architecture and naming convention. In hindsight there are a few things that I'd do differently, but it was a cool experiement nonetheless
-
 We used a cool piece of Redux middleware called [Redux-socket.io](https://github.com/itaylor/redux-socket.io). This let us dispatch redux actions both to and from our websocket server. All of the network calls in this app were done via websockets.
 
 ### Naming Convention / Architecture (MTN):
@@ -21,10 +18,6 @@ We used a cool piece of Redux middleware called [Redux-socket.io](https://github
   > Start with capital letter
   > Contains Containers, Components, Styles, and Reducers
 ```
-
--Contrived by @DaneSirois
-
-Why? Scalablility. The benefits of this naming convention become aparant as the app starts to scale. It's inherit binding of a file to a specific area of your app makes searching for things a breeze. Once you learn the convention, it makes identifying new files easier as well. On a large scale application, the added meta info and structure help make the process of working on forign areas of your app easier too.
 
 ### Dependencies:
 
